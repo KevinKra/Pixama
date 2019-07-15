@@ -1,5 +1,6 @@
 import React from "react";
 import "./MainPage.scss";
+import Carousel from "../Carousel/Carousel";
 
 export default function MainPage() {
   return (
@@ -10,6 +11,7 @@ export default function MainPage() {
         <article className="hero-text">Text</article>
       </section>
       <section className="main-body">
+        <Carousel />
         <article className="Carousel">
           <article className="MovieCard">MovieCard</article>
           <article className="MovieCard">MovieCard</article>
