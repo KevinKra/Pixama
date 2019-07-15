@@ -1,12 +1,14 @@
 import React from "react";
-import "./App.css";
+import { Route } from "react-router-dom";
+import NavBar from "../NavBar/NavBar";
+import MainPage from "../MainPage/MainPage";
+import Carousel from "../Carousel/Carousel";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <p>App</p>
-    </div>
+    <main>
+      <Route path="/" component={NavBar} />
+      <Route exact path="/" component={MainPage} />
+    </main>
   );
 }
-
-export default App;
