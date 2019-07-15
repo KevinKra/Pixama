@@ -4,7 +4,11 @@ import "./MainPage.scss";
 export default function MainPage() {
   return (
     <section className="MainPage">
-      <section className="HeroImage">HeroImage</section>
+      <section className="HeroImage">
+        <div className="hero-image" />
+        <div className="screen" />
+        <article className="hero-text">Text</article>
+      </section>
       <section className="main-body">
         <article className="Carousel">
           <article className="MovieCard">MovieCard</article>

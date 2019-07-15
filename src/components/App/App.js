@@ -7,7 +7,7 @@ import Carousel from "../Carousel/Carousel";
 export default function App() {
   return (
     <main>
-      <Route path="/" component={NavBar} />
+      {/* <Route path="/" component={NavBar} /> */}
       <Route exact path="/" component={MainPage} />
     </main>
   );
