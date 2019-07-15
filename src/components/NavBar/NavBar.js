@@ -1,9 +1,10 @@
 import React from "react";
+import "./NavBar.scss";
 
 export default function NavBar() {
   return (
-    <div>
+    <nav className="NavBar">
       <p>NavBar</p>
-    </div>
+    </nav>
   );
 }
