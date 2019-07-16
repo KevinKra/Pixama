@@ -1,9 +1,10 @@
 import React from "react";
+import "./MovieCard.scss";
 
 export default function MovieCard() {
   return (
-    <div>
+    <article className="MovieCard">
       <p>MovieCard</p>
-    </div>
+    </article>
   );
 }

@@ -1,0 +1,26 @@
+.Carousel {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid green;
+  padding: 0;
+  margin-bottom: 1.5rem;
+  color: red;
+  h2 {
+    margin: 0.2rem;
+    padding-left: 0.4rem;
+  }
+}
+
+.movies-container {
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: none;
+  border: 1px solid red;
+  // height: 250px;
+}
+
+.movies-container::-webkit-scrollbar {
+  width: 0 !important;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
