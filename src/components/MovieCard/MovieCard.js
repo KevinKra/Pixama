@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import "./MovieCard.scss";
 
 export default class MovieCard extends Component {
@@ -24,14 +24,18 @@ export default class MovieCard extends Component {
 
   render() {
     const backdrop = (
-      <div
-        className="backdrop-image"
-        style={{
-          backgroundImage: `url(https://image.tmdb.org/t/p/w780/${
-            this.props.backdrop
-          })`
-        }}
-      />
+      <Fragment>
+        <h4 className="poster-name">{this.props.title}</h4>
+        <div className="screen" />
+        <div
+          className="backdrop-image"
+          style={{
+            backgroundImage: `url(https://image.tmdb.org/t/p/w780/${
+              this.props.backdrop
+            })`
+          }}
+        />
+      </Fragment>
     );
 
     const poster = (
@@ -53,7 +57,6 @@ export default class MovieCard extends Component {
         onMouseEnter={this.displayBackdrop}
         onMouseLeave={this.displayPoster}
       >
-        {/* <h4 className="poster-name">{this.props.title}</h4> */}
         {!this.state.displayBackdrop ? poster : backdrop}
       </article>
     );
