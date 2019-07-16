@@ -4,8 +4,7 @@ import MainPage from "../MainPage/MainPage";
 
 export default function App() {
   return (
-    <main>
-      {/* <Route path="/" component={NavBar} /> */}
+    <main className="App">
       <Route exact path="/" component={MainPage} />
     </main>
   );
