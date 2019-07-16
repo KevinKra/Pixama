@@ -1,23 +1,25 @@
 .Carousel {
+  position: relative;
   display: flex;
   flex-direction: column;
   border: 1px solid green;
   padding: 0;
   margin-bottom: 1.5rem;
-  color: red;
+  color: rgb(185, 185, 185);
   h2 {
-    margin: 0.2rem;
-    padding-left: 0.4rem;
+    margin: 0.1rem;
+    padding-left: 1.7rem;
   }
 }
 
 .movies-container {
+  position: relative;
   display: flex;
   overflow-x: scroll;
   overflow-y: none;
   display: relative;
   border: 1px solid red;
-  padding: 1rem;
+  padding: 1rem 1.5rem;
   // height: 250px;
 }
 
