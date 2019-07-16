@@ -1,6 +1,7 @@
 .MovieCard {
   position: relative;
   border: 1px solid red;
+  z-index: 3;
   height: 278px;
   margin: 0 0.3rem;
   transition: 0.4s min-width ease-in, 0.35s transform ease-in;
@@ -10,14 +11,28 @@
     top: 0;
     left: 0;
   }
+  .poster-name {
+    position: absolute;
+    animation: fade-in-hold 1.5s forwards;
+    z-index: 2;
+    left: 15px;
+    color: white;
+  }
   .backdrop-image {
-    // position: absolute;
     background-size: cover;
     background-position: center;
     height: 100%;
   }
 }
 
-.expand {
-  width: 350px;
+@keyframes fade-in-hold {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
