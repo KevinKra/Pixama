@@ -1,8 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import NavBar from "../NavBar/NavBar";
 import MainPage from "../MainPage/MainPage";
-import Carousel from "../Carousel/Carousel";
 
 export default function App() {
   return (

@@ -13,20 +13,3 @@
   min-height: 100vh;
   transform: translateY(-50px);
 }
-
-.Carousel {
-  display: flex;
-  overflow-x: scroll;
-  overflow-y: none;
-  border: 1px solid red;
-  height: 250px;
-  padding: 0.3rem 0;
-  margin: 1.5rem 0;
-}
-
-.MovieCard {
-  border: 1px solid red;
-  height: 99%;
-  min-width: 200px;
-  margin: 0 0.5rem;
-}
