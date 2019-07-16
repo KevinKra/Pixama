@@ -15,7 +15,7 @@ export default function Carousel(props) {
                 overview={movie.overview}
                 backdrop={movie.backdrop_path}
                 poster={movie.poster_path}
-                languange={movie.original_language}
+                language={movie.original_language}
                 id={movie.id}
                 key={movie.id}
               />
