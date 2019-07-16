@@ -18,3 +18,9 @@
   border: 1px solid red;
   height: 250px;
 }
+
+.movies-container::-webkit-scrollbar {
+  width: 0 !important;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
