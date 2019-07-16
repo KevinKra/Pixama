@@ -4,7 +4,10 @@ import "./NavBar.scss";
 export default function NavBar() {
   return (
     <nav className="NavBar">
-      <p>NavBar</p>
+      <div>
+        <h3>PIXAMA</h3>
+        <p>Login</p>
+      </div>
     </nav>
   );
 }

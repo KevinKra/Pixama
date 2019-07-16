@@ -1,7 +1,16 @@
 .NavBar {
+  display: flex;
+  justify-content: center;
   border: 1px solid red;
   width: 100%;
   position: fixed;
-  z-index: 2;
   background-color: white;
+  height: 60px;
+  z-index: 2;
+  div {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid red;
+    width: 90%;
+  }
 }
