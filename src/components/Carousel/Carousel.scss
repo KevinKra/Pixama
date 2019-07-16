@@ -15,7 +15,9 @@
   display: flex;
   overflow-x: scroll;
   overflow-y: none;
+  display: relative;
   border: 1px solid red;
+  padding: 1rem;
   // height: 250px;
 }
 

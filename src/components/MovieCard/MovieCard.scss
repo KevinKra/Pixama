@@ -2,13 +2,21 @@
   position: relative;
   border: 1px solid red;
   height: 278px;
-  min-width: 185px;
   margin: 0 0.5rem;
-  // background-color: rgb(189, 189, 189);
+  transition: 0.3s min-width ease-in, 0.5s transform ease-in;
   .poster-image {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
   }
+  .backdrop-image {
+    // position: absolute;
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+  }
+}
+
+.expand {
+  width: 350px;
 }
