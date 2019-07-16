@@ -20,9 +20,10 @@ import { fetchUser } from "../../api/apiCalls";
 
 onSubmit = async() => {
 let userData = {email: this.state.email, password: this.state.password}
+const url = 'http://localhost:3000/api/users';
 
 try {
-  const userInfo = await fetchUser('http://localhost:3000/api/users', userData)
+  const userInfo = await fetchUser(url, userData)
   this.setState(userInfo)
   console.log(this.state.data)
 }catch (error) {

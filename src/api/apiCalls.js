@@ -9,8 +9,8 @@ export const fetchPopularMovies = async () => {
 };
 
 //This method is not hooked up anywhere at this point
-export const addNewUser = (url, data)  => {
 //data must be an object with keys of name, email and password
+export const addNewUser = (url, data)  => {
   return fetch(url, 
     {
       method: 'POST',
@@ -32,6 +32,29 @@ export const addNewUser = (url, data)  => {
 export const fetchUser = (url, data)  => {
 
   return fetch(url, 
+    {
+      method: 'POST',
+      body: JSON.stringify( data ),
+      headers: {
+        'Content-Type': 'application/json'
+    }
+  })
+  .then(response=> {
+    if(!response.ok) {
+      throw Error ("Add error",response.message)
+    } else {
+      return response.json()
+    }
+  })
+}
+
+//Method to add a movie to a user's favorites, this method not hooked up to a component yet
+// url in component method needs to be 'http://localhost:3000/api/users/favorites/new'
+//data needs to be object like this: {movie_id: 550, user_id: 1, title: "Fight Club", poster_path: "/adw6Lq9FiC9zjYEpOqfq03ituwp.jpg" , release_date: "1999-10-15", vote_average:8.4, overview: "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion."}
+//response will be the new favorite ID
+export const addFavorite = (url, data)  => {
+
+return fetch(url, 
     {
       method: 'POST',
       body: JSON.stringify( data ),
