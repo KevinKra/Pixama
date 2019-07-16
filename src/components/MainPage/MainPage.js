@@ -1,15 +1,12 @@
 import React from "react";
 import "./MainPage.scss";
 import Carousel from "../Carousel/Carousel";
+import HeroImage from "../HeroImage/HeroImage";
 
 export default function MainPage() {
   return (
     <section className="MainPage">
-      <section className="HeroImage">
-        <div className="hero-image" />
-        <div className="screen" />
-        <article className="hero-text">Text</article>
-      </section>
+      <HeroImage />
       <section className="main-body">
         <Carousel />
         <article className="Carousel">
