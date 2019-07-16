@@ -5,5 +5,5 @@ export const fetchPopularMovies = async () => {
     `https://api.themoviedb.org/3/discover/movie?certification_country=US&api_key=${API_KEY}`
   );
   const movies = await response.json();
-  console.log(movies);
+  return movies.results;
 };
