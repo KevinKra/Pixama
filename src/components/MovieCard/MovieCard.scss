@@ -1,7 +1,14 @@
 .MovieCard {
+  position: relative;
   border: 1px solid red;
-  height: 250px;
-  min-width: 200px;
+  height: 278px;
+  min-width: 185px;
   margin: 0 0.5rem;
-  background-color: rgb(189, 189, 189);
+  // background-color: rgb(189, 189, 189);
+  .poster-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
 }
