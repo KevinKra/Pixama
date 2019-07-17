@@ -1,11 +1,14 @@
 import React, { Component, Fragment } from "react";
 import Favorite from "../buttons/Favorite/Favorite";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import "./MovieCard.scss";
 
 export default class MovieCard extends Component {
   state = {
     displayBackdrop: true,
-    userActive: true
+    userActive: true,
+    bookmarked: false
   };
 
   displayBackdrop = () => {
@@ -23,14 +26,28 @@ export default class MovieCard extends Component {
       : this.setState({ displayBackdrop: false });
   };
 
+  bookmarkCard = () => {
+    const toggle = this.state.bookmarked;
+    this.setState({ bookmarked: !toggle });
+  };
+
   render() {
+    const bookmark = (
+      <FontAwesomeIcon
+        icon={faBookmark}
+        size="lg"
+        onClick={this.bookmarkCard}
+        className={`bookmark ${this.state.bookmarked && "bookmarked"}`}
+      />
+    );
     const backdrop = (
       <Fragment>
         <div className="overlay-content">
-          <h4 className="poster-name">{this.props.title}</h4>
-          <Favorite />
+          <h3 className="movie-title">{this.props.title}</h3>
+          <p className="movie-overview">{this.props.overview}</p>
+          {bookmark}
         </div>
-        <div className="screen" />
+        <div className="screen-solid" />
         <div
           className="backdrop-image"
           style={{
