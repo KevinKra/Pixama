@@ -28,8 +28,8 @@ export default class MainPage extends Component {
         <HeroImage />
         <section className="main-body">
           <Carousel title="Popular Movies" movies={this.state.movies} />
-          <Carousel title="Popular Shows" movies={this.state.movies} />
-          <Carousel title="Popular Action" movies={this.state.movies} />
+          {/* <Carousel title="Popular Shows" movies={this.state.movies} />
+          <Carousel title="Popular Action" movies={this.state.movies} /> */}
         </section>
       </section>
     );
