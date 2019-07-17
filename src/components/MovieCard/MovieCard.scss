@@ -13,10 +13,17 @@
     top: 0;
     left: 0;
   }
-  .poster-name {
+  .overlay-content {
     position: absolute;
-    animation: fade-in-hold 1.5s forwards;
     z-index: 3;
+    border: 1px solid red;
+    height: 100%;
+    width: 100%;
+  }
+  .poster-name {
+    position: relative;
+    z-index: 3;
+    animation: fade-in-hold 1.5s forwards;
     left: 15px;
     color: $text-light;
   }

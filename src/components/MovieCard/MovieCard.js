@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from "react";
+import Favorite from "../buttons/Favorite/Favorite";
 import "./MovieCard.scss";
 
 export default class MovieCard extends Component {
   state = {
-    displayBackdrop: false,
-    userActive: false
+    displayBackdrop: true,
+    userActive: true
   };
 
   displayBackdrop = () => {
@@ -25,7 +26,10 @@ export default class MovieCard extends Component {
   render() {
     const backdrop = (
       <Fragment>
-        <h4 className="poster-name">{this.props.title}</h4>
+        <div className="overlay-content">
+          <h4 className="poster-name">{this.props.title}</h4>
+          <Favorite />
+        </div>
         <div className="screen" />
         <div
           className="backdrop-image"
