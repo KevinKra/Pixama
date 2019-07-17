@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import Favorite from "../buttons/Favorite/Favorite";
+// import Favorite from "../buttons/Favorite/Favorite";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
