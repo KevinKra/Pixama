@@ -4,35 +4,69 @@ import "./Carousel.scss";
 
 export default class Carousel extends Component {
   state = {
-    splitMovies: [],
     translate: 0,
-    page: 1
-    // loaded: false
+    currentPage: 1,
+    totalPages: 1,
+    loaded: false
   };
 
   componentDidUpdate() {
     if (this.props.movies.length > 0 && this.state.loaded === false)
-      this.CarouselTransitions();
+      this.determineSlides();
   }
 
+  determineSlides = () => {
+    const windowWidth = this.getWidth();
+    console.log("page width", windowWidth);
+    const moviesPerPage = Math.ceil(windowWidth / 185);
+    console.log("pages amountt", moviesPerPage);
+    const totalPages = Math.floor(20 / moviesPerPage);
+    console.log(totalPages);
+    this.setState({ totalPages, loaded: true });
+  };
+
+  getWidth = () => {
+    return Math.max(
+      document.body.scrollWidth,
+      document.documentElement.scrollWidth,
+      document.body.offsetWidth,
+      document.documentElement.offsetWidth,
+      document.documentElement.clientWidth
+    );
+  };
+
   translateXForward = () => {
-    const previousPosition = this.state.translate;
-    this.setState({ translate: previousPosition + 50 });
+    if (this.state.currentPage > 1) {
+      const currentPage = this.state.currentPage;
+      console.log(this.state.currentPage);
+      const previousPosition = this.state.translate;
+      this.setState({
+        translate: previousPosition + 100,
+        currentPage: currentPage - 1
+      });
+    }
   };
 
   translateXBackward = () => {
-    const previousPosition = this.state.translate;
-    this.setState({ translate: previousPosition - 50 });
+    if (this.state.currentPage <= this.state.totalPages) {
+      const currentPage = this.state.currentPage;
+      console.log(this.state.currentPage);
+      const previousPosition = this.state.translate;
+      this.setState({
+        translate: previousPosition - 100,
+        currentPage: currentPage + 1
+      });
+    }
   };
 
   render() {
     return (
       <div className="Carousel">
         <h2>{this.props.title}</h2>
-        <button className="forwards-btn" onClick={this.translateXBackward}>
+        <button className="forwards-btn" onClick={this.translateXForward}>
           a
         </button>
-        <button className="backwards-btn" onClick={this.translateXForward}>
+        <button className="backwards-btn" onClick={this.translateXBackward}>
           b
         </button>
         <div

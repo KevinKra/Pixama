@@ -2,6 +2,7 @@
 
 .Carousel {
   border: 1px solid orange;
+  color: white;
   margin-top: 40px;
   position: relative;
   z-index: -1;
@@ -18,7 +19,6 @@
   display: flex;
   overflow-y: none;
   width: 3800px;
-  border: 1px solid red;
   transition: 1s transform ease-in-out;
   transform: translateX(0px);
   padding: 2rem 55px;

@@ -29,7 +29,6 @@ export default class MainPage extends Component {
         <HeroImage />
         <section className="main-body">
           <Carousel title="Popular Movies" movies={this.state.movies} />
-          {/* <LoginCard /> */}
         </section>
       </section>
     );
