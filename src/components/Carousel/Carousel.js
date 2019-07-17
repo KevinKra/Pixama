@@ -15,23 +15,6 @@ export default class Carousel extends Component {
       this.CarouselTransitions();
   }
 
-  // CarouselTransitions = () => {
-  //   //Expects 20 movies from fetch
-  //   let movieSelection = [];
-  //   this.props.movies.map((movie, index) => {
-  //     let movies = [],
-  //       key = 1;
-  //     movies.push(movie);
-  //     if ((index + 1) % 5 === 0) {
-  //       movieSelection.push({ [key]: movies });
-  //       key += 1;
-  //       movies = [];
-  //     }
-  //   });
-  //   console.log(movieSelection);
-  //   this.setState({ splitMovies: movieSelection, loaded: true });
-  // };
-
   translateXForward = () => {
     const previousPosition = this.state.translate;
     this.setState({ translate: previousPosition + 50 });
@@ -47,10 +30,10 @@ export default class Carousel extends Component {
       <div className="Carousel">
         <h2>{this.props.title}</h2>
         <button className="forwards-btn" onClick={this.translateXBackward}>
-          Forward
+          a
         </button>
         <button className="backwards-btn" onClick={this.translateXForward}>
-          Back
+          b
         </button>
         <div
           className="movies-container"

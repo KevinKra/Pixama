@@ -86,7 +86,7 @@ export default class MovieCard extends Component {
         className="MovieCard"
         style={
           !this.state.displayBackdrop
-            ? { minWidth: "185px" }
+            ? { minWidth: "185px", maxWidth: "185px" }
             : {
                 minWidth: "320px",
                 transform: "scale(1.03)",

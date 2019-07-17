@@ -17,9 +17,8 @@
   z-index: 1;
   display: flex;
   overflow-y: none;
-  // border: 1px solid green;
-  // border: 1px solid red;
-
+  width: 3800px;
+  border: 1px solid red;
   transition: 1s transform ease-in-out;
   transform: translateX(0px);
   padding: 2rem 55px;
