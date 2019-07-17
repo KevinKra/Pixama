@@ -3,6 +3,7 @@ import "./LoginCard.scss";
 import { fetchUser } from "../../api/apiCalls";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions";
+import { NavLink } from 'react-router-dom';
 
 class LoginCard extends Component {
   state = {
@@ -55,9 +56,11 @@ class LoginCard extends Component {
           type="text"
           placeholder="Password"
         />
-        <button type="button" onClick={this.onSubmit}>
-          Login
-        </button>
+        <NavLink to="/">
+          <button type="button" onClick={this.onSubmit}>
+            Login
+          </button>
+        </NavLink>
       </form>
     );
   }
