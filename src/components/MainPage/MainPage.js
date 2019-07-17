@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import * as apiCalls from "../../api/apiCalls";
+import { Route } from 'react-router-dom';
 import "./MainPage.scss";
 import Carousel from "../Carousel/Carousel";
 import HeroImage from "../HeroImage/HeroImage";
@@ -29,7 +30,6 @@ export default class MainPage extends Component {
         <HeroImage />
         <section className="main-body">
           <Carousel title="Popular Movies" movies={this.state.movies} />
-          <LoginCard />
         </section>
       </section>
     );
