@@ -17,11 +17,8 @@ export default class Carousel extends Component {
 
   determineSlides = () => {
     const windowWidth = this.getWidth();
-    console.log("page width", windowWidth);
     const moviesPerPage = Math.ceil(windowWidth / 185);
-    console.log("pages amountt", moviesPerPage);
     const totalPages = Math.floor(20 / moviesPerPage);
-    console.log(totalPages);
     this.setState({ totalPages, loaded: true });
   };
 
@@ -38,7 +35,6 @@ export default class Carousel extends Component {
   translateXForward = () => {
     if (this.state.currentPage > 1) {
       const currentPage = this.state.currentPage;
-      console.log(this.state.currentPage);
       const previousPosition = this.state.translate;
       this.setState({
         translate: previousPosition + 100,
@@ -50,7 +46,6 @@ export default class Carousel extends Component {
   translateXBackward = () => {
     if (this.state.currentPage <= this.state.totalPages) {
       const currentPage = this.state.currentPage;
-      console.log(this.state.currentPage);
       const previousPosition = this.state.translate;
       this.setState({
         translate: previousPosition - 100,
@@ -60,14 +55,30 @@ export default class Carousel extends Component {
   };
 
   render() {
+    const moviesRendered =
+      this.props.movies &&
+      this.props.movies.map(movie => {
+        return (
+          <MovieCard
+            title={movie.original_title}
+            overview={movie.overview}
+            backdrop={movie.backdrop_path}
+            poster={movie.poster_path}
+            language={movie.original_language}
+            popularity={movie.vote_average}
+            id={movie.id}
+            key={movie.id}
+          />
+        );
+      });
     return (
       <div className="Carousel">
         <h2>{this.props.title}</h2>
         <button className="forwards-btn" onClick={this.translateXForward}>
-          a
+          ⏪
         </button>
         <button className="backwards-btn" onClick={this.translateXBackward}>
-          b
+          ⏩
         </button>
         <div
           className="movies-container"
@@ -75,21 +86,7 @@ export default class Carousel extends Component {
             transform: `translateX(${this.state.translate}vw)`
           }}
         >
-          {this.props.movies &&
-            this.props.movies.map(movie => {
-              return (
-                <MovieCard
-                  title={movie.original_title}
-                  overview={movie.overview}
-                  backdrop={movie.backdrop_path}
-                  poster={movie.poster_path}
-                  language={movie.original_language}
-                  popularity={movie.vote_average}
-                  id={movie.id}
-                  key={movie.id}
-                />
-              );
-            })}
+          {moviesRendered}
         </div>
       </div>
     );
