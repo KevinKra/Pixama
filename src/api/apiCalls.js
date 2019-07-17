@@ -10,7 +10,7 @@ export const fetchPopularMovies = async () => {
 
 //This method is not hooked up anywhere at this point
 //data must be an object with keys of name, email and password
-export const addNewUser = (url, data)  => {
+export const fetchNewUser = (url, data)  => {
   return fetch(url, 
     {
       method: 'POST',
