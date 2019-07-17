@@ -5,8 +5,9 @@ import "./Carousel.scss";
 export default class Carousel extends Component {
   state = {
     splitMovies: [],
-    page: 1,
-    loaded: false
+    translate: 0,
+    page: 1
+    // loaded: false
   };
 
   componentDidUpdate() {
@@ -14,29 +15,49 @@ export default class Carousel extends Component {
       this.CarouselTransitions();
   }
 
-  CarouselTransitions = () => {
-    //Expects 20 movies from fetch
-    let movieSelection = [];
-    this.props.movies.map((movie, index) => {
-      let movies = [],
-        key = 1;
-      movies.push(movie);
-      if ((index + 1) % 5 === 0) {
-        movieSelection.push({ [key]: movies });
-        key += 1;
-        movies = [];
-      }
-    });
-    console.log(movieSelection);
-    this.setState({ splitMovies: movieSelection, loaded: true });
+  // CarouselTransitions = () => {
+  //   //Expects 20 movies from fetch
+  //   let movieSelection = [];
+  //   this.props.movies.map((movie, index) => {
+  //     let movies = [],
+  //       key = 1;
+  //     movies.push(movie);
+  //     if ((index + 1) % 5 === 0) {
+  //       movieSelection.push({ [key]: movies });
+  //       key += 1;
+  //       movies = [];
+  //     }
+  //   });
+  //   console.log(movieSelection);
+  //   this.setState({ splitMovies: movieSelection, loaded: true });
+  // };
+
+  translateXForward = () => {
+    const previousPosition = this.state.translate;
+    this.setState({ translate: previousPosition + 50 });
+  };
+
+  translateXBackward = () => {
+    const previousPosition = this.state.translate;
+    this.setState({ translate: previousPosition - 50 });
   };
 
   render() {
     return (
-      <section className="Carousel">
+      <div className="Carousel">
         <h2>{this.props.title}</h2>
-        <button>X</button>
-        <div className="movies-container">
+        <button className="forwards-btn" onClick={this.translateXBackward}>
+          Forward
+        </button>
+        <button className="backwards-btn" onClick={this.translateXForward}>
+          Back
+        </button>
+        <div
+          className="movies-container"
+          style={{
+            transform: `translateX(${this.state.translate}vw)`
+          }}
+        >
           {this.props.movies &&
             this.props.movies.map(movie => {
               return (
@@ -53,8 +74,7 @@ export default class Carousel extends Component {
               );
             })}
         </div>
-        <button>Y</button>
-      </section>
+      </div>
     );
   }
 }

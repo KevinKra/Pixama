@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import Favorite from "../buttons/Favorite/Favorite";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
@@ -13,7 +12,7 @@ export default class MovieCard extends Component {
   };
 
   displayBackdrop = () => {
-    setTimeout(this.determineActive, 450);
+    setTimeout(this.determineActive, 550);
     this.setState({ userActive: true });
   };
 
@@ -88,7 +87,11 @@ export default class MovieCard extends Component {
         style={
           !this.state.displayBackdrop
             ? { minWidth: "185px" }
-            : { minWidth: "540px", transform: "scale(1.03)", zIndex: "5" }
+            : {
+                minWidth: "320px",
+                transform: "scale(1.03)",
+                zIndex: "5"
+              }
         }
         onMouseEnter={this.displayBackdrop}
         onMouseLeave={this.displayPoster}

@@ -1,25 +1,36 @@
 @import "../../_styles//variables.scss";
 
+.movies-container:hover .MovieCard {
+  transform: translateX(-25%);
+}
+
+.MovieCard:hover ~ .MovieCard {
+  transform: translateX(25%);
+}
+
+.MovieCard:hover {
+  transform: scale(1.2) !important;
+}
+
 .MovieCard {
   position: relative;
-  border: 1px solid rgb(15, 15, 15);
-  z-index: 3;
+  flex: 0 0 15%;
+  margin: 0 2px;
+  color: white;
+  z-index: 2;
   height: 278px;
-  margin: 0 0.3rem;
   transition: 0.4s min-width ease-in, 0.35s transform ease-in;
   cursor: pointer;
   .poster-image {
-    position: absolute;
-    top: 0;
-    left: 0;
+    // height: 280px;
   }
   .overlay-content {
     position: absolute;
     animation: fade-in-hold 1.5s forwards;
     z-index: 3;
-    // border: 1px solid red;
-    height: 100%;
-    width: 100%;
+    border: 1px solid black;
+    height: 99.5%;
+    width: 99.7%;
     h3 {
       margin: 0;
     }
