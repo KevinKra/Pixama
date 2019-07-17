@@ -1,6 +1,8 @@
+@import "../../_styles//variables.scss";
+
 .MovieCard {
   position: relative;
-  border: 1px solid red;
+  border: 1px solid rgb(15, 15, 15);
   z-index: 3;
   height: 278px;
   margin: 0 0.3rem;
@@ -14,9 +16,9 @@
   .poster-name {
     position: absolute;
     animation: fade-in-hold 1.5s forwards;
-    z-index: 2;
+    z-index: 3;
     left: 15px;
-    color: white;
+    color: $text-light;
   }
   .backdrop-image {
     background-size: cover;

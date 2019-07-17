@@ -8,6 +8,8 @@
 }
 
 .main-body {
+  position: relative;
+  z-index: 3;
   border: 1px solid blue;
   width: 90%;
   min-height: 100vh;
