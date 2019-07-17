@@ -5,21 +5,26 @@ import { NavLink } from 'react-router-dom';
 import { logoutUser } from '../../actions';
 
 export function NavBar(props) {
-  const { currentUser } = props.currentUser;
+  const { currentUser, logoutUser, loggedIn } = props;
   
   return (
     <nav className="NavBar">
       <div>
         <h3>PIXAMA</h3>
-        {currentUser && <p onClick={props.logoutUser}>Logout</p>}
-        {!currentUser && <NavLink to="/login">Login</NavLink>}
+        {loggedIn ? (
+          <p onClick={logoutUser}>Logout</p>
+        ) : (
+          <NavLink to="/login">Login</NavLink>
+        )}
+        {/* {!currentUser && <NavLink to="/login">Login</NavLink>} */}
       </div>
     </nav>
   );
 };
 
 export const mapStateToProps = state => ({
-  currentUser: state.currentUser
+  // currentUser: state.currentUser,
+  loggedIn: state.currentUser.loggedIn
 });
 
 export const mapDispatchToProps = dispatch => ({

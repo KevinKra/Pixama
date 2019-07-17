@@ -8,8 +8,8 @@ import "./App.scss";
 export default function App() {
   return (
     <main className="App">
-      <Route exact path="/" component={NavBar} />
-      <Route exact path="/" component={MainPage} />
+      <Route path="/" component={NavBar} />
+      <Route path="/" component={MainPage} />
       <Route exact path="/login" component={LoginCard} />
     </main>
   );
