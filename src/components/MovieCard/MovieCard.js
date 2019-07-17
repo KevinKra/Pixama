@@ -8,7 +8,7 @@ export default class MovieCard extends Component {
   };
 
   displayBackdrop = () => {
-    setTimeout(this.determineActive, 350);
+    setTimeout(this.determineActive, 450);
     this.setState({ userActive: true });
   };
 
@@ -52,7 +52,7 @@ export default class MovieCard extends Component {
         style={
           !this.state.displayBackdrop
             ? { minWidth: "185px" }
-            : { minWidth: "540px", transform: "scale(1.1)", zIndex: "5" }
+            : { minWidth: "540px", transform: "scale(1.03)", zIndex: "5" }
         }
         onMouseEnter={this.displayBackdrop}
         onMouseLeave={this.displayPoster}
