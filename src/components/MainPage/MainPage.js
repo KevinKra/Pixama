@@ -3,6 +3,7 @@ import * as apiCalls from "../../api/apiCalls";
 import "./MainPage.scss";
 import Carousel from "../Carousel/Carousel";
 import HeroImage from "../HeroImage/HeroImage";
+import LoginCard from "../LoginCard/LoginCard"
 
 export default class MainPage extends Component {
   //movies state will be updated by the fetched result from the API call,
@@ -28,8 +29,7 @@ export default class MainPage extends Component {
         <HeroImage />
         <section className="main-body">
           <Carousel title="Popular Movies" movies={this.state.movies} />
-          {/* <Carousel title="Popular Shows" movies={this.state.movies} />
-          <Carousel title="Popular Action" movies={this.state.movies} /> */}
+          <LoginCard />
         </section>
       </section>
     );
