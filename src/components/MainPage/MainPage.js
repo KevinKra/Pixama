@@ -3,7 +3,7 @@ import * as apiCalls from "../../api/apiCalls";
 import "./MainPage.scss";
 import Carousel from "../Carousel/Carousel";
 import HeroImage from "../HeroImage/HeroImage";
-import LoginCard from "../LoginCard/LoginCard"
+import LoginCard from "../../containers/LoginCard/LoginCard"
 
 export default class MainPage extends Component {
   //movies state will be updated by the fetched result from the API call,
