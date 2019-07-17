@@ -37,13 +37,23 @@
     top: 30px;
     left: 5%;
     -webkit-backface-visibility: hidden;
-    height: 200px;
+    height: 150px;
     overflow-y: scroll;
     padding: 0.2rem 0.5rem 1rem 0;
     -webkit-transform: translateZ(0) scale(1, 1);
     transform: translateZ(0);
     // border: 1px solid red;
     width: 75%;
+  }
+  .movie-language {
+    position: absolute;
+    bottom: 0px;
+    left: 5%;
+  }
+  .movie-popularity {
+    position: absolute;
+    bottom: 0px;
+    left: 30%;
   }
   .backdrop-image {
     background-size: cover;
@@ -52,7 +62,25 @@
   }
 }
 
-.bookmark {
+.play-icon {
+  position: absolute;
+  // border: 1px solid red;
+  top: 20%;
+  left: 93%;
+  color: $text-light;
+  transition: 0.2s transform ease-in-out;
+  transform: scale(1);
+  &:hover {
+    transform: scale(1.2);
+  }
+  &:active {
+    transition: 0.03s transform ease-in-out;
+    transform: scale(1.35);
+    color: $color-accent;
+  }
+}
+
+.bookmark-icon {
   position: absolute;
   // border: 1px solid red;
   top: 5%;
@@ -89,6 +117,9 @@
   }
   30% {
     opacity: 0;
+  }
+  35% {
+    opacity: 0.3;
   }
   100% {
     opacity: 1;

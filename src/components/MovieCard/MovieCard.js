@@ -2,12 +2,13 @@ import React, { Component, Fragment } from "react";
 import Favorite from "../buttons/Favorite/Favorite";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import "./MovieCard.scss";
 
 export default class MovieCard extends Component {
   state = {
-    displayBackdrop: true,
-    userActive: true,
+    displayBackdrop: false,
+    userActive: false,
     bookmarked: false
   };
 
@@ -37,7 +38,16 @@ export default class MovieCard extends Component {
         icon={faBookmark}
         size="lg"
         onClick={this.bookmarkCard}
-        className={`bookmark ${this.state.bookmarked && "bookmarked"}`}
+        className={`bookmark-icon ${this.state.bookmarked && "bookmarked"}`}
+      />
+    );
+
+    const play = (
+      <FontAwesomeIcon
+        icon={faPlay}
+        size="lg"
+        onClick={() => console.log("play btn clicked")}
+        className="play-icon"
       />
     );
     const backdrop = (
@@ -46,6 +56,11 @@ export default class MovieCard extends Component {
           <h3 className="movie-title">{this.props.title}</h3>
           <p className="movie-overview">{this.props.overview}</p>
           {bookmark}
+          {play}
+          <p className="movie-language">{`Language: ${this.props.language.toUpperCase()}`}</p>
+          <p className="movie-popularity">{`Popularity: ${
+            this.props.popularity
+          }`}</p>
         </div>
         <div className="screen-solid" />
         <div

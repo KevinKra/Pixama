@@ -5,6 +5,7 @@ import "./Carousel.scss";
 export default class Carousel extends Component {
   state = {
     splitMovies: [],
+    page: 1,
     loaded: false
   };
 
@@ -36,7 +37,6 @@ export default class Carousel extends Component {
         <h2>{this.props.title}</h2>
         <button>X</button>
         <div className="movies-container">
-          {/* {this.props.movies.length > 0 && this.CarouselTransitions()} */}
           {this.props.movies &&
             this.props.movies.map(movie => {
               return (
@@ -46,6 +46,7 @@ export default class Carousel extends Component {
                   backdrop={movie.backdrop_path}
                   poster={movie.poster_path}
                   language={movie.original_language}
+                  popularity={movie.vote_average}
                   id={movie.id}
                   key={movie.id}
                 />
