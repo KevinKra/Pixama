@@ -15,23 +15,72 @@
   }
   .overlay-content {
     position: absolute;
+    animation: fade-in-hold 1.5s forwards;
     z-index: 3;
-    border: 1px solid red;
+    // border: 1px solid red;
     height: 100%;
     width: 100%;
+    h3 {
+      margin: 0;
+    }
   }
-  .poster-name {
-    position: relative;
-    z-index: 3;
-    animation: fade-in-hold 1.5s forwards;
-    left: 15px;
+  .movie-title {
+    position: absolute;
+    display: inline;
+    // border: 1px solid red;
+    top: 6%;
+    left: 5%;
     color: $text-light;
+  }
+  .movie-overview {
+    position: absolute;
+    top: 30px;
+    left: 5%;
+    -webkit-backface-visibility: hidden;
+    height: 200px;
+    overflow-y: scroll;
+    padding: 0.2rem 0.5rem 1rem 0;
+    -webkit-transform: translateZ(0) scale(1, 1);
+    transform: translateZ(0);
+    // border: 1px solid red;
+    width: 75%;
   }
   .backdrop-image {
     background-size: cover;
     background-position: center;
     height: 100%;
   }
+}
+
+.bookmark {
+  position: absolute;
+  // border: 1px solid red;
+  top: 5%;
+  left: 93%;
+  color: $text-light;
+  transition: 0.2s transform ease-in-out;
+  transform: scale(1);
+  &:hover {
+    transform: scale(1.2);
+  }
+  &:active {
+    transition: 0.03s transform ease-in-out;
+    transform: scale(1.35);
+    color: $color-accent;
+  }
+}
+
+.bookmarked {
+  color: gold;
+}
+
+.screen-solid {
+  position: absolute;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.505);
+  animation: fade-in-hold 1.5s forwards;
+  height: 100%;
+  width: 100%;
 }
 
 @keyframes fade-in-hold {
