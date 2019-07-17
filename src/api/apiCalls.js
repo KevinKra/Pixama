@@ -21,7 +21,7 @@ export const fetchNewUser = (url, data)  => {
   })
   .then(response=> {
     if(!response.ok) {
-      throw Error ("Add error",response.message)
+      throw new Error ("Email already exists", response.message)
     } else {
       return response.json()
     }
@@ -41,7 +41,7 @@ export const fetchUser = (url, data)  => {
   })
   .then(response=> {
     if(!response.ok) {
-      throw Error ("Add error",response.message)
+      throw new Error ("Not a valid login",response.message)
     } else {
       return response.json()
     }

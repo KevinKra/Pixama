@@ -26,6 +26,7 @@ class LoginCard extends Component {
       const user = await fetchUser(url, userData);
       this.props.loginUser(user.data);
     } catch (error) {
+      console.log(error)
       this.setState({ error });
     }
 
@@ -40,6 +41,7 @@ class LoginCard extends Component {
   };
 
   render() {
+  
     return (
       <form className="login-card">
         <input
