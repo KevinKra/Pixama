@@ -52,8 +52,8 @@ export const fetchUser = (url, data)  => {
 // url in component method needs to be 'http://localhost:3000/api/users/favorites/new'
 //data needs to be object like this: {movie_id: 550, user_id: 1, title: "Fight Club", poster_path: "/adw6Lq9FiC9zjYEpOqfq03ituwp.jpg" , release_date: "1999-10-15", vote_average:8.4, overview: "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion."}
 //response will be the new favorite ID
-export const addFavorite = (url, data)  => {
-
+export const postFavorite = (url, data)  => {
+console.log(data)
 return fetch(url, 
     {
       method: 'POST',
@@ -64,9 +64,22 @@ return fetch(url,
   })
   .then(response=> {
     if(!response.ok) {
-      throw Error ("Add error",response.message)
+      throw new Error ("Add error",response.message)
     } else {
       return response.json()
     }
   })
-}
+};
+
+
+export const fetchFavorites = (url)  => {
+
+return fetch(url)
+  .then(response=> {
+    if(!response.ok) {
+      throw Error ("Couldn't get favorites",response.message)
+    } else {
+      return response.json()
+    }
+  })
+};

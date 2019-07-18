@@ -35,4 +35,4 @@ export default class MainPage extends Component {
       </section>
     );
   }
-}
+};

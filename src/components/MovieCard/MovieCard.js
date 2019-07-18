@@ -2,9 +2,12 @@ import React, { Component, Fragment } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import { postFavorite, fetchFavorites } from '../../api/apiCalls';
+import { connect } from "react-redux";
+import { getFavorites } from "../../actions";
 import "./MovieCard.scss";
 
-export default class MovieCard extends Component {
+export class MovieCard extends Component {
   state = {
     displayBackdrop: false,
     userActive: false,
@@ -26,9 +29,22 @@ export default class MovieCard extends Component {
       : this.setState({ displayBackdrop: false });
   };
 
-  bookmarkCard = () => {
+  bookmarkCard = async (e) => {
     const toggle = this.state.bookmarked;
     this.setState({ bookmarked: !toggle });
+    const { id, title, poster, releaseDate, popularity, overview, currentUser } = this.props;
+    const data = {
+      movie_id: id,
+      user_id: currentUser.id,
+      title,
+      poster_path: poster,
+      release_date: releaseDate,
+      vote_average: popularity,
+      overview
+    }
+    await postFavorite("http://localhost:3000/api/users/favorites/new", data);
+    const favorites = await fetchFavorites(`http://localhost:3000/api/users/${this.props.currentUser.id}/favorites`);
+    this.props.getFavorites(favorites.data);
   };
 
   render() {
@@ -84,6 +100,12 @@ export default class MovieCard extends Component {
     return (
       <article
         className="MovieCard"
+        movieId={this.props.id}
+        title={this.props.title}
+        posterPath={this.props.poster}
+        releaseDate={this.props.releaseDate}
+        voteAverage={this.props.popularity}
+        overview={this.props.overview}
         style={
           !this.state.displayBackdrop
             ? { maxWidth: "185px" }
@@ -100,4 +122,14 @@ export default class MovieCard extends Component {
       </article>
     );
   }
-}
+};
+
+export const mapStateToProps = state => ({
+  currentUser: state.currentUser
+});
+
+export const mapDispatchToProps = dispatch => ({
+  getFavorites: favorites => dispatch(getFavorites(favorites))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);

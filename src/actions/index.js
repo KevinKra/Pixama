@@ -14,10 +14,10 @@ export const addNewUser = (name, email, password) => ({
   password
 });
 
-// export const addFavorite = (movie) => ({
-//   type: "ADD_FAVORITE",
-//   movie
-// });
+export const getFavorites = favorites => ({
+  type: "GET_FAVORITES",
+  favorites
+});
 
 
 
