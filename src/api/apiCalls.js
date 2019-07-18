@@ -10,7 +10,7 @@ export const fetchPopularMovies = async () => {
 
 //This method is not hooked up anywhere at this point
 //data must be an object with keys of name, email and password
-export const addNewUser = (url, data)  => {
+export const fetchNewUser = (url, data)  => {
   return fetch(url, 
     {
       method: 'POST',
@@ -21,7 +21,7 @@ export const addNewUser = (url, data)  => {
   })
   .then(response=> {
     if(!response.ok) {
-      throw Error ("Add error",response.message)
+      throw new Error ("Email already exists", response.message)
     } else {
       return response.json()
     }
@@ -41,7 +41,7 @@ export const fetchUser = (url, data)  => {
   })
   .then(response=> {
     if(!response.ok) {
-      throw Error ("Add error",response.message)
+      throw new Error ("Not a valid login",response.message)
     } else {
       return response.json()
     }
