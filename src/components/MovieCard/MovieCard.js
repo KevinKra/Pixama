@@ -2,7 +2,11 @@ import React, { Component, Fragment } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
-import { postFavorite, fetchFavorites } from '../../api/apiCalls';
+import {
+  postFavorite,
+  fetchFavorites,
+  deleteFavorite
+} from "../../api/apiCalls";
 import { connect } from "react-redux";
 import { getFavorites } from "../../actions";
 import "./MovieCard.scss";
@@ -29,22 +33,46 @@ export class MovieCard extends Component {
       : this.setState({ displayBackdrop: false });
   };
 
-  bookmarkCard = async (e) => {
+  bookmarkCard = async () => {
     const toggle = this.state.bookmarked;
     this.setState({ bookmarked: !toggle });
-    const { id, title, poster, releaseDate, popularity, overview, currentUser } = this.props;
-    const data = {
-      movie_id: id,
-      user_id: currentUser.id,
-      title,
-      poster_path: poster,
-      release_date: releaseDate,
-      vote_average: popularity,
-      overview
+    if (!toggle) {
+      const {
+        id,
+        title,
+        poster,
+        releaseDate,
+        popularity,
+        overview,
+        currentUser
+      } = this.props;
+      const data = {
+        movie_id: id,
+        user_id: currentUser.id,
+        title,
+        poster_path: poster,
+        release_date: releaseDate,
+        vote_average: popularity,
+        overview
+      };
+      await postFavorite("http://localhost:3000/api/users/favorites/new", data);
+      const favorites = await fetchFavorites(
+        `http://localhost:3000/api/users/${this.props.currentUser.id}/favorites`
+      );
+      this.props.getFavorites(favorites.data);
+    } else {
+      await deleteFavorite(
+        `http://localhost:3000/api/users/${
+          this.props.currentUser.id
+        }/favorites/${this.id}`
+      );
+      const favorites = await fetchFavorites(
+        `http://localhost:3000/api/users/${
+          this.props.currentUser.id
+        }/favorites`
+      );
+      this.props.getFavorites(favorites.data);
     }
-    await postFavorite("http://localhost:3000/api/users/favorites/new", data);
-    const favorites = await fetchFavorites(`http://localhost:3000/api/users/${this.props.currentUser.id}/favorites`);
-    this.props.getFavorites(favorites.data);
   };
 
   render() {
@@ -122,7 +150,7 @@ export class MovieCard extends Component {
       </article>
     );
   }
-};
+}
 
 export const mapStateToProps = state => ({
   currentUser: state.currentUser
@@ -132,4 +160,7 @@ export const mapDispatchToProps = dispatch => ({
   getFavorites: favorites => dispatch(getFavorites(favorites))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MovieCard);
