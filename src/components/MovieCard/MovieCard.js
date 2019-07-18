@@ -128,12 +128,12 @@ export class MovieCard extends Component {
     return (
       <article
         className="MovieCard"
-        movieId={this.props.id}
-        title={this.props.title}
-        posterPath={this.props.poster}
-        releaseDate={this.props.releaseDate}
-        voteAverage={this.props.popularity}
-        overview={this.props.overview}
+        // movieid={this.props.id}
+        // title={this.props.title}
+        // posterPath={this.props.poster}
+        // releaseDate={this.props.releaseDate}
+        // voteAverage={this.props.popularity}
+        // overview={this.props.overview}
         style={
           !this.state.displayBackdrop
             ? { maxWidth: "185px" }
