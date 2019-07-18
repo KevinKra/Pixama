@@ -15,7 +15,6 @@ export default function HeroImage() {
   const selectFromPool = () => {
     const index = Math.floor(Math.random() * (curatedData.length - 1));
     const movie = curatedData[index];
-    console.log("movie", movie);
     return (
       <section className="HeroContent">
         <div
