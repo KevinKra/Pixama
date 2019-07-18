@@ -1,33 +1,47 @@
 @import "../../_styles//variables.scss";
 
+.movies-container:hover .MovieCard {
+  transform: translateX(-25%);
+}
+
+.MovieCard:hover ~ .MovieCard {
+  transform: translateX(25%);
+}
+
+.MovieCard:hover {
+  transform: scale(1.2) !important;
+}
+
 .MovieCard {
   position: relative;
-  border: 1px solid rgb(15, 15, 15);
-  z-index: 3;
+  flex: 0 0 15%;
+  margin: 0 2px;
+  color: white;
+  z-index: 2;
   height: 278px;
-  margin: 0 0.3rem;
-  transition: 0.4s min-width ease-in, 0.35s transform ease-in;
+  transition: 0.4s max-width ease-in, 0.35s transform ease-in;
   cursor: pointer;
   .poster-image {
-    position: absolute;
-    top: 0;
-    left: 0;
+    max-width: 185px;
+    width: 185px;
   }
   .overlay-content {
     position: absolute;
     animation: fade-in-hold 1.5s forwards;
     z-index: 3;
-    // border: 1px solid red;
-    height: 100%;
-    width: 100%;
+    border: 1px solid black;
+    height: 99.5%;
+    width: 99.7%;
     h3 {
       margin: 0;
+    }
+    p {
+      font-size: 12px;
     }
   }
   .movie-title {
     position: absolute;
     display: inline;
-    // border: 1px solid red;
     top: 6%;
     left: 5%;
     color: $text-light;
@@ -42,7 +56,6 @@
     padding: 0.2rem 0.5rem 1rem 0;
     -webkit-transform: translateZ(0) scale(1, 1);
     transform: translateZ(0);
-    // border: 1px solid red;
     width: 75%;
   }
   .movie-language {
@@ -53,7 +66,7 @@
   .movie-popularity {
     position: absolute;
     bottom: 0px;
-    left: 30%;
+    left: 35%;
   }
   .backdrop-image {
     background-size: cover;
@@ -64,9 +77,8 @@
 
 .play-icon {
   position: absolute;
-  // border: 1px solid red;
   top: 20%;
-  left: 93%;
+  left: 90%;
   color: $text-light;
   transition: 0.2s transform ease-in-out;
   transform: scale(1);
@@ -82,9 +94,8 @@
 
 .bookmark-icon {
   position: absolute;
-  // border: 1px solid red;
-  top: 5%;
-  left: 93%;
+  top: 6%;
+  left: 90%;
   color: $text-light;
   transition: 0.2s transform ease-in-out;
   transform: scale(1);

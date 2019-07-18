@@ -6,6 +6,7 @@ import Carousel from "../Carousel/Carousel";
 import HeroImage from "../HeroImage/HeroImage";
 import LoginCard from "../../containers/LoginCard/LoginCard"
 
+
 export default class MainPage extends Component {
   //movies state will be updated by the fetched result from the API call,
   //the content will be mapped through with the carousels

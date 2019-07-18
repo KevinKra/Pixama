@@ -1,11 +1,12 @@
+@import "../../_styles//variables.scss";
+
 .Carousel {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid green;
-  padding: 0;
-  margin-bottom: 1.5rem;
+  border: 1px solid orange;
   color: white;
+  margin-top: 40px;
+  position: relative;
+  z-index: -1;
+  overflow: hidden;
   h2 {
     margin: 0.1rem;
     padding-left: 1.7rem;
@@ -14,12 +15,56 @@
 
 .movies-container {
   position: relative;
+  z-index: 1;
   display: flex;
-  overflow-x: scroll;
   overflow-y: none;
-  display: relative;
-  border: 1px solid red;
-  padding: 1rem 1.5rem;
+  width: 3800px;
+  transition: 1s transform ease-in-out;
+  transform: translateX(0px);
+  padding: 2rem 55px;
+}
+
+.backwards-btn,
+.forwards-btn {
+  z-index: 3;
+  position: absolute;
+  color: white;
+  border: none;
+  // border: 1px solid black;
+  width: 5%;
+  height: 100%;
+  background: transparent;
+  &:focus {
+    outline: none;
+  }
+}
+
+.forwards-btn {
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    $primary-color 0%,
+    $primary-color 19%,
+    rgba(27, 27, 27, 0.65) 64%,
+    rgba(27, 27, 27, 0.56) 80%,
+    rgba(27, 27, 27, 0) 98%
+  );
+}
+
+.backwards-btn {
+  right: 0;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(
+    270deg,
+    $primary-color 0%,
+    $primary-color 19%,
+    rgba(27, 27, 27, 0.65) 64%,
+    rgba(27, 27, 27, 0.56) 80%,
+    rgba(27, 27, 27, 0) 98%
+  );
+}
+
+.backwards-btn {
 }
 
 .movies-container::-webkit-scrollbar {
