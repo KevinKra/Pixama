@@ -1,30 +1,44 @@
-import React, { Component } from "react";
+import React from "react";
+import { curatedData } from "../../_assets/curatedHeroData";
 import "./HeroImage.scss";
 
-export default class HeroImage extends Component {
-  state = {
-    content: [
-      {
-        img:
-          "https://images.unsplash.com/photo-1547191516-45e9e58822db?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80",
-        header: "A Wonderous Voyage",
-        body: "Across the Sea."
-      }
-    ]
+export default function HeroImage() {
+  const divStyle = (image, position) => {
+    return {
+      backgroundImage: `url(${image})`,
+      backgroundPosition: position,
+      backgroundSize: "cover",
+      backgroundRepeat: "no-repeat"
+    };
   };
-  render() {
+
+  const selectFromPool = () => {
+    const index = Math.floor(Math.random() * (curatedData.length - 1));
+    const movie = curatedData[index];
+    console.log("movie", movie);
     return (
-      <section className="HeroImage">
+      <section className="HeroContent">
         <div
           className="hero-image"
-          style={{ backgroundImage: `url(${this.state.content[0].img})` }}
+          style={divStyle(
+            `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
+            "center top"
+          )}
         />
-        <div className="screen" />
-        <article className="hero-text">
-          <h2>{this.state.content[0].header}</h2>
-          <p>{this.state.content[0].body}</p>
-        </article>
+        <div className="opacity-filter" />
+        <div className="hero-movie-details">
+          <h2>{movie.original_title}</h2>
+          <p>{movie.overview}</p>
+          <button>Watch</button>
+        </div>
+        <div className="hero-movie-support">
+          <p className="rating" disabled>
+            {movie.rating}
+          </p>
+        </div>
       </section>
     );
-  }
+  };
+
+  return <React.Fragment>{selectFromPool()}</React.Fragment>;
 }

@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import * as apiCalls from "../../api/apiCalls";
-import { Route } from 'react-router-dom';
 import "./MainPage.scss";
 import Carousel from "../Carousel/Carousel";
 import HeroImage from "../HeroImage/HeroImage";
-import LoginCard from "../../containers/LoginCard/LoginCard"
 
 
 export default class MainPage extends Component {
@@ -15,8 +13,8 @@ export default class MainPage extends Component {
     movies: []
   };
 
-  componentDidMount() {
-    this.fetchData();
+  async componentDidMount() {
+    await this.fetchData();
   }
 
   fetchData = async () => {
