@@ -19,5 +19,10 @@ export const getFavorites = favorites => ({
   favorites
 });
 
+export const cleanPopularMovies = popMovies => ({
+  type: "CLEAN_POPULAR_MOVIES",
+  popMovies
+});
+
 
 
