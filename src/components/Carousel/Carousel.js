@@ -66,6 +66,8 @@ export default class Carousel extends Component {
             poster={movie.poster_path}
             language={movie.original_language}
             popularity={movie.vote_average}
+            releaseDate={movie.release_date}
+            // voteAverage={movie.vote_average}
             id={movie.id}
             key={movie.id}
           />

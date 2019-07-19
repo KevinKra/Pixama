@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import "./LoginCard.scss";
-import { fetchUser } from "../../api/apiCalls";
+import { fetchUser, fetchFavorites } from "../../api/apiCalls";
 import { connect } from "react-redux";
-import { loginUser } from "../../actions";
-import { NavLink } from 'react-router-dom';
+import { loginUser, getFavorites } from "../../actions";
+import { NavLink } from "react-router-dom";
 
 class LoginCard extends Component {
   state = {
@@ -21,12 +21,21 @@ class LoginCard extends Component {
   onSubmit = async () => {
     let userData = { email: this.state.email, password: this.state.password };
     const url = "http://localhost:3000/api/users";
+    let id;
 
     try {
       const user = await fetchUser(url, userData);
+      id = user.data.id;
       this.props.loginUser(user.data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
+      this.setState({ error });
+    }
+    
+    try {     
+      const favorites = await fetchFavorites(`http://localhost:3000/api/users/${id}/favorites`);
+      this.props.getFavorites(favorites.data)
+    } catch (error) {
       this.setState({ error });
     }
 
@@ -41,7 +50,6 @@ class LoginCard extends Component {
   };
 
   render() {
-  
     return (
       <form className="login-card">
         <input
@@ -63,15 +71,18 @@ class LoginCard extends Component {
             Login
           </button>
         </NavLink>
-       <NavLink to='/register'>Don't have an account? Register here.
-       </NavLink>
+        <NavLink to="/register">Don't have an account? Register here.</NavLink>
       </form>
     );
   }
-};
+}
 
 export const mapDispatchToProps = dispatch => ({
-  loginUser: user => dispatch( loginUser(user) )
+  loginUser: user => dispatch(loginUser(user)),
+  getFavorites: favorites => dispatch(getFavorites(favorites))
 });
 
-export default connect(null, mapDispatchToProps)(LoginCard);
+export default connect(
+  null,
+  mapDispatchToProps
+)(LoginCard);

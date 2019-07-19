@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import { logoutUser } from '../../actions';
 
 export function NavBar(props) {
-  const { currentUser, logoutUser, loggedIn } = props;
+  const { logoutUser, loggedIn } = props;
   
   return (
     <nav className="NavBar">
@@ -16,14 +16,12 @@ export function NavBar(props) {
         ) : (
           <NavLink to="/login">Login</NavLink>
         )}
-        {/* {!currentUser && <NavLink to="/login">Login</NavLink>} */}
       </div>
     </nav>
   );
 };
 
 export const mapStateToProps = state => ({
-  // currentUser: state.currentUser,
   loggedIn: state.currentUser.loggedIn
 });
 
