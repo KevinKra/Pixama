@@ -1,6 +1,5 @@
 import favoritesReducer from './favoritesReducer'
 
-
 describe('favoritesReducer', ()=> {
   it('should return the initial state', ()=> {
     const expected = [];
@@ -9,7 +8,6 @@ describe('favoritesReducer', ()=> {
   })
 
   it('should return an array of user\'s favorited movies', () => {
-    
     
     const getFavoriesAction = {
       type: 'GET_FAVORITES',

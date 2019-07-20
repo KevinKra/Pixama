@@ -1,4 +1,4 @@
-import userReducer from './userReducer.js'
+import userReducer from './userReducer.js';
 
 describe('userReducer', ()=> {
   it('should return the initial state', ()=> {
@@ -6,8 +6,6 @@ describe('userReducer', ()=> {
       const result = userReducer(undefined, {})
       expect(result).toEqual(expected)
     })
-
-  
 
   it('should return a current user and add loggedIn property', ()=> {
     const testAction = {
@@ -19,7 +17,6 @@ describe('userReducer', ()=> {
     expect(result).toEqual(expected)
 
   })
-
 
   it('should remove user upon logout', ()=> {
     const testAction = {

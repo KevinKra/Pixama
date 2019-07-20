@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { loginUser, getFavorites } from "../../actions";
 import { NavLink } from "react-router-dom";
 
-class LoginCard extends Component {
+export class LoginCard extends Component {
   state = {
     email: "",
     password: "",
@@ -69,7 +69,7 @@ class LoginCard extends Component {
         />
         {/* {this.state.error && <p>{this.state.error}. Please try again.</p>} */}
         <NavLink to="/">
-          <button type="button" onClick={this.onSubmit}>
+          <button className="submit-button" type="button" onClick={this.onSubmit}>
             Login
           </button>
         </NavLink>
