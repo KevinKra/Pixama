@@ -36,7 +36,7 @@ export const fetchUser = (url, data) => {
     }
   }).then(response => {
     if (!response.ok) {
-      throw new Error("Not a valid login", response.message);
+      throw new Error("Not a valid login");
     } else {
       return response.json();
     }
