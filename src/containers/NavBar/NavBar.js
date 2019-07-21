@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { logoutUser } from "../../actions";
 
-
 class NavBar extends Component {
   state = {
     opacity: false
@@ -12,7 +11,6 @@ class NavBar extends Component {
 
   componentDidMount() {
     window.addEventListener("scroll", () => {
-      console.log("reee?");
       let supportPageOffset = window.pageXOffset !== undefined;
       let isCSS1Compat = (document.compatMode || "") === "CSS1Compat";
       let scroll = {
@@ -45,7 +43,6 @@ class NavBar extends Component {
     );
   }
 }
-
 
 export const mapStateToProps = state => ({
   loggedIn: state.currentUser.loggedIn
