@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { loginUser, getFavorites } from "../../actions";
 import { NavLink } from "react-router-dom";
 
-class LoginCard extends Component {
+export class LoginCard extends Component {
   state = {
     email: "",
     password: "",
@@ -28,15 +28,16 @@ class LoginCard extends Component {
       id = user.data.id;
       this.props.loginUser(user.data);
     } catch (error) {
-      console.log(error);
-      this.setState({ error });
+      console.log(error.message);
+      this.setState({ error: error.message });
     }
     
     try {     
       const favorites = await fetchFavorites(`http://localhost:3000/api/users/${id}/favorites`);
       this.props.getFavorites(favorites.data)
     } catch (error) {
-      this.setState({ error });
+      console.log(error.message)
+      this.setState({ error: error.message });
     }
 
     this.clearForm();
@@ -66,8 +67,9 @@ class LoginCard extends Component {
           type="text"
           placeholder="Password"
         />
+        {/* {this.state.error && <p>{this.state.error}. Please try again.</p>} */}
         <NavLink to="/">
-          <button type="button" onClick={this.onSubmit}>
+          <button className="submit-button" type="button" onClick={this.onSubmit}>
             Login
           </button>
         </NavLink>
