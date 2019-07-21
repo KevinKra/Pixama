@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import MovieCard from "../MovieCard/MovieCard";
 import * as apiCalls from "../../api/apiCalls";
 import "./Carousel.scss";
-import { throwStatement } from "@babel/types";
 
 export default class Carousel extends Component {
   state = {
@@ -11,26 +10,8 @@ export default class Carousel extends Component {
 
   async componentDidMount() {
     const movies = await apiCalls.fetchPopularMovies();
-    console.log("movies", movies);
     this.setState({ movies });
   }
-
-  determineSlides = () => {
-    const windowWidth = this.getWidth();
-    const moviesPerPage = Math.ceil(windowWidth / 185);
-    const totalPages = Math.floor(20 / moviesPerPage);
-    this.setState({ totalPages, loaded: true });
-  };
-
-  // getWidth = () => {
-  //   return Math.max(
-  //     document.body.scrollWidth,
-  //     document.documentElement.scrollWidth,
-  //     document.body.offsetWidth,
-  //     document.documentElement.offsetWidth,
-  //     document.documentElement.clientWidth
-  //   );
-  // };
 
   translateXForward = () => {
     const movies = this.state.movies;
@@ -43,7 +24,6 @@ export default class Carousel extends Component {
     const movies = this.state.movies;
     const spliceFront = movies.splice(0, 3);
     movies.push(...spliceFront);
-    console.log(movies);
     this.setState({ movies });
   };
 
@@ -60,7 +40,6 @@ export default class Carousel extends Component {
             language={movie.original_language}
             popularity={movie.vote_average}
             releaseDate={movie.release_date}
-            // voteAverage={movie.vote_average}
             id={movie.id}
             key={movie.id}
           />
