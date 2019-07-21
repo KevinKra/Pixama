@@ -1,18 +1,18 @@
 import React, { Component } from "react";
 import MovieCard from "../MovieCard/MovieCard";
+import * as apiCalls from "../../api/apiCalls";
 import "./Carousel.scss";
+import { throwStatement } from "@babel/types";
 
 export default class Carousel extends Component {
   state = {
-    translate: 0,
-    currentPage: 1,
-    totalPages: 1,
-    loaded: false
+    movies: []
   };
 
-  componentDidUpdate() {
-    if (this.props.movies.length > 0 && this.state.loaded === false)
-      this.determineSlides();
+  async componentDidMount() {
+    const movies = await apiCalls.fetchPopularMovies();
+    console.log("movies", movies);
+    this.setState({ movies });
   }
 
   determineSlides = () => {
@@ -22,42 +22,35 @@ export default class Carousel extends Component {
     this.setState({ totalPages, loaded: true });
   };
 
-  getWidth = () => {
-    return Math.max(
-      document.body.scrollWidth,
-      document.documentElement.scrollWidth,
-      document.body.offsetWidth,
-      document.documentElement.offsetWidth,
-      document.documentElement.clientWidth
-    );
-  };
+  // getWidth = () => {
+  //   return Math.max(
+  //     document.body.scrollWidth,
+  //     document.documentElement.scrollWidth,
+  //     document.body.offsetWidth,
+  //     document.documentElement.offsetWidth,
+  //     document.documentElement.clientWidth
+  //   );
+  // };
 
   translateXForward = () => {
-    if (this.state.currentPage > 1) {
-      const currentPage = this.state.currentPage;
-      const previousPosition = this.state.translate;
-      this.setState({
-        translate: previousPosition + 100,
-        currentPage: currentPage - 1
-      });
-    }
+    const movies = this.state.movies;
+    const spliceEnd = movies.splice(movies.length - 3, 3);
+    movies.unshift(...spliceEnd);
+    this.setState({ movies });
   };
 
   translateXBackward = () => {
-    if (this.state.currentPage <= this.state.totalPages) {
-      const currentPage = this.state.currentPage;
-      const previousPosition = this.state.translate;
-      this.setState({
-        translate: previousPosition - 100,
-        currentPage: currentPage + 1
-      });
-    }
+    const movies = this.state.movies;
+    const spliceFront = movies.splice(0, 3);
+    movies.push(...spliceFront);
+    console.log(movies);
+    this.setState({ movies });
   };
 
   render() {
     const moviesRendered =
-      this.props.movies &&
-      this.props.movies.map(movie => {
+      this.state.movies &&
+      this.state.movies.map(movie => {
         return (
           <MovieCard
             title={movie.original_title}
@@ -85,7 +78,7 @@ export default class Carousel extends Component {
         <div
           className="movies-container"
           style={{
-            transform: `translateX(${this.state.translate}vw)`
+            transform: `translateX(-25%)`
           }}
         >
           {moviesRendered}

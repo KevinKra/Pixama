@@ -1,10 +1,13 @@
+@import "../../_styles//variables.scss";
+
 .NavBar {
   display: flex;
   justify-content: center;
   border: 1px solid red;
   width: 100%;
   position: fixed;
-  background-color: white;
+  // background-color: white;
+  // background-color: transparent;
   height: 60px;
   z-index: 5;
   div {
@@ -12,5 +15,28 @@
     justify-content: space-between;
     border: 1px solid red;
     width: 90%;
+  }
+}
+
+.solid {
+  color: $text-dark;
+  background-color: white;
+  transition: background-color 0.5s ease 0s;
+  box-shadow: 0 0 4px grey;
+  .nav-links {
+    background-color: $text-dark;
+    height: 20px;
+  }
+  a {
+    color: $text-light;
+  }
+}
+
+.transparent {
+  color: $text-light;
+  background-color: rgba(255, 255, 255, 0);
+  transition: background-color 0.5s ease 0s;
+  a {
+    color: $text-light;
   }
 }
