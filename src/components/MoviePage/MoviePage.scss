@@ -22,11 +22,23 @@
   }
   .poster-image {
     position: relative;
+    z-index: 2;
     animation: slideInLeft 1s forwards;
     border: 1px solid black;
     box-shadow: 5px 5px 10px black;
     height: 100vh;
     width: 35vw;
+    cursor: pointer;
+  }
+  .backdrop-image {
+    position: relative;
+    z-index: 2;
+    animation: fadeIn 1s forwards;
+    border: 1px solid black;
+    box-shadow: 5px 5px 10px black;
+    height: 100vh;
+    width: 60vw;
+    cursor: pointer;
   }
   .production-companies {
     justify-self: flex-end;
@@ -83,5 +95,14 @@
   }
   to {
     transform: translateX(0%);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
