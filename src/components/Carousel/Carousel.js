@@ -1,19 +1,16 @@
 import React, { Component } from "react";
 import MovieCard from "../MovieCard/MovieCard";
-import * as apiCalls from "../../api/apiCalls";
 import "./Carousel.scss";
-import { throwStatement } from "@babel/types";
+// import { throwStatement } from "@babel/types";
 
 export default class Carousel extends Component {
   state = {
     movies: []
   };
 
-  async componentDidMount() {
-    const movies = await apiCalls.fetchPopularMovies();
-    console.log("movies", movies);
-    this.setState({ movies });
-  }
+  componentDidMount() {
+    this.setState({ movies: this.props.movies });
+  };
 
   determineSlides = () => {
     const windowWidth = this.getWidth();
@@ -49,8 +46,8 @@ export default class Carousel extends Component {
 
   render() {
     const moviesRendered =
-      this.state.movies &&
-      this.state.movies.map(movie => {
+      this.props.movies &&
+      this.props.movies.map(movie => {
         return (
           <MovieCard
             title={movie.original_title}
@@ -86,4 +83,4 @@ export default class Carousel extends Component {
       </div>
     );
   }
-}
+};
