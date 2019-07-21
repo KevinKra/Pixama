@@ -1,8 +1,8 @@
 import API_KEY from "./apikey";
 
-export const fetchPopularMovies = async () => {
+export const fetchMovies = async (query) => {
   let response = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?certification_country=US&api_key=${API_KEY}`
+    `https://api.themoviedb.org/3/discover/movie?certification_country=US&api_key=${API_KEY}${query}`
   );
   const movies = await response.json();
   return movies.results;

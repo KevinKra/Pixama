@@ -24,5 +24,16 @@ export const cleanPopularMovies = popMovies => ({
   popMovies
 });
 
+export const addPopularMovies = movies => ({
+  type: "ADD_POPULAR_MOVIES",
+  movies
+});
+
+export const addRomanceMovies = movies => ({
+  type: "ADD_ROMANCE_MOVIES",
+  movies
+});
+
+
 
 
