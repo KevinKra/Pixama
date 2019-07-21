@@ -14,10 +14,15 @@ export const addNewUser = (name, email, password) => ({
   password
 });
 
-// export const addFavorite = (movie) => ({
-//   type: "ADD_FAVORITE",
-//   movie
-// });
+export const getFavorites = favorites => ({
+  type: "GET_FAVORITES",
+  favorites
+});
+
+export const cleanPopularMovies = popMovies => ({
+  type: "CLEAN_POPULAR_MOVIES",
+  popMovies
+});
 
 
 

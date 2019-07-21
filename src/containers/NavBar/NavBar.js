@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { logoutUser } from "../../actions";
 
+
 class NavBar extends Component {
   state = {
     opacity: false
@@ -45,8 +46,8 @@ class NavBar extends Component {
   }
 }
 
+
 export const mapStateToProps = state => ({
-  // currentUser: state.currentUser,
   loggedIn: state.currentUser.loggedIn
 });
 

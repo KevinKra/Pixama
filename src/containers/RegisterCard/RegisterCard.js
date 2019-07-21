@@ -25,7 +25,7 @@ class RegisterCard extends Component {
     const userUrl ="http://localhost:3000/api/users";
     
     try {
-      const userID = await fetchNewUser(newUserUrl, newUserData);
+      await fetchNewUser(newUserUrl, newUserData);
       const user = await fetchUser(userUrl, userData);
       this.props.loginUser(user.data);
     } catch (error) {

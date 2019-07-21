@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+
 import "./MainPage.scss";
 import Carousel from "../Carousel/Carousel";
 import HeroImage from "../HeroImage/HeroImage";
+
 
 export default class MainPage extends Component {
   render() {
@@ -14,4 +16,4 @@ export default class MainPage extends Component {
       </section>
     );
   }
-}
+};
