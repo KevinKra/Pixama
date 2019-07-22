@@ -2,7 +2,7 @@ import React from "react";
 import { curatedData } from "../../_assets/curatedHeroData";
 import "./HeroImage.scss";
 
-export default function HeroImage() {
+export default function HeroImage() { 
   const divStyle = (image, position) => {
     return {
       backgroundImage: `url(${image})`,

@@ -219,9 +219,8 @@ export const mapDispatchToProps = dispatch => ({
     dispatch(actions.updatePopularFavorites(popularFavorites)),
   updateRomanceFavorites: romanceFavorites =>
     dispatch(actions.updateRomanceFavorites(romanceFavorites)),
-  updateMoviePage: movie => dispatch(actions.updateMoviePage(movie))
-    dispatch(updateRomanceFavorites(romanceFavorites)),
-  updateFavorites: favorites => dispatch(updateFavorites(favorites))
+  updateMoviePage: movie => dispatch(actions.updateMoviePage(movie)),
+  updateFavorites: favorites => dispatch(actions.updateFavorites(favorites))
 });
 
 export default connect(

@@ -4,7 +4,12 @@ import * as apiCalls from "../../api/apiCalls";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { bindActionCreators } from "redux";
-import { logoutUser, addPopularMovies, addRomanceMovies } from "../../actions";
+import {
+  logoutUser,
+  addPopularMovies,
+  addRomanceMovies,
+  updateFavorites
+} from "../../actions";
 
 export class NavBar extends Component {
   state = {
@@ -51,6 +56,7 @@ export class NavBar extends Component {
         }
       });
     });
+    this.props.updateFavorites([]);
   };
 
   render() {
@@ -61,18 +67,21 @@ export class NavBar extends Component {
         return <NavLink to="/mainpage">Main</NavLink>;
     };
     return (
-      <nav className={`NavBar ${this.state.opacity ? "solid" : "transparent"}`}>
+      <nav
+        className={`NavBar ${this.state.opacity ? "solid" : "transparent"}`}
+      >
         <div>
           <h3>PIXAMA</h3>
           <div className="routes">
             {loggedIn ? (
-              <p onClick={this.handleClick}>Logout</p>
+              <p className="logout" onClick={this.handleClick}>Logout</p>
             ) : (
               <NavLink to="/login">Login</NavLink>
             )}
-            {this.props.location.pathname === "/moviepage" && (
-              <NavLink to="/">Main</NavLink>
-            )}
+            {this.props.location.pathname === "/moviepage" ||
+              (this.props.location.pathname === "/register" && (
+                <NavLink to="/">Main</NavLink>
+              ))}
           </div>
         </div>
       </nav>
@@ -86,7 +95,7 @@ export const mapStateToProps = state => ({
 
 export const mapDispatchToProps = dispatch =>
   bindActionCreators(
-    { addPopularMovies, addRomanceMovies, logoutUser },
+    { addPopularMovies, addRomanceMovies, logoutUser, updateFavorites },
     dispatch
   );
 
