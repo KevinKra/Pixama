@@ -34,11 +34,6 @@ export const updateRomanceFavorites = romanceFavorites => ({
   romanceFavorites
 });
 
-// export const cleanPopularMovies = popMovies => ({
-//   type: "CLEAN_POPULAR_MOVIES",
-//   popMovies
-// });
-
 
 
 
