@@ -8,6 +8,11 @@ export class Carousel extends Component {
     movies: []
   };
 
+  componentDidMount() {
+    const movies = this.props[this.props.genre];
+    this.setState({ movies });
+  } 
+
   translateXForward = () => {
     const movies = this.state.movies;
     const spliceEnd = movies.splice(movies.length - 3, 3);
@@ -25,7 +30,7 @@ export class Carousel extends Component {
   render() {
     const genre = this.props[this.props.genre];
     const moviesRendered =
-      genre &&
+      genre.length > 0 &&
       genre.map(movie => {
         this.state.movies = genre;
         return (
@@ -67,7 +72,8 @@ export class Carousel extends Component {
 
 export const mapStateToProps = state => ({
   popularMovies: state.popularMovies,
-  romanceMovies: state.romanceMovies
+  romanceMovies: state.romanceMovies,
+  favorites: state.favorites
 });
 
 export default connect(mapStateToProps)(Carousel);

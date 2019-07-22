@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import "./NavBar.scss";
+import * as apiCalls from '../../api/apiCalls';
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { logoutUser } from "../../actions";
+import { bindActionCreators } from "redux";
+import { logoutUser, addPopularMovies, addRomanceMovies } from "../../actions";
 
-class NavBar extends Component {
+
+export class NavBar extends Component {
   state = {
     opacity: false
   };
@@ -26,18 +29,42 @@ class NavBar extends Component {
     });
   }
 
+  handleClick = async () => {
+    this.props.logoutUser();
+    const popularMovies = await apiCalls.fetchMovies("");
+    const romanceMovies = await apiCalls.fetchMovies(
+      "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=10749"
+    );
+    Promise.all([popularMovies, romanceMovies]).then(allMovies => {
+      allMovies.forEach((genre, index) => {
+        const cleanedGenre = genre.map(movie => {
+          return { ...movie, isFavorite: false };
+        });
+        switch (index) {
+          case 0:
+            this.props.addPopularMovies(cleanedGenre);
+            break;
+          case 1:
+            this.props.addRomanceMovies(cleanedGenre);
+            break;
+          default:
+            return null;
+        }
+      });
+    });
+  };
+
   render() {
-    const { logoutUser, loggedIn } = this.props;
+    const { loggedIn } = this.props;
     return (
       <nav className={`NavBar ${this.state.opacity ? "solid" : "transparent"}`}>
         <div>
           <h3>PIXAMA</h3>
           {loggedIn ? (
-            <p onClick={logoutUser}>Logout</p>
+            <p onClick={this.handleClick}>Logout</p>
           ) : (
             <NavLink to="/login">Login</NavLink>
           )}
-          {/* {!currentUser && <NavLink to="/login">Login</NavLink>} */}
         </div>
       </nav>
     );
@@ -48,9 +75,9 @@ export const mapStateToProps = state => ({
   loggedIn: state.currentUser.loggedIn
 });
 
-export const mapDispatchToProps = dispatch => ({
-  logoutUser: () => dispatch(logoutUser())
-});
+export const mapDispatchToProps = dispatch => (
+  bindActionCreators({ addPopularMovies, addRomanceMovies, logoutUser }, dispatch)
+);
 
 export default connect(
   mapStateToProps,
