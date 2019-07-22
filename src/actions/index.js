@@ -34,6 +34,9 @@ export const updateRomanceFavorites = romanceFavorites => ({
   romanceFavorites
 });
 
-
+export const updateFavorites = favorites => ({
+  type: "UPDATE_FAVORITES",
+  favorites
+});
 
 
