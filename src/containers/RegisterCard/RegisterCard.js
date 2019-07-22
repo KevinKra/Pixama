@@ -13,6 +13,25 @@ class RegisterCard extends Component {
     redirect: false
   };
 
+  componentDidMount() {
+    document.addEventListener("mousedown", this.handleClick);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleClick);
+  }
+
+  handleClick = e => {
+    if (this.node.contains(e.target)) {
+      return;
+    }
+    this.handleOutsideClick();
+  };
+
+  handleOutsideClick = () => {
+    this.setState({ redirect: true });
+  };
+
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -20,16 +39,20 @@ class RegisterCard extends Component {
   };
 
   onSubmit = async () => {
-    let newUserData = { name: this.state.name, email: this.state.email, password: this.state.password };
+    let newUserData = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password
+    };
     let userData = { email: this.state.email, password: this.state.password };
     const newUserUrl = "http://localhost:3000/api/users/new";
-    const userUrl ="http://localhost:3000/api/users";
-    
+    const userUrl = "http://localhost:3000/api/users";
+
     try {
       await fetchNewUser(newUserUrl, newUserData);
       const user = await fetchUser(userUrl, userData);
       this.props.loginUser(user.data);
-      this.setState({ redirect: true })
+      this.setState({ redirect: true });
     } catch (error) {
       this.setState({ error: error.message });
     }
@@ -46,15 +69,15 @@ class RegisterCard extends Component {
 
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to='/' />
+      return <Redirect to="/" />;
     }
-  }
+  };
 
   render() {
     return (
-      <form className="login-card register-card">
-      {this.renderRedirect()}
-      <input
+      <form ref={node => this.node = node} className="login-card register-card">
+        {this.renderRedirect()}
+        <input
           onChange={this.handleChange}
           name="name"
           value={this.state.name}
@@ -77,9 +100,9 @@ class RegisterCard extends Component {
         />
         {this.state.error && <p>{this.state.error}. Please try again.</p>}
         {/* <NavLink to="/"> */}
-          <button type="button" onClick={this.onSubmit}>
-            Register
-          </button>
+        <button type="button" onClick={this.onSubmit}>
+          Register
+        </button>
         {/* </NavLink> */}
       </form>
     );
