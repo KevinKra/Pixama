@@ -5,10 +5,14 @@ import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import {
   postFavorite,
   fetchFavorites,
-  deleteFavorite
+  deleteFavorite,
 } from "../../api/apiCalls";
 import { connect } from "react-redux";
-import { updatePopularFavorites, updateRomanceFavorites } from "../../actions";
+import {
+  updatePopularFavorites,
+  updateRomanceFavorites,
+  updateFavorites
+} from "../../actions";
 import "./MovieCard.scss";
 
 export class MovieCard extends Component {
@@ -72,6 +76,14 @@ export class MovieCard extends Component {
           : { ...movie, isFavorite: false };
       });
       this.props.updateRomanceFavorites(romanceFavorites);
+
+      const allFavorites = [
+        ...popularFavorites,
+        ...romanceFavorites
+      ].filter(movie => {
+        return movie.isFavorite == true;
+      });
+      this.props.updateFavorites(allFavorites);
     } else {
       await deleteFavorite(
         `http://localhost:3000/api/users/${
@@ -99,6 +111,14 @@ export class MovieCard extends Component {
           : { ...movie, isFavorite: false };
       });
       this.props.updateRomanceFavorites(romanceFavorites);
+
+      const allFavorites = [
+        ...popularFavorites,
+        ...romanceFavorites
+      ].filter(movie => {
+        return movie.isFavorite == true;
+      });
+      this.props.updateFavorites(allFavorites);
     }
   };
 
@@ -178,14 +198,16 @@ export class MovieCard extends Component {
 export const mapStateToProps = state => ({
   currentUser: state.currentUser,
   popularMovies: state.popularMovies,
-  romanceMovies: state.romanceMovies
+  romanceMovies: state.romanceMovies,
+  favorites: state.favorites
 });
 
 export const mapDispatchToProps = dispatch => ({
   updatePopularFavorites: popularFavorites =>
     dispatch(updatePopularFavorites(popularFavorites)),
   updateRomanceFavorites: romanceFavorites =>
-    dispatch(updateRomanceFavorites(romanceFavorites))
+    dispatch(updateRomanceFavorites(romanceFavorites)),
+  updateFavorites: favorites => dispatch(updateFavorites(favorites))
 });
 
 export default connect(

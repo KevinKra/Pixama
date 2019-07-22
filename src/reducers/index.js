@@ -6,9 +6,9 @@ import romanceMoviesReducer from './romanceMoviesReducer/romanceMoviesReducer';
 
 const rootReducer = combineReducers({
   currentUser: userReducer,
-  favorites: favoritesReducer,
   popularMovies: popularMoviesReducer,
-  romanceMovies: romanceMoviesReducer
+  romanceMovies: romanceMoviesReducer,
+  favorites: favoritesReducer,
 });
 
 export default rootReducer; 
