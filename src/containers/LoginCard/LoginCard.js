@@ -101,7 +101,7 @@ export class LoginCard extends Component {
           <button className="submit-button" type="button" onClick={this.onSubmit}>
             Login
           </button>
-        <NavLink to="/register">Don't have an account? Register here.</NavLink>
+        <NavLink className="register-text" to="/register">Don't have an account? Register here.</NavLink>
       </form>
     );
   }
