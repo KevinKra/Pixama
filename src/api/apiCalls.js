@@ -1,11 +1,20 @@
 import API_KEY from "./apikey";
 
 export const fetchMovies = async (query) => {
+ 
+  try {
   let response = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?certification_country=US&api_key=${API_KEY}${query}`
-  );
+  `https://api.themoviedb.org/3/discover/movie?certification_country=US&api_key=${API_KEY}${query}`
+  )
+    if(!response.ok) {
+      throw new Error('Error fetching movies')
+  } else {
   const movies = await response.json();
   return movies.results;
+  } 
+} catch (error) {
+    throw new Error(error.message)
+  }
 };
 
 //data must be an object with keys of name, email and password

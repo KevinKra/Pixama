@@ -1,18 +1,26 @@
 //Things to test in containers:
 // component, mapstatetoprops, mapdispatchtoprops
 
-import { LoginCard, mapDispatchToProps }from './LoginCard';
+import { LoginCard, mapDispatchToProps } from './LoginCard';
 import { loginUser, updatePopularFavorites, updateRomanceFavorites} from '../../actions';
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
+import './apiCalls';
+
+jest.mock('./apiCalls', ()=> {
+  fetchUser: jest.fn().mockImplementation(()=> {
+    return Promise.resolve({id: 1, name: "fake", emai: "fake", password: "fake"})
+  })
+
+})
 
 describe('LoginCard', ()=> {
-  describe('LoginCard component', ()=> {
+  describe('LoginCard component', () => {
     //regular component tests go here
   let wrapper;
 
    //UI Test
-  it('should match the snapshot', ()=> {
+  it('should match the snapshot', () => {
     wrapper = shallow(<LoginCard />)
     expect(wrapper).toMatchSnapshot()
   })
