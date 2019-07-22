@@ -1,27 +1,12 @@
 import React, { Component } from "react";
-import API_KEY from "../../api/apikey";
 import * as helpers from "../../_utils/helpers/";
+import { connect } from "react-redux";
 import "./MoviePage.scss";
 
-export default class MoviePage extends Component {
+class MoviePage extends Component {
   state = {
-    movie: {},
     displayPoster: true
   };
-
-  //dummy fetch -- delete this on redux implementation
-  fetchFightClub = async () => {
-    let response = await fetch(
-      `https://api.themoviedb.org/3/movie/12?api_key=${API_KEY}`
-    );
-    const movies = await response.json();
-    return movies;
-  };
-
-  async componentDidMount() {
-    const movie = await this.fetchFightClub();
-    this.setState({ movie });
-  }
 
   togglePoster = () => {
     const toggle = this.state.displayPoster;
@@ -43,7 +28,7 @@ export default class MoviePage extends Component {
       vote_average,
       production_companies,
       id
-    } = this.state.movie;
+    } = this.props.moviePage;
 
     const posterToggle = () => {
       return this.state.displayPoster ? (
@@ -113,3 +98,9 @@ export default class MoviePage extends Component {
     );
   }
 }
+
+export const mapStateToProps = store => ({
+  moviePage: store.moviePage
+});
+
+export default connect(mapStateToProps)(MoviePage);
