@@ -9,6 +9,7 @@ import {
 } from "../../api/apiCalls";
 import { connect } from "react-redux";
 import { updatePopularFavorites, updateRomanceFavorites } from "../../actions";
+import { withRouter } from "react-router-dom";
 import "./MovieCard.scss";
 
 export class MovieCard extends Component {
@@ -17,6 +18,8 @@ export class MovieCard extends Component {
     userActive: false,
     bookmarked: this.props.isFavorite
   };
+
+  toMoviePage = () => this.props.history.push("/moviepage");
 
   displayBackdrop = () => {
     setTimeout(this.determineActive, 550);
@@ -77,7 +80,7 @@ export class MovieCard extends Component {
         `http://localhost:3000/api/users/${
           this.props.currentUser.id
         }/favorites/${this.props.id}`,
-        this.props.currentUser.id, 
+        this.props.currentUser.id,
         this.props.id
       );
 
@@ -122,7 +125,7 @@ export class MovieCard extends Component {
     );
     const backdrop = (
       <Fragment>
-        <div className="overlay-content">
+        <div className="overlay-content" onClick={this.toMoviePage}>
           <div className="primary-content">
             <h3 className="movie-title">{this.props.title}</h3>
             <p className="movie-overview">{this.props.overview}</p>
@@ -151,6 +154,7 @@ export class MovieCard extends Component {
         className="poster-image"
         src={`https://image.tmdb.org/t/p/w185/${this.props.poster}`}
         alt={this.props.title}
+        onClick={this.toMoviePage}
       />
     );
 
@@ -191,4 +195,4 @@ export const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(MovieCard);
+)(withRouter(MovieCard));
