@@ -1,14 +1,22 @@
 import API_KEY from "./apikey";
 
 export const fetchMovies = async (query) => {
+ 
+  try {
   let response = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?certification_country=US&api_key=${API_KEY}${query}`
-  );
+  `https://api.themoviedb.org/3/discover/movie?certification_country=US&api_key=${API_KEY}${query}`
+  )
+    if(!response.ok) {
+      throw new Error('Error fetching movies')
+  } else {
   const movies = await response.json();
   return movies.results;
+  } 
+} catch (error) {
+    throw new Error(error.message)
+  }
 };
 
-//This method is not hooked up anywhere at this point
 //data must be an object with keys of name, email and password
 export const fetchNewUser = (url, data) => {
   return fetch(url, {
@@ -36,14 +44,14 @@ export const fetchUser = (url, data) => {
     }
   }).then(response => {
     if (!response.ok) {
-      throw new Error("Not a valid login");
+      throw new Error("Email and password do not match");
     } else {
       return response.json();
     }
   });
 };
 
-//Method to add a movie to a user's favorites, this method not hooked up to a component yet
+//Method to add a movie to a user's favorites
 // url in component method needs to be 'http://localhost:3000/api/users/favorites/new'
 //data needs to be object like this: {movie_id: 550, user_id: 1, title: "Fight Club", poster_path: "/adw6Lq9FiC9zjYEpOqfq03ituwp.jpg" , release_date: "1999-10-15", vote_average:8.4, overview: "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion."}
 //response will be the new favorite ID
@@ -72,7 +80,7 @@ export const deleteFavorite = (url, id, movieId) => {
     }
   }).then(response => {
     if (!response.ok) {
-      throw new Error("Add error", response.message);
+      throw new Error("Delete error", response.message);
     } else {
       return response.json();
     }
