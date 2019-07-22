@@ -5,7 +5,7 @@
   position: relative;
   color: $text-light;
   width: 100vw;
-  height: 825px;
+  height: 100vh;
   animation: slideInLeft 2s forwards;
   .hero-image {
     height: 100%;
@@ -19,7 +19,7 @@
     background: linear-gradient(
       180deg,
       rgba(0, 0, 0, 1) 0%,
-      rgba(0, 0, 0, 0.2987570028011205) 91%,
+      rgba(0, 0, 0, 0.3) 91%,
       rgba(0, 0, 0, 0) 100%
     );
     top: 0;
@@ -47,8 +47,7 @@
     position: absolute;
     background: linear-gradient(
       0deg,
-      $primary-color 0%,
-      $primary-color 6%,
+      $primary-color 6.5%,
       rgba(0, 0, 0, 0) 50%
     );
     top: 0;
