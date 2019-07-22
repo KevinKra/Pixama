@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import { loginUser } from "../../actions"
-import { fetchUser, fetchNewUser } from '../../api/apiCalls';
+import { loginUser } from "../../actions";
+import { fetchUser, fetchNewUser } from "../../api/apiCalls";
 import { NavLink, Redirect } from "react-router-dom";
+import { curatedData } from "../../_assets/curatedHeroData";
 
 class RegisterCard extends Component {
   state = {
@@ -11,25 +12,6 @@ class RegisterCard extends Component {
     name: "",
     error: "",
     redirect: false
-  };
-
-  componentDidMount() {
-    document.addEventListener("mousedown", this.handleClick);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener("mousedown", this.handleClick);
-  }
-
-  handleClick = e => {
-    if (this.node.contains(e.target)) {
-      return;
-    }
-    this.handleOutsideClick();
-  };
-
-  handleOutsideClick = () => {
-    this.setState({ redirect: true });
   };
 
   handleChange = e => {
@@ -74,43 +56,69 @@ class RegisterCard extends Component {
   };
 
   render() {
+    const divStyle = (image, position) => {
+      return {
+        backgroundImage: `url(${image})`,
+        backgroundPosition: position,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat"
+      };
+    };
+    const movie = curatedData[4];
     return (
-      <form ref={node => this.node = node} className="login-card register-card">
-        {this.renderRedirect()}
-        <input
-          onChange={this.handleChange}
-          name="name"
-          value={this.state.name}
-          type="text"
-          placeholder="Name"
+      <section className="HeroContent">
+        <div
+          className="hero-image"
+          style={divStyle(
+            `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
+            "center top"
+          )}
         />
-        <input
-          onChange={this.handleChange}
-          name="email"
-          value={this.state.email}
-          type="text"
-          placeholder="Email"
-        />
-        <input
-          onChange={this.handleChange}
-          name="password"
-          value={this.state.password}
-          type="text"
-          placeholder="Password"
-        />
-        {this.state.error && <p>{this.state.error}. Please try again.</p>}
-        {/* <NavLink to="/"> */}
-        <button type="button" onClick={this.onSubmit}>
-          Register
-        </button>
-        {/* </NavLink> */}
-      </form>
+        <div className="opacity-filter" />
+        <form className="login-card register-card">
+          {this.renderRedirect()}
+          <input
+            onChange={this.handleChange}
+            name="name"
+            value={this.state.name}
+            type="text"
+            placeholder="Name"
+          />
+          <input
+            onChange={this.handleChange}
+            name="email"
+            value={this.state.email}
+            type="text"
+            placeholder="Email"
+          />
+          <input
+            onChange={this.handleChange}
+            name="password"
+            value={this.state.password}
+            type="text"
+            placeholder="Password"
+          />
+          {this.state.error && (
+            <p className="login-error-text">
+              {this.state.error}. Please try again.
+            </p>
+          )}
+          {/* <NavLink to="/"> */}
+          <button type="button" onClick={this.onSubmit}>
+            Register
+          </button>
+          {/* </NavLink> */}
+        </form>
+      </section>
     );
   }
-};
+}
 
 export const mapDispatchToProps = dispatch => ({
-  loginUser: user => dispatch( loginUser(user) )
+  loginUser: user => dispatch(loginUser(user))
 });
 
-export default connect(null, mapDispatchToProps)(RegisterCard);
+export default connect(
+  null,
+  mapDispatchToProps
+)(RegisterCard);

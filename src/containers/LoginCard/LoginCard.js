@@ -9,6 +9,7 @@ import {
   updateFavorites
 } from "../../actions";
 import { NavLink, Redirect } from "react-router-dom";
+import { curatedData } from "../../_assets/curatedHeroData";
 
 export class LoginCard extends Component {
   state = {
@@ -16,25 +17,6 @@ export class LoginCard extends Component {
     password: "",
     error: "",
     redirect: false
-  };
-
-  componentDidMount() {
-    document.addEventListener("mousedown", this.handleClick);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener("mousedown", this.handleClick);
-  }
-
-  handleClick = e => {
-    if (this.node.contains(e.target)) {
-      return;
-    }
-    this.handleOutsideClick();
-  };
-
-  handleOutsideClick = () => {
-    this.setState({ redirect: true });
   };
 
   handleChange = e => {
@@ -108,35 +90,58 @@ export class LoginCard extends Component {
   };
 
   render() {
+    const divStyle = (image, position) => {
+      return {
+        backgroundImage: `url(${image})`,
+        backgroundPosition: position,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat"
+      };
+    };
+    const movie = curatedData[3];
     return (
-      <form ref={node => this.node = node} className="login-card">
-        {this.renderRedirect()}
-        <input
-          onChange={this.handleChange}
-          name="email"
-          value={this.state.email}
-          type="text"
-          placeholder="Email"
+      <section className="HeroContent">
+        <div
+          className="hero-image"
+          style={divStyle(
+            `https://image.tmdb.org/t/p/original${movie.backdrop_path}`,
+            "center top"
+          )}
         />
-        <input
-          onChange={this.handleChange}
-          name="password"
-          value={this.state.password}
-          type="text"
-          placeholder="Password"
-        />
-        {this.state.error && (
-          <p className="login-error-text">
-            {this.state.error}. Please try again.
-          </p>
-        )}
-        <button className="submit-button" type="button" onClick={this.onSubmit}>
-          Login
-        </button>
-        <NavLink className="register-text" to="/register">
-          Don't have an account? Register here.
-        </NavLink>
-      </form>
+        <div className="opacity-filter" />
+        <form className="login-card">
+          {this.renderRedirect()}
+          <input
+            onChange={this.handleChange}
+            name="email"
+            value={this.state.email}
+            type="text"
+            placeholder="Email"
+          />
+          <input
+            onChange={this.handleChange}
+            name="password"
+            value={this.state.password}
+            type="text"
+            placeholder="Password"
+          />
+          {this.state.error && (
+            <p className="login-error-text">
+              {this.state.error}. Please try again.
+            </p>
+          )}
+          <button
+            className="submit-button"
+            type="button"
+            onClick={this.onSubmit}
+          >
+            Login
+          </button>
+          <NavLink className="register-text" to="/register">
+            Don't have an account? Register here.
+          </NavLink>
+        </form>
+      </section>
     );
   }
 }
