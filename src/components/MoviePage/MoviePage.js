@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import * as apiCalls from "../../api/apiCalls";
 import API_KEY from "../../api/apikey";
+import * as helpers from "../../_utils/helpers/";
 import "./MoviePage.scss";
 
 export default class MoviePage extends Component {
@@ -9,9 +9,10 @@ export default class MoviePage extends Component {
     displayPoster: true
   };
 
+  //dummy fetch -- delete this on redux implementation
   fetchFightClub = async () => {
     let response = await fetch(
-      `https://api.themoviedb.org/3/movie/550?api_key=${API_KEY}`
+      `https://api.themoviedb.org/3/movie/12?api_key=${API_KEY}`
     );
     const movies = await response.json();
     return movies;
@@ -23,18 +24,8 @@ export default class MoviePage extends Component {
   }
 
   togglePoster = () => {
-    console.log("clicky");
     const toggle = this.state.displayPoster;
     this.setState({ displayPoster: !toggle });
-  };
-
-  divStyle = (image, position) => {
-    return {
-      backgroundImage: `url(${image})`,
-      backgroundPosition: position,
-      backgroundSize: "cover",
-      backgroundRepeat: "no-repeat"
-    };
   };
 
   render() {
@@ -48,18 +39,18 @@ export default class MoviePage extends Component {
       runtime,
       status,
       revenue,
-      homepage,
       tagline,
       vote_average,
       production_companies,
       id
     } = this.state.movie;
+
     const posterToggle = () => {
       return this.state.displayPoster ? (
         <div
           className="poster-image"
           onClick={this.togglePoster}
-          style={this.divStyle(
+          style={helpers.divStyle(
             `https://image.tmdb.org/t/p/original${poster_path}`,
             "center top"
           )}
@@ -69,7 +60,7 @@ export default class MoviePage extends Component {
       ) : (
         <div
           className="backdrop-image"
-          style={this.divStyle(
+          style={helpers.divStyle(
             `https://image.tmdb.org/t/p/original${backdrop_path}`,
             "center top"
           )}
@@ -79,6 +70,20 @@ export default class MoviePage extends Component {
         />
       );
     };
+
+    const productionCompanies = () =>
+      production_companies &&
+      production_companies.map(
+        (company, i) =>
+          company.logo_path && (
+            <img
+              src={`https://image.tmdb.org/t/p/w92${company.logo_path}`}
+              alt={company.name}
+              key={i}
+            />
+          )
+      );
+
     return (
       <section className="MoviePage">
         <section className="mp-primary-content">
@@ -98,22 +103,9 @@ export default class MoviePage extends Component {
               <p>Released: {release_date}</p>
               <p>Revenue: {revenue}</p>
               <p>Language: {original_language}</p>
-              <a href={homepage} />
             </section>
             <section className="production-companies">
-              {production_companies &&
-                production_companies.map(
-                  (company, i) =>
-                    company.logo_path && (
-                      <img
-                        src={`https://image.tmdb.org/t/p/w92${
-                          company.logo_path
-                        }`}
-                        alt={company.name}
-                        key={i}
-                      />
-                    )
-                )}
+              {productionCompanies()}
             </section>
           </aside>
         </section>
