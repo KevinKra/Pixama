@@ -59,58 +59,42 @@ export class MovieCard extends Component {
       const favorites = await fetchFavorites(
         `http://localhost:3000/api/users/${this.props.currentUser.id}/favorites`
       );
-      console.log('MOVIECARD',favorites)
       const favoriteIDs = favorites.data.map(favorite => favorite.movie_id)
-      favoriteIDs.forEach(id => {
-        const popularFavorites = this.props.popularMovies.map(movie => {
-          
-          if(movie.id === id) {
-            return{...movie, isFavorite: true}
-          } else {
-            return movie
-          }
-        })   
-        const romanceFavorites = this.props.romanceMovies.map(movie => {
-          if(movie.id === id) {
-            return {...movie, isFavorite: true}
-          } else {
-            return movie
-          }
-        }) 
-        this.props.updatePopularFavorites(popularFavorites)
-        this.props.updateRomanceFavorites(romanceFavorites)  
-      })
+      const popularFavorites = this.props.popularMovies.map(movie => {
+        return favoriteIDs.includes(movie.id) ? { ...movie, isFavorite: true } : movie;
+      });
+
+      this.props.updatePopularFavorites(popularFavorites);
+
+      const romanceFavorites = this.props.romanceMovies.map(movie => {
+        return favoriteIDs.includes(movie.id) ? { ...movie, isFavorite: true } : movie;
+      });
+      this.props.updateRomanceFavorites(romanceFavorites); 
     } else {
       await deleteFavorite(
         `http://localhost:3000/api/users/${
           this.props.currentUser.id
         }/favorites/${this.id}`
       );
+      
       const favorites = await fetchFavorites(
         `http://localhost:3000/api/users/${
           this.props.currentUser.id
         }/favorites`
       );
-      const favoriteIDs = favorites.data.map(favorite => favorite.movie_id)
-      favoriteIDs.forEach(id => {
-        const popularFavorites = this.props.popularMovies.map(movie => {
-          
-          if(movie.id === id) {
-            return{...movie, isFavorite: true}
-          } else {
-            return movie
-          }
-        })   
-        const romanceFavorites = this.props.romanceMovies.map(movie => {
-          if(movie.id === id) {
-            return {...movie, isFavorite: true}
-          } else {
-            return movie
-          }
-        }) 
-        this.props.updatePopularFavorites(popularFavorites)
-        this.props.updateRomanceFavorites(romanceFavorites)  
-      })
+      const favoriteIDs = favorites.data.map(
+        favorite => favorite.movie_id
+      );
+      const popularFavorites = this.props.popularMovies.map(movie => {
+        return favoriteIDs.includes(movie.id) ? { ...movie, isFavorite: true } : movie;
+      });
+
+      this.props.updatePopularFavorites(popularFavorites);
+
+      const romanceFavorites = this.props.romanceMovies.map(movie => {
+        return favoriteIDs.includes(movie.id) ? { ...movie, isFavorite: true } : movie;
+      });
+      this.props.updateRomanceFavorites(romanceFavorites); 
     }
   };
 

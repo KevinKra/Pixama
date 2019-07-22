@@ -34,29 +34,17 @@ export class LoginCard extends Component {
     
     try {     
       const favorites = await fetchFavorites(`http://localhost:3000/api/users/${id}/favorites`);
-      console.log('LOGINCARD', favorites)
       const favoriteIDs = favorites.data.map(favorite => favorite.movie_id)
-      console.log(favoriteIDs)
-      favoriteIDs.forEach(id => {
-        const popularFavorites = this.props.popularMovies.map(movie => {
-          
-          if(movie.id === id) {
-            return{...movie, isFavorite: true}
-          } else {
-            return movie
-          }
-        })   
-        const romanceFavorites = this.props.romanceMovies.map(movie => {
-          if(movie.id === id) {
-            return {...movie, isFavorite: true}
-          } else {
-            return movie
-          }
-        }) 
-        this.props.updatePopularFavorites(popularFavorites)
-        this.props.updateRomanceFavorites(romanceFavorites)  
-      })
-      
+      const popularFavorites = this.props.popularMovies.map(movie => {
+        return favoriteIDs.includes(movie.id) ? {...movie, isFavorite: true} : movie;
+      });
+
+      this.props.updatePopularFavorites(popularFavorites);
+
+      const romanceFavorites = this.props.romanceMovies.map(movie => {
+        return favoriteIDs.includes(movie.id) ? { ...movie, isFavorite: true } : movie;
+      });
+      this.props.updateRomanceFavorites(romanceFavorites);     
     } catch (error) {
       console.log(error.message)
       this.setState({ error: error.message });
