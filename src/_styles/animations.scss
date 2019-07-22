@@ -1,0 +1,26 @@
+@keyframes slideInRight {
+  from {
+    transform: translateX(250%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-250%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

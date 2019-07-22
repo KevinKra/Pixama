@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import MovieCard from "../MovieCard/MovieCard";
 import "./Carousel.scss";
 import { connect } from "react-redux";
-// import { throwStatement } from "@babel/types";
 
 export class Carousel extends Component {
   state = {
@@ -12,23 +11,6 @@ export class Carousel extends Component {
   componentDidMount() {
     this.setState({ movies: this.props.movies });
   };
-
-  determineSlides = () => {
-    const windowWidth = this.getWidth();
-    const moviesPerPage = Math.ceil(windowWidth / 185);
-    const totalPages = Math.floor(20 / moviesPerPage);
-    this.setState({ totalPages, loaded: true });
-  };
-
-  // getWidth = () => {
-  //   return Math.max(
-  //     document.body.scrollWidth,
-  //     document.documentElement.scrollWidth,
-  //     document.body.offsetWidth,
-  //     document.documentElement.offsetWidth,
-  //     document.documentElement.clientWidth
-  //   );
-  // };
 
   translateXForward = () => {
     const movies = this.state.movies;
@@ -41,7 +23,6 @@ export class Carousel extends Component {
     const movies = this.state.movies;
     const spliceFront = movies.splice(0, 3);
     movies.push(...spliceFront);
-    console.log(movies);
     this.setState({ movies });
   };
 
@@ -59,7 +40,6 @@ export class Carousel extends Component {
             language={movie.original_language}
             popularity={movie.vote_average}
             releaseDate={movie.release_date}
-            // voteAverage={movie.vote_average}
             id={movie.id}
             key={movie.id}
             isFavorite={movie.isFavorite}
