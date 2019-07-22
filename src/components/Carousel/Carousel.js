@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import MovieCard from "../MovieCard/MovieCard";
 import "./Carousel.scss";
+import { connect } from "react-redux";
 // import { throwStatement } from "@babel/types";
 
-export default class Carousel extends Component {
+export class Carousel extends Component {
   state = {
     movies: []
   };
@@ -45,9 +46,10 @@ export default class Carousel extends Component {
   };
 
   render() {
+    const genre = this.props[this.props.genre]
     const moviesRendered =
-      this.props.movies &&
-      this.props.movies.map(movie => {
+      genre &&
+      genre.map(movie => {
         return (
           <MovieCard
             title={movie.original_title}
@@ -60,6 +62,7 @@ export default class Carousel extends Component {
             // voteAverage={movie.vote_average}
             id={movie.id}
             key={movie.id}
+            isFavorite={movie.isFavorite}
           />
         );
       });
@@ -84,3 +87,10 @@ export default class Carousel extends Component {
     );
   }
 };
+
+export const mapStateToProps = state => ({
+  popularMovies: state.popularMovies,
+  romanceMovies: state.romanceMovies
+});
+
+export default connect(mapStateToProps)(Carousel)

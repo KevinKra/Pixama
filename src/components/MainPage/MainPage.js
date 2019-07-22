@@ -41,8 +41,8 @@ export class MainPage extends Component {
       <section className="MainPage">
         <HeroImage />
         <section className="main-body">
-          <Carousel title="Popular Movies" movies={this.props.popularMovies} />
-          <Carousel title="Romance Movies" movies={this.props.romanceMovies} />
+          <Carousel title="Popular Movies" genre="popularMovies" movies={this.props.popularMovies} />
+          <Carousel title="Romance Movies" genre="romanceMovies"movies={this.props.romanceMovies} />
         </section>
       </section>
     );

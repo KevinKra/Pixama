@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./LoginCard.scss";
 import { fetchUser, fetchFavorites } from "../../api/apiCalls";
 import { connect } from "react-redux";
-import { loginUser, getFavorites } from "../../actions";
+import { loginUser, updateRomanceFavorites, updatePopularFavorites} from "../../actions";
 import { NavLink } from "react-router-dom";
 
 export class LoginCard extends Component {
@@ -34,12 +34,21 @@ export class LoginCard extends Component {
     
     try {     
       const favorites = await fetchFavorites(`http://localhost:3000/api/users/${id}/favorites`);
-      this.props.getFavorites(favorites.data)
+      const favoriteIDs = favorites.data.map(favorite => favorite.movie_id)
+      const popularFavorites = this.props.popularMovies.map(movie => {
+        return favoriteIDs.includes(movie.id) ? {...movie, isFavorite: true} : movie;
+      });
+
+      this.props.updatePopularFavorites(popularFavorites);
+
+      const romanceFavorites = this.props.romanceMovies.map(movie => {
+        return favoriteIDs.includes(movie.id) ? { ...movie, isFavorite: true } : movie;
+      });
+      this.props.updateRomanceFavorites(romanceFavorites);     
     } catch (error) {
       console.log(error.message)
       this.setState({ error: error.message });
     }
-
     this.clearForm();
   };
 
@@ -79,12 +88,18 @@ export class LoginCard extends Component {
   }
 }
 
+export const mapStateToProps = state => ({
+  popularMovies: state.popularMovies,
+  romanceMovies: state.romanceMovies
+})
+
 export const mapDispatchToProps = dispatch => ({
   loginUser: user => dispatch(loginUser(user)),
-  getFavorites: favorites => dispatch(getFavorites(favorites))
+  updatePopularFavorites: popularFavorites => dispatch(updatePopularFavorites(popularFavorites )),
+  updateRomanceFavorites: romanceFavorites => dispatch(updateRomanceFavorites(romanceFavorites))
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(LoginCard);
