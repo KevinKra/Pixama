@@ -50,8 +50,7 @@ export class LoginCard extends Component {
           : { ...movie, isFavorite: false };
       });
       this.props.updateRomanceFavorites(romanceFavorites);  
-      this.setState( { error: ''})
-      this.setRedirect()   
+      this.setState( { redirect: true})
     } catch (error) {
       console.log(error.message)
       this.setState({ error: error.message });
@@ -67,25 +66,15 @@ export class LoginCard extends Component {
     });
   };
 
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/' />
+    }
 
-//   setRedirect = () => {
-//     if(this.props.currentUser) {
-//       console.log('RUNNING SETREDIRECT')
-//     this.setState({redirect: true})
-//   }
-// }
-//   renderRedirect = () => {
-//     if (this.state.redirect) {
-//       console.log('IF')
-//       return <Redirect to='/' />
-//     } else {
-//       console.log('ELSE')
-//       return <Redirect to='/login'/>
-//     }
-
-//   }
+  }
 
   render() {
+
     return (
       <form className="login-card">
         {this.renderRedirect()}
@@ -104,11 +93,11 @@ export class LoginCard extends Component {
           placeholder="Password"
         />
       {this.state.error && <p>{this.state.error}. Please try again.</p>}
-        <NavLink to="/">
+        {/* <NavLink to="/"> */}
           <button className="submit-button" type="button" onClick={this.onSubmit}>
             Login
           </button>
-        </NavLink>
+        {/* </NavLink> */}
         <NavLink to="/register">Don't have an account? Register here.</NavLink>
       </form>
     );
