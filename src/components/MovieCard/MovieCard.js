@@ -15,7 +15,16 @@ export class MovieCard extends Component {
     bookmarked: this.props.isFavorite
   };
 
-  toMoviePage = () => this.props.history.push("/moviepage");
+  toMoviePage = () => {
+    this.fetchThisMovie(this.props.id);
+    this.props.history.push("/moviepage");
+  };
+
+  fetchThisMovie = async id => {
+    const result = await apiCalls.fetchSpecificMovie(id);
+    this.props.updateMoviePage(result);
+    console.log("result", result);
+  };
 
   displayBackdrop = () => {
     setTimeout(this.determineActive, 550);
@@ -188,7 +197,8 @@ export const mapDispatchToProps = dispatch => ({
   updatePopularFavorites: popularFavorites =>
     dispatch(actions.updatePopularFavorites(popularFavorites)),
   updateRomanceFavorites: romanceFavorites =>
-    dispatch(actions.updateRomanceFavorites(romanceFavorites))
+    dispatch(actions.updateRomanceFavorites(romanceFavorites)),
+  updateMoviePage: movie => dispatch(actions.updateMoviePage(movie))
 });
 
 export default connect(
