@@ -36,13 +36,17 @@ export class LoginCard extends Component {
       const favorites = await fetchFavorites(`http://localhost:3000/api/users/${id}/favorites`);
       const favoriteIDs = favorites.data.map(favorite => favorite.movie_id)
       const popularFavorites = this.props.popularMovies.map(movie => {
-        return favoriteIDs.includes(movie.id) ? {...movie, isFavorite: true} : movie;
+        return favoriteIDs.includes(movie.id)
+          ? { ...movie, isFavorite: true }
+          : { ...movie, isFavorite: false };
       });
 
       this.props.updatePopularFavorites(popularFavorites);
 
       const romanceFavorites = this.props.romanceMovies.map(movie => {
-        return favoriteIDs.includes(movie.id) ? { ...movie, isFavorite: true } : movie;
+        return favoriteIDs.includes(movie.id)
+          ? { ...movie, isFavorite: true }
+          : { ...movie, isFavorite: false };
       });
       this.props.updateRomanceFavorites(romanceFavorites);     
     } catch (error) {
