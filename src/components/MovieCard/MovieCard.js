@@ -38,7 +38,7 @@ export class MovieCard extends Component {
   };
 
   bookmarkCard = async () => {
-    if (!this.props.isFavorite) {
+    if (!this.props.isFavorite && this.props.currentUser.loggedIn) {
       const {
         id,
         title,
@@ -84,6 +84,8 @@ export class MovieCard extends Component {
         return movie.isFavorite == true;
       });
       this.props.updateFavorites(allFavorites);
+    } else if (!this.props.currentUser.loggedIn) {
+        alert('You must be logged in to add a favorite');
     } else {
       await deleteFavorite(
         `http://localhost:3000/api/users/${
@@ -199,7 +201,8 @@ export const mapStateToProps = state => ({
   currentUser: state.currentUser,
   popularMovies: state.popularMovies,
   romanceMovies: state.romanceMovies,
-  favorites: state.favorites
+  favorites: state.favorites,
+  currentUser: state.currentUser
 });
 
 export const mapDispatchToProps = dispatch => ({
