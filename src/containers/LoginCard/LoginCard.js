@@ -56,7 +56,7 @@ export class LoginCard extends Component {
         return movie.isFavorite == true;
       });
       this.props.updateFavorites(allFavorites);
-      this.setState( { redirect: true})
+      this.setState({ redirect: true })
     } catch (error) {
       console.log(error.message)
       this.setState({ error: error.message });
@@ -76,7 +76,6 @@ export class LoginCard extends Component {
     if (this.state.redirect) {
       return <Redirect to='/' />
     }
-
   }
 
   render() {
@@ -99,11 +98,9 @@ export class LoginCard extends Component {
           placeholder="Password"
         />
       {this.state.error && <p>{this.state.error}. Please try again.</p>}
-        {/* <NavLink to="/"> */}
           <button className="submit-button" type="button" onClick={this.onSubmit}>
             Login
           </button>
-        {/* </NavLink> */}
         <NavLink className="register-text" to="/register">Don't have an account? Register here.</NavLink>
       </form>
     );

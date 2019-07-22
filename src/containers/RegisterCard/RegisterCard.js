@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { loginUser } from "../../actions"
 import { fetchUser, fetchNewUser } from '../../api/apiCalls';
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 
 class RegisterCard extends Component {
   state = {
     email: "",
     password: "",
     name: "",
-    error: ""
+    error: "",
+    redirect: false
   };
 
   handleChange = e => {
@@ -28,8 +29,9 @@ class RegisterCard extends Component {
       await fetchNewUser(newUserUrl, newUserData);
       const user = await fetchUser(userUrl, userData);
       this.props.loginUser(user.data);
+      this.setState({ redirect: true })
     } catch (error) {
-      this.setState({ error });
+      this.setState({ error: error.message });
     }
     this.clearForm();
   };
@@ -42,9 +44,16 @@ class RegisterCard extends Component {
     });
   };
 
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/' />
+    }
+  }
+
   render() {
     return (
       <form className="login-card register-card">
+      {this.renderRedirect()}
       <input
           onChange={this.handleChange}
           name="name"
@@ -66,11 +75,12 @@ class RegisterCard extends Component {
           type="text"
           placeholder="Password"
         />
-        <NavLink to="/">
+        {this.state.error && <p>{this.state.error}. Please try again.</p>}
+        {/* <NavLink to="/"> */}
           <button type="button" onClick={this.onSubmit}>
             Register
           </button>
-        </NavLink>
+        {/* </NavLink> */}
       </form>
     );
   }
