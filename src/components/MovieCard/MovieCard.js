@@ -2,17 +2,10 @@ import React, { Component, Fragment } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
-import {
-  postFavorite,
-  fetchFavorites,
-  deleteFavorite,
-} from "../../api/apiCalls";
+import * as apiCalls from "../../api/apiCalls";
+import * as actions from "../../actions";
 import { connect } from "react-redux";
-import {
-  updatePopularFavorites,
-  updateRomanceFavorites,
-  updateFavorites
-} from "../../actions";
+import { withRouter } from "react-router-dom";
 import "./MovieCard.scss";
 
 export class MovieCard extends Component {
@@ -20,6 +13,17 @@ export class MovieCard extends Component {
     displayBackdrop: false,
     userActive: false,
     bookmarked: this.props.isFavorite
+  };
+
+  toMoviePage = () => {
+    this.fetchThisMovie(this.props.id);
+    this.props.history.push("/moviepage");
+  };
+
+  fetchThisMovie = async id => {
+    const result = await apiCalls.fetchSpecificMovie(id);
+    this.props.updateMoviePage(result);
+    console.log("result", result);
   };
 
   displayBackdrop = () => {
@@ -57,8 +61,11 @@ export class MovieCard extends Component {
         vote_average: popularity,
         overview
       };
-      await postFavorite("http://localhost:3000/api/users/favorites/new", data);
-      const favorites = await fetchFavorites(
+      await apiCalls.postFavorite(
+        "http://localhost:3000/api/users/favorites/new",
+        data
+      );
+      const favorites = await apiCalls.fetchFavorites(
         `http://localhost:3000/api/users/${this.props.currentUser.id}/favorites`
       );
       const favoriteIDs = favorites.data.map(favorite => favorite.movie_id);
@@ -87,15 +94,15 @@ export class MovieCard extends Component {
     } else if (!this.props.currentUser.loggedIn) {
         alert('You must be logged in to add a favorite');
     } else {
-      await deleteFavorite(
+      await apiCalls.deleteFavorite(
         `http://localhost:3000/api/users/${
           this.props.currentUser.id
         }/favorites/${this.props.id}`,
-        this.props.currentUser.id, 
+        this.props.currentUser.id,
         this.props.id
       );
 
-      const favorites = await fetchFavorites(
+      const favorites = await apiCalls.fetchFavorites(
         `http://localhost:3000/api/users/${this.props.currentUser.id}/favorites`
       );
       const favoriteIDs = favorites.data.map(favorite => favorite.movie_id);
@@ -144,7 +151,7 @@ export class MovieCard extends Component {
     );
     const backdrop = (
       <Fragment>
-        <div className="overlay-content">
+        <div className="overlay-content" onClick={this.toMoviePage}>
           <div className="primary-content">
             <h3 className="movie-title">{this.props.title}</h3>
             <p className="movie-overview">{this.props.overview}</p>
@@ -173,6 +180,7 @@ export class MovieCard extends Component {
         className="poster-image"
         src={`https://image.tmdb.org/t/p/w185/${this.props.poster}`}
         alt={this.props.title}
+        onClick={this.toMoviePage}
       />
     );
 
@@ -207,8 +215,10 @@ export const mapStateToProps = state => ({
 
 export const mapDispatchToProps = dispatch => ({
   updatePopularFavorites: popularFavorites =>
-    dispatch(updatePopularFavorites(popularFavorites)),
+    dispatch(actions.updatePopularFavorites(popularFavorites)),
   updateRomanceFavorites: romanceFavorites =>
+    dispatch(actions.updateRomanceFavorites(romanceFavorites)),
+  updateMoviePage: movie => dispatch(actions.updateMoviePage(movie))
     dispatch(updateRomanceFavorites(romanceFavorites)),
   updateFavorites: favorites => dispatch(updateFavorites(favorites))
 });
@@ -216,4 +226,4 @@ export const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(MovieCard);
+)(withRouter(MovieCard));

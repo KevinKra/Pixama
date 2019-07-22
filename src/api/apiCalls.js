@@ -1,19 +1,31 @@
 import API_KEY from "./apikey";
 
-export const fetchMovies = async (query) => {
- 
+export const fetchMovies = async query => {
   try {
-  let response = await fetch(
-  `https://api.themoviedb.org/3/discover/movie?certification_country=US&api_key=${API_KEY}${query}`
-  )
-    if(!response.ok) {
-      throw new Error('Error fetching movies')
-  } else {
-  const movies = await response.json();
-  return movies.results;
-  } 
-} catch (error) {
-    throw new Error(error.message)
+    let response = await fetch(
+      `https://api.themoviedb.org/3/discover/movie?certification_country=US&api_key=${API_KEY}${query}`
+    );
+    if (!response.ok) {
+      throw new Error("Error fetching movies");
+    } else {
+      const movies = await response.json();
+      return movies.results;
+    }
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const fetchSpecificMovie = async id => {
+  try {
+    let response = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`
+    );
+    if (!response.ok) throw new Error("Movie not found");
+    const movie = await response.json();
+    return movie;
+  } catch (error) {
+    throw new Error(error.message);
   }
 };
 

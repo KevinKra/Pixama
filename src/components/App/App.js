@@ -10,9 +10,9 @@ import "./App.scss";
 export default function App() {
   return (
     <main className="App">
-      {/* <Route path="/movies" component={MoviePage} /> */}
       <Route path="/" component={NavBar} />
-      <Route path="/" component={MainPage} />
+      <Route exact path="/" component={MainPage} />
+      <Route exact path="/moviepage" component={MoviePage} />
       <Route exact path="/login" component={LoginCard} />
       <Route exact path="/register" component={RegisterCard} />
     </main>
