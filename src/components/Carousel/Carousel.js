@@ -1,17 +1,16 @@
 import React, { Component } from "react";
 import MovieCard from "../MovieCard/MovieCard";
-import * as apiCalls from "../../api/apiCalls";
 import "./Carousel.scss";
+import { connect } from "react-redux";
 
-export default class Carousel extends Component {
+export class Carousel extends Component {
   state = {
     movies: []
   };
 
-  async componentDidMount() {
-    const movies = await apiCalls.fetchPopularMovies();
-    this.setState({ movies });
-  }
+  componentDidMount() {
+    this.setState({ movies: this.props.movies });
+  };
 
   translateXForward = () => {
     const movies = this.state.movies;
@@ -28,9 +27,10 @@ export default class Carousel extends Component {
   };
 
   render() {
+    const genre = this.props[this.props.genre]
     const moviesRendered =
-      this.state.movies &&
-      this.state.movies.map(movie => {
+      genre &&
+      genre.map(movie => {
         return (
           <MovieCard
             title={movie.original_title}
@@ -42,6 +42,7 @@ export default class Carousel extends Component {
             releaseDate={movie.release_date}
             id={movie.id}
             key={movie.id}
+            isFavorite={movie.isFavorite}
           />
         );
       });
@@ -65,4 +66,11 @@ export default class Carousel extends Component {
       </div>
     );
   }
-}
+};
+
+export const mapStateToProps = state => ({
+  popularMovies: state.popularMovies,
+  romanceMovies: state.romanceMovies
+});
+
+export default connect(mapStateToProps)(Carousel)
