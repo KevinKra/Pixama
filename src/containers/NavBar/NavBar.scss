@@ -22,7 +22,10 @@
     }
   }
   .routes {
+    display: flex;
+    justify-content: space-between;
     width: 215px;
+    justify-self: flex-end;
   }
 }
 

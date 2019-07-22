@@ -147,11 +147,12 @@ export class MovieCard extends Component {
         size="lg"
         onClick={() => console.log("play btn clicked")}
         className="play-icon"
+        onClick={this.toMoviePage}
       />
     );
     const backdrop = (
       <Fragment>
-        <div className="overlay-content" onClick={this.toMoviePage}>
+        <div className="overlay-content">
           <div className="primary-content">
             <h3 className="movie-title">{this.props.title}</h3>
             <p className="movie-overview">{this.props.overview}</p>
