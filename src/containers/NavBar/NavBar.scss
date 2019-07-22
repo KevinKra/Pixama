@@ -1,20 +1,25 @@
-@import "../../_styles//variables.scss";
+@import "../../_styles/variables.scss";
 
 .NavBar {
   display: flex;
   justify-content: center;
-  border: 1px solid red;
   width: 100%;
   position: fixed;
-  // background-color: white;
-  // background-color: transparent;
   height: 60px;
   z-index: 5;
   div {
     display: flex;
     justify-content: space-between;
-    border: 1px solid red;
-    width: 90%;
+    width: 94.5%;
+  }
+  a {
+    transition: 0.5s background-color ease-in-out;
+    padding: 0.5rem 2rem;
+    margin: auto 0;
+    text-decoration: none;
+    &:hover {
+      text-shadow: 1px 1px 5px $text-dark;
+    }
   }
 }
 
@@ -29,6 +34,10 @@
   }
   a {
     color: $text-light;
+    background-color: $primary-color;
+    &:hover {
+      background-color: black;
+    }
   }
 }
 

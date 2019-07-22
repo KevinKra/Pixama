@@ -4,25 +4,22 @@ import "./MainPage.scss";
 import * as apiCalls from "../../api/apiCalls";
 import Carousel from "../Carousel/Carousel";
 import HeroImage from "../HeroImage/HeroImage";
-import { addPopularMovies, addRomanceMovies } from '../../actions';
+import { addPopularMovies, addRomanceMovies } from "../../actions";
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux"; 
-
+import { bindActionCreators } from "redux";
 
 export class MainPage extends Component {
-
   async componentDidMount() {
-    const popularMovies = await apiCalls.fetchMovies('');
+    const popularMovies = await apiCalls.fetchMovies("");
     const romanceMovies = await apiCalls.fetchMovies(
-      '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=10749'
+      "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=10749"
     );
-    Promise.all([popularMovies, romanceMovies])
-    .then(allMovies => {
+    Promise.all([popularMovies, romanceMovies]).then(allMovies => {
       allMovies.forEach((genre, index) => {
         const cleanedGenre = genre.map(movie => {
-          return {...movie, isFavorite: false};
+          return { ...movie, isFavorite: false };
         });
-        switch(index) {
+        switch (index) {
           case 0:
             this.props.addPopularMovies(cleanedGenre);
             break;
@@ -31,32 +28,31 @@ export class MainPage extends Component {
             break;
           default:
             return null;
-        };
+        }
       });
     });
-  };
+  }
 
   render() {
     return (
       <section className="MainPage">
         <HeroImage />
         <section className="main-body">
-          <Carousel title="Popular Movies" genre="popularMovies" movies={this.props.popularMovies} />
-          <Carousel title="Romance Movies" genre="romanceMovies"movies={this.props.romanceMovies} />
+          <Carousel title="Popular Movies" genre="popularMovies" />
+          <Carousel title="Romance Movies" genre="romanceMovies" />
         </section>
       </section>
     );
   }
-};
+}
 
 export const mapStateToProps = state => ({
   popularMovies: state.popularMovies,
   romanceMovies: state.romanceMovies
-})
+});
 
-export const mapDispatchToProps = dispatch => (
-  bindActionCreators({ addPopularMovies, addRomanceMovies }, dispatch)
-);
+export const mapDispatchToProps = dispatch =>
+  bindActionCreators({ addPopularMovies, addRomanceMovies }, dispatch);
 
 export default connect(
   mapStateToProps,

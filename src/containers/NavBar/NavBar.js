@@ -27,7 +27,7 @@ class NavBar extends Component {
   }
 
   render() {
-    const { currentUser, logoutUser, loggedIn } = this.props;
+    const { logoutUser, loggedIn } = this.props;
     return (
       <nav className={`NavBar ${this.state.opacity ? "solid" : "transparent"}`}>
         <div>

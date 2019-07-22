@@ -8,10 +8,6 @@ export class Carousel extends Component {
     movies: []
   };
 
-  componentDidMount() {
-    this.setState({ movies: this.props.movies });
-  };
-
   translateXForward = () => {
     const movies = this.state.movies;
     const spliceEnd = movies.splice(movies.length - 3, 3);
@@ -27,10 +23,11 @@ export class Carousel extends Component {
   };
 
   render() {
-    const genre = this.props[this.props.genre]
+    const genre = this.props[this.props.genre];
     const moviesRendered =
       genre &&
       genre.map(movie => {
+        this.state.movies = genre;
         return (
           <MovieCard
             title={movie.original_title}
@@ -50,10 +47,10 @@ export class Carousel extends Component {
       <div className="Carousel">
         <h2>{this.props.title}</h2>
         <button className="forwards-btn" onClick={this.translateXForward}>
-          ⏪
+          <span>⏪</span>
         </button>
         <button className="backwards-btn" onClick={this.translateXBackward}>
-          ⏩
+          <span>⏩</span>
         </button>
         <div
           className="movies-container"
@@ -66,11 +63,11 @@ export class Carousel extends Component {
       </div>
     );
   }
-};
+}
 
 export const mapStateToProps = state => ({
   popularMovies: state.popularMovies,
   romanceMovies: state.romanceMovies
 });
 
-export default connect(mapStateToProps)(Carousel)
+export default connect(mapStateToProps)(Carousel);

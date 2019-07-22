@@ -1,15 +1,15 @@
 @import "../../_styles//variables.scss";
+@import "../../_styles/animations.scss";
 
 .Carousel {
-  border: 1px solid orange;
   color: white;
-  margin-top: 40px;
   position: relative;
   z-index: -1;
   overflow: hidden;
+  animation: fadeIn 3s forwards;
   h2 {
     margin: 0.1rem;
-    padding-left: 1.7rem;
+    padding-left: 1rem;
   }
 }
 
@@ -30,7 +30,6 @@
   position: absolute;
   color: white;
   border: none;
-  // border: 1px solid black;
   width: 5%;
   height: 100%;
   background: transparent;
@@ -45,9 +44,9 @@
     90deg,
     $primary-color 0%,
     $primary-color 19%,
-    rgba(27, 27, 27, 0.65) 64%,
-    rgba(27, 27, 27, 0.56) 80%,
-    rgba(27, 27, 27, 0) 98%
+    rgba(27, 27, 27, 0.65) 54%,
+    rgba(27, 27, 27, 0.5) 60%,
+    rgba(27, 27, 27, 0) 100%
   );
 }
 
@@ -58,9 +57,9 @@
     270deg,
     $primary-color 0%,
     $primary-color 19%,
-    rgba(27, 27, 27, 0.65) 64%,
-    rgba(27, 27, 27, 0.56) 80%,
-    rgba(27, 27, 27, 0) 98%
+    rgba(27, 27, 27, 0.65) 54%,
+    rgba(27, 27, 27, 0.5) 60%,
+    rgba(27, 27, 27, 0) 100%
   );
 }
 

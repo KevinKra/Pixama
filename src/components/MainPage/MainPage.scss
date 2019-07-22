@@ -10,8 +10,8 @@
 .main-body {
   position: relative;
   z-index: 3;
-  border: 1px solid blue;
   width: 90%;
+  top: -5vh;
   min-height: 100vh;
   transform: translateY(-50px);
 }
