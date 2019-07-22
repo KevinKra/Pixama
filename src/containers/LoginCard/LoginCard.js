@@ -2,9 +2,13 @@ import React, { Component } from "react";
 import "./LoginCard.scss";
 import { fetchUser, fetchFavorites } from "../../api/apiCalls";
 import { connect } from "react-redux";
-import { loginUser, updateRomanceFavorites, updatePopularFavorites, updateFavorites } from "../../actions";
+import {
+  loginUser,
+  updateRomanceFavorites,
+  updatePopularFavorites,
+  updateFavorites
+} from "../../actions";
 import { NavLink, Redirect } from "react-router-dom";
-
 
 export class LoginCard extends Component {
   state = {
@@ -14,6 +18,25 @@ export class LoginCard extends Component {
     redirect: false
   };
 
+  componentDidMount() {
+    document.addEventListener("mousedown", this.handleClick);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("mousedown", this.handleClick);
+  }
+
+  handleClick = e => {
+    if (this.node.contains(e.target)) {
+      return;
+    }
+    this.handleOutsideClick();
+  };
+
+  handleOutsideClick = () => {
+    this.setState({ redirect: true });
+  };
+
   handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -21,7 +44,10 @@ export class LoginCard extends Component {
   };
 
   onSubmit = async () => {
-    let userData = { email: this.state.email, password: this.state.password };
+    let userData = {
+      email: this.state.email,
+      password: this.state.password
+    };
     const url = "http://localhost:3000/api/users";
     let id;
 
@@ -33,11 +59,13 @@ export class LoginCard extends Component {
       console.log(error.message);
       this.setState({ error: error.message });
     }
-    
-    try {     
-      const favorites = await fetchFavorites(`http://localhost:3000/api/users/${id}/favorites`);
+
+    try {
+      const favorites = await fetchFavorites(
+        `http://localhost:3000/api/users/${id}/favorites`
+      );
       const favoriteIDs = favorites.data.map(favorite => favorite.movie_id);
-      
+
       const popularFavorites = this.props.popularMovies.map(movie => {
         return favoriteIDs.includes(movie.id)
           ? { ...movie, isFavorite: true }
@@ -52,17 +80,18 @@ export class LoginCard extends Component {
       });
       this.props.updateRomanceFavorites(romanceFavorites);
 
-      const allFavorites = [...popularFavorites, ...romanceFavorites].filter(movie => {
-        return movie.isFavorite == true;
-      });
+      const allFavorites = [...popularFavorites, ...romanceFavorites].filter(
+        movie => {
+          return movie.isFavorite == true;
+        }
+      );
       this.props.updateFavorites(allFavorites);
-      this.setState({ redirect: true })
+      this.setState({ redirect: true });
     } catch (error) {
-      console.log(error.message)
+      console.log(error.message);
       this.setState({ error: error.message });
     }
     this.clearForm();
-    
   };
 
   clearForm = () => {
@@ -74,14 +103,13 @@ export class LoginCard extends Component {
 
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to='/' />
+      return <Redirect to="/" />;
     }
-  }
+  };
 
   render() {
-
     return (
-      <form className="login-card">
+      <form ref={node => this.node = node} className="login-card">
         {this.renderRedirect()}
         <input
           onChange={this.handleChange}
@@ -97,11 +125,17 @@ export class LoginCard extends Component {
           type="text"
           placeholder="Password"
         />
-      {this.state.error && <p>{this.state.error}. Please try again.</p>}
-          <button className="submit-button" type="button" onClick={this.onSubmit}>
-            Login
-          </button>
-        <NavLink className="register-text" to="/register">Don't have an account? Register here.</NavLink>
+        {this.state.error && (
+          <p className="login-error-text">
+            {this.state.error}. Please try again.
+          </p>
+        )}
+        <button className="submit-button" type="button" onClick={this.onSubmit}>
+          Login
+        </button>
+        <NavLink className="register-text" to="/register">
+          Don't have an account? Register here.
+        </NavLink>
       </form>
     );
   }
@@ -111,12 +145,14 @@ export const mapStateToProps = state => ({
   popularMovies: state.popularMovies,
   romanceMovies: state.romanceMovies,
   favorites: state.favorites
-})
+});
 
 export const mapDispatchToProps = dispatch => ({
   loginUser: user => dispatch(loginUser(user)),
-  updatePopularFavorites: popularFavorites => dispatch(updatePopularFavorites(popularFavorites )),
-  updateRomanceFavorites: romanceFavorites => dispatch(updateRomanceFavorites(romanceFavorites)),
+  updatePopularFavorites: popularFavorites =>
+    dispatch(updatePopularFavorites(popularFavorites)),
+  updateRomanceFavorites: romanceFavorites =>
+    dispatch(updateRomanceFavorites(romanceFavorites)),
   updateFavorites: favorites => dispatch(updateFavorites(favorites))
 });
 
