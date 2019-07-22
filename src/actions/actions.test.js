@@ -45,21 +45,63 @@ describe('actions', ()=>{
 
   })
 
-  it ('getFavorites should have a type of GET_FAVORITES', ()=> {
-    const testFaves = [{title: "Fight Club"}, {title: "Avengers"}]
+  it ('addPopularMovies should have a type of ADD_POPULAR_MOVIES', ()=> {
+    const testMovies = [{title: "Fight Club"}, {title: "Avengers"}]
 
     const expected = {
-      type: 'GET_FAVORITES',
-      favorites: testFaves
+      type: 'ADD_POPULAR_MOVIES',
+      movies: testMovies
     }
 
-    const result = actions.getFavorites(testFaves)
+    const result = actions.addPopularMovies(testMovies)
 
     expect(result).toEqual(expected)
-
   })
 
-  it('cleanPopularMovies should have a type of CLEAN-POPULAR-MOVIES', ()=>{
+  
+  it('addRomanceMovies should have a type of ADD_ROMANCE_MOVIES', ()=>{
+    const testMovies = [{title: "Fight Club"}, {title: "Avengers"}]
+    
+    const expected = {
+      type: 'ADD_ROMANCE_MOVIES',
+      movies: testMovies
+    }
+
+    const result = actions.addRomanceMovies(testMovies)
+  
+    expect(result).toEqual(expected)
+  })
+
+  it('updatePopularFavorites should have a type of UPDATE_POPULAR_FAVORITES', ()=>{
+    const testMovies = [{title: "Fight Club"}, {title: "Avengers"}]
+    
+    const expected = {
+      type: 'UPDATE_POPULAR_FAVORITES',
+      popularFavorites: testMovies
+    }
+
+    const result = actions.updatePopularFavorites(testMovies)
+  
+    expect(result).toEqual(expected)
+  })
+
+
+  it('updateRomanceFavorites should have a type of UPDATE_ROMANCE_FAVORITES', ()=>{
+    const testMovies = [{title: "Fight Club"}, {title: "Avengers"}]
+    
+    const expected = {
+      type: 'UPDATE_ROMANCE_FAVORITES',
+      romanceFavorites: testMovies
+    }
+
+    const result = actions.updateRomanceFavorites(testMovies)
+  
+    expect(result).toEqual(expected)
+  })
+
+  
+
+  it.skip('cleanPopularMovies should have a type of CLEAN-POPULAR-MOVIES', ()=>{
     const testMovies = [{title: "Fight Club"}, {title: "Avengers"}]
     
     const expected = {
@@ -71,11 +113,5 @@ describe('actions', ()=>{
   
     expect(result).toEqual(expected)
   })
-
-  
-
-
-
-
 
 })
