@@ -1,4 +1,4 @@
-export const loginUser = (user) => ({
+export const loginUser = user => ({
   type: "LOGIN_USER",
   user
 });
@@ -25,15 +25,16 @@ export const addRomanceMovies = movies => ({
 });
 
 export const updatePopularFavorites = popularFavorites => ({
-  type: 'UPDATE_POPULAR_FAVORITES',
+  type: "UPDATE_POPULAR_FAVORITES",
   popularFavorites
 });
 
 export const updateRomanceFavorites = romanceFavorites => ({
-  type: 'UPDATE_ROMANCE_FAVORITES',
+  type: "UPDATE_ROMANCE_FAVORITES",
   romanceFavorites
 });
 
-
-
-
+export const updateMoviePage = movie => ({
+  type: "UPDATE_MOVIE_PAGE",
+  payload: movie
+});
