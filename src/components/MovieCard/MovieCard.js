@@ -42,7 +42,7 @@ export class MovieCard extends Component {
   };
 
   bookmarkCard = async () => {
-    if (!this.props.isFavorite) {
+    if (!this.props.isFavorite && this.props.currentUser.loggedIn) {
       const {
         id,
         title,
@@ -83,6 +83,16 @@ export class MovieCard extends Component {
           : { ...movie, isFavorite: false };
       });
       this.props.updateRomanceFavorites(romanceFavorites);
+
+      const allFavorites = [
+        ...popularFavorites,
+        ...romanceFavorites
+      ].filter(movie => {
+        return movie.isFavorite == true;
+      });
+      this.props.updateFavorites(allFavorites);
+    } else if (!this.props.currentUser.loggedIn) {
+        alert('You must be logged in to add a favorite');
     } else {
       await apiCalls.deleteFavorite(
         `http://localhost:3000/api/users/${
@@ -110,6 +120,14 @@ export class MovieCard extends Component {
           : { ...movie, isFavorite: false };
       });
       this.props.updateRomanceFavorites(romanceFavorites);
+
+      const allFavorites = [
+        ...popularFavorites,
+        ...romanceFavorites
+      ].filter(movie => {
+        return movie.isFavorite == true;
+      });
+      this.props.updateFavorites(allFavorites);
     }
   };
 
@@ -190,7 +208,9 @@ export class MovieCard extends Component {
 export const mapStateToProps = state => ({
   currentUser: state.currentUser,
   popularMovies: state.popularMovies,
-  romanceMovies: state.romanceMovies
+  romanceMovies: state.romanceMovies,
+  favorites: state.favorites,
+  currentUser: state.currentUser
 });
 
 export const mapDispatchToProps = dispatch => ({
@@ -199,6 +219,8 @@ export const mapDispatchToProps = dispatch => ({
   updateRomanceFavorites: romanceFavorites =>
     dispatch(actions.updateRomanceFavorites(romanceFavorites)),
   updateMoviePage: movie => dispatch(actions.updateMoviePage(movie))
+    dispatch(updateRomanceFavorites(romanceFavorites)),
+  updateFavorites: favorites => dispatch(updateFavorites(favorites))
 });
 
 export default connect(

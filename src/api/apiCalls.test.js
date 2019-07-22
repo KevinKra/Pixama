@@ -195,7 +195,7 @@ describe('apiCalls', ()=> {
     let mockMovieID
 
     beforeEach(() => {
-      mockURL = "http://localhost:3000/api/users";
+      mockURL = "http://localhost:3000/api/users/1/favorites/550";
       mockMovieData = {id:1, movie_id:550}
       mockFavoriteResponse = {id: 1}
     
@@ -245,9 +245,8 @@ describe('apiCalls', ()=> {
     let mockMovieID
 
     beforeEach(() => {
-      mockURL = 'http://localhost:3000/api/users/$1/favorites';
-      mockMovieData = {id:1, movie_id:550}
-      mockFavoriteResponse = 
+      mockURL = 'http://localhost:3000/api/users/1/favorites';
+      mockFavoriteResponse = {title:'movie'}
     
     window.fetch = jest.fn().mockImplementation(()=> {
       return Promise.resolve({
@@ -259,16 +258,9 @@ describe('apiCalls', ()=> {
     })
 
     it('should be called with correct params', ()=>{
-      const expected = [mockURL, 
-        {
-          method: 'DELETE',
-          body: JSON.stringify(mockMovieData),
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }]
+      const expected = mockURL 
       fetchFavorites(mockURL, mockMovieData)
-      expect(window.fetch).toHaveBeenCalledWith(...expected)
+      expect(window.fetch).toHaveBeenCalledWith(expected)
     })
 
     it('should return a parsed response if status is ok', async ()=> {

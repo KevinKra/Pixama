@@ -7,10 +7,10 @@ import { moviePageReducer } from "./moviePageReducer";
 
 const rootReducer = combineReducers({
   currentUser: userReducer,
-  favorites: favoritesReducer,
   popularMovies: popularMoviesReducer,
   romanceMovies: romanceMoviesReducer,
-  moviePage: moviePageReducer
+  moviePage: moviePageReducer,
+  favorites: favoritesReducer,
 });
 
 export default rootReducer;

@@ -102,7 +102,7 @@ export const deleteFavorite = (url, id, movieId) => {
 export const fetchFavorites = url => {
   return fetch(url).then(response => {
     if (!response.ok) {
-      throw Error("Couldn't get favorites", response.message);
+      throw Error("Email and password do not match");
     } else {
       return response.json();
     }

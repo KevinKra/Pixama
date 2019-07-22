@@ -4,7 +4,7 @@ import "./MainPage.scss";
 import * as apiCalls from "../../api/apiCalls";
 import Carousel from "../Carousel/Carousel";
 import HeroImage from "../HeroImage/HeroImage";
-import { addPopularMovies, addRomanceMovies } from "../../actions";
+import { addPopularMovies, addRomanceMovies, updateFavorites } from "../../actions";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
@@ -38,6 +38,9 @@ export class MainPage extends Component {
       <section className="MainPage">
         <HeroImage />
         <section className="main-body">
+          {this.props.favorites.length > 0 && (
+            <Carousel title="Favorites" genre="favorites" />
+          )}
           <Carousel title="Popular Movies" genre="popularMovies" />
           <Carousel title="Romance Movies" genre="romanceMovies" />
         </section>
@@ -48,11 +51,12 @@ export class MainPage extends Component {
 
 export const mapStateToProps = state => ({
   popularMovies: state.popularMovies,
-  romanceMovies: state.romanceMovies
+  romanceMovies: state.romanceMovies,
+  favorites: state.favorites
 });
 
 export const mapDispatchToProps = dispatch =>
-  bindActionCreators({ addPopularMovies, addRomanceMovies }, dispatch);
+  bindActionCreators({ addPopularMovies, addRomanceMovies, updateFavorites }, dispatch);
 
 export default connect(
   mapStateToProps,

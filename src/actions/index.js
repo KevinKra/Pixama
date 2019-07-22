@@ -38,3 +38,10 @@ export const updateMoviePage = movie => ({
   type: "UPDATE_MOVIE_PAGE",
   payload: movie
 });
+
+export const updateFavorites = favorites => ({
+  type: "UPDATE_FAVORITES",
+  favorites
+});
+
+
