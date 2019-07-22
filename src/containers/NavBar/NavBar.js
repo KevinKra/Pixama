@@ -65,13 +65,13 @@ export class NavBar extends Component {
         <div>
           <h3>PIXAMA</h3>
           <div className="routes">
-            {this.props.location.pathname === "/moviepage" && (
-              <NavLink to="/">Main</NavLink>
-            )}
             {loggedIn ? (
               <p onClick={this.handleClick}>Logout</p>
             ) : (
               <NavLink to="/login">Login</NavLink>
+            )}
+            {this.props.location.pathname === "/moviepage" && (
+              <NavLink to="/">Main</NavLink>
             )}
           </div>
         </div>
