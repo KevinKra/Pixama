@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 import "./NavBar.scss";
-import * as apiCalls from '../../api/apiCalls';
+import * as apiCalls from "../../api/apiCalls";
 import { connect } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { logoutUser, addPopularMovies, addRomanceMovies } from "../../actions";
-
 
 export class NavBar extends Component {
   state = {
@@ -56,10 +55,18 @@ export class NavBar extends Component {
 
   render() {
     const { loggedIn } = this.props;
+    const returnToMain = () => {
+      console.log(this.props.location.pathname);
+      if (this.props.location.pathname === "/moviepage")
+        return <NavLink to="/mainpage">Main</NavLink>;
+    };
     return (
       <nav className={`NavBar ${this.state.opacity ? "solid" : "transparent"}`}>
         <div>
           <h3>PIXAMA</h3>
+          {this.props.location.pathname === "/moviepage" && (
+            <NavLink to="/">Main</NavLink>
+          )}
           {loggedIn ? (
             <p onClick={this.handleClick}>Logout</p>
           ) : (
@@ -75,9 +82,11 @@ export const mapStateToProps = state => ({
   loggedIn: state.currentUser.loggedIn
 });
 
-export const mapDispatchToProps = dispatch => (
-  bindActionCreators({ addPopularMovies, addRomanceMovies, logoutUser }, dispatch)
-);
+export const mapDispatchToProps = dispatch =>
+  bindActionCreators(
+    { addPopularMovies, addRomanceMovies, logoutUser },
+    dispatch
+  );
 
 export default connect(
   mapStateToProps,
