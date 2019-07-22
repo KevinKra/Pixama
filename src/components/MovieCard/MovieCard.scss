@@ -39,24 +39,23 @@
       font-size: 12px;
     }
   }
+  .primary-content {
+    width: 80%;
+    height: 80%;
+    padding: 0.5rem;
+  }
   .movie-title {
-    position: absolute;
     display: inline;
-    top: 6%;
-    left: 5%;
     color: $text-light;
   }
   .movie-overview {
-    position: absolute;
-    top: 30px;
-    left: 5%;
     -webkit-backface-visibility: hidden;
     height: 150px;
     overflow-y: scroll;
     padding: 0.2rem 0.5rem 1rem 0;
     -webkit-transform: translateZ(0) scale(1, 1);
     transform: translateZ(0);
-    width: 75%;
+    width: 100%;
   }
   .movie-language {
     position: absolute;

@@ -15,7 +15,7 @@ export class MovieCard extends Component {
   state = {
     displayBackdrop: false,
     userActive: false,
-    bookmarked: this.props.isFavorite 
+    bookmarked: this.props.isFavorite
   };
 
   displayBackdrop = () => {
@@ -59,42 +59,46 @@ export class MovieCard extends Component {
       const favorites = await fetchFavorites(
         `http://localhost:3000/api/users/${this.props.currentUser.id}/favorites`
       );
-      const favoriteIDs = favorites.data.map(favorite => favorite.movie_id)
+      const favoriteIDs = favorites.data.map(favorite => favorite.movie_id);
       const popularFavorites = this.props.popularMovies.map(movie => {
-        return favoriteIDs.includes(movie.id) ? { ...movie, isFavorite: true } : movie;
+        return favoriteIDs.includes(movie.id)
+          ? { ...movie, isFavorite: true }
+          : movie;
       });
 
       this.props.updatePopularFavorites(popularFavorites);
 
       const romanceFavorites = this.props.romanceMovies.map(movie => {
-        return favoriteIDs.includes(movie.id) ? { ...movie, isFavorite: true } : movie;
+        return favoriteIDs.includes(movie.id)
+          ? { ...movie, isFavorite: true }
+          : movie;
       });
-      this.props.updateRomanceFavorites(romanceFavorites); 
+      this.props.updateRomanceFavorites(romanceFavorites);
     } else {
       await deleteFavorite(
         `http://localhost:3000/api/users/${
           this.props.currentUser.id
         }/favorites/${this.id}`
       );
-      
+
       const favorites = await fetchFavorites(
-        `http://localhost:3000/api/users/${
-          this.props.currentUser.id
-        }/favorites`
+        `http://localhost:3000/api/users/${this.props.currentUser.id}/favorites`
       );
-      const favoriteIDs = favorites.data.map(
-        favorite => favorite.movie_id
-      );
+      const favoriteIDs = favorites.data.map(favorite => favorite.movie_id);
       const popularFavorites = this.props.popularMovies.map(movie => {
-        return favoriteIDs.includes(movie.id) ? { ...movie, isFavorite: true } : movie;
+        return favoriteIDs.includes(movie.id)
+          ? { ...movie, isFavorite: true }
+          : movie;
       });
 
       this.props.updatePopularFavorites(popularFavorites);
 
       const romanceFavorites = this.props.romanceMovies.map(movie => {
-        return favoriteIDs.includes(movie.id) ? { ...movie, isFavorite: true } : movie;
+        return favoriteIDs.includes(movie.id)
+          ? { ...movie, isFavorite: true }
+          : movie;
       });
-      this.props.updateRomanceFavorites(romanceFavorites); 
+      this.props.updateRomanceFavorites(romanceFavorites);
     }
   };
 
@@ -119,8 +123,10 @@ export class MovieCard extends Component {
     const backdrop = (
       <Fragment>
         <div className="overlay-content">
-          <h3 className="movie-title">{this.props.title}</h3>
-          <p className="movie-overview">{this.props.overview}</p>
+          <div className="primary-content">
+            <h3 className="movie-title">{this.props.title}</h3>
+            <p className="movie-overview">{this.props.overview}</p>
+          </div>
           {bookmark}
           {play}
           <p className="movie-language">{`Language: ${this.props.language.toUpperCase()}`}</p>
@@ -176,10 +182,13 @@ export const mapStateToProps = state => ({
 });
 
 export const mapDispatchToProps = dispatch => ({
-  updatePopularFavorites: popularFavorites => dispatch(updatePopularFavorites(popularFavorites )),
-  updateRomanceFavorites: romanceFavorites => dispatch(updateRomanceFavorites(romanceFavorites))
+  updatePopularFavorites: popularFavorites =>
+    dispatch(updatePopularFavorites(popularFavorites)),
+  updateRomanceFavorites: romanceFavorites =>
+    dispatch(updateRomanceFavorites(romanceFavorites))
 });
 
 export default connect(
-  mapStateToProps, mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(MovieCard);
