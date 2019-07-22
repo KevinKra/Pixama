@@ -3,13 +3,15 @@ import "./LoginCard.scss";
 import { fetchUser, fetchFavorites } from "../../api/apiCalls";
 import { connect } from "react-redux";
 import { loginUser, updateRomanceFavorites, updatePopularFavorites, updateFavorites } from "../../actions";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
+
 
 export class LoginCard extends Component {
   state = {
     email: "",
     password: "",
-    error: ""
+    error: "",
+    redirect: false
   };
 
   handleChange = e => {
@@ -54,12 +56,13 @@ export class LoginCard extends Component {
         return movie.isFavorite == true;
       });
       this.props.updateFavorites(allFavorites);
-
+      this.setState( { redirect: true})
     } catch (error) {
       console.log(error.message)
       this.setState({ error: error.message });
     }
     this.clearForm();
+    
   };
 
   clearForm = () => {
@@ -69,9 +72,18 @@ export class LoginCard extends Component {
     });
   };
 
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/' />
+    }
+
+  }
+
   render() {
+
     return (
       <form className="login-card">
+        {this.renderRedirect()}
         <input
           onChange={this.handleChange}
           name="email"
@@ -86,12 +98,12 @@ export class LoginCard extends Component {
           type="text"
           placeholder="Password"
         />
-        {/* {this.state.error && <p>{this.state.error}. Please try again.</p>} */}
-        <NavLink to="/">
+      {this.state.error && <p>{this.state.error}. Please try again.</p>}
+        {/* <NavLink to="/"> */}
           <button className="submit-button" type="button" onClick={this.onSubmit}>
             Login
           </button>
-        </NavLink>
+        {/* </NavLink> */}
         <NavLink to="/register">Don't have an account? Register here.</NavLink>
       </form>
     );
