@@ -1,3 +1,6 @@
+@import "../../_styles/animations.scss";
+@import "../../_styles/variables.scss";
+
 .MoviePage {
   position: relative;
   min-height: 100vh;
@@ -11,7 +14,7 @@
   display: flex;
   margin: 0 auto;
   width: 100%;
-  color: white;
+  color: $text-light;
   aside {
     position: relative;
     animation: slideInRight 1s forwards;
@@ -64,12 +67,7 @@
   filter: grayscale(1) invert(100%);
 }
 
-.mp-support-content {
-  border: 1px solid blue;
-}
-
 .mp-movie-info {
-  // border: 1px solid red;
   padding-left: 1rem;
   .movie-support {
     display: flex;
@@ -77,32 +75,5 @@
   }
   .movie-support > * {
     margin: 0 1rem;
-  }
-}
-
-@keyframes slideInRight {
-  from {
-    transform: translateX(250%);
-  }
-  to {
-    transform: translateX(0%);
-  }
-}
-
-@keyframes slideInLeft {
-  from {
-    transform: translateX(-250%);
-  }
-  to {
-    transform: translateX(0%);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }
