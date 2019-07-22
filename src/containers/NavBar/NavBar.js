@@ -64,14 +64,16 @@ export class NavBar extends Component {
       <nav className={`NavBar ${this.state.opacity ? "solid" : "transparent"}`}>
         <div>
           <h3>PIXAMA</h3>
-          {this.props.location.pathname === "/moviepage" && (
-            <NavLink to="/">Main</NavLink>
-          )}
-          {loggedIn ? (
-            <p onClick={this.handleClick}>Logout</p>
-          ) : (
-            <NavLink to="/login">Login</NavLink>
-          )}
+          <div className="routes">
+            {this.props.location.pathname === "/moviepage" && (
+              <NavLink to="/">Main</NavLink>
+            )}
+            {loggedIn ? (
+              <p onClick={this.handleClick}>Logout</p>
+            ) : (
+              <NavLink to="/login">Login</NavLink>
+            )}
+          </div>
         </div>
       </nav>
     );
