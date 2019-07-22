@@ -2,13 +2,9 @@ import React, { Component, Fragment } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
-import {
-  postFavorite,
-  fetchFavorites,
-  deleteFavorite
-} from "../../api/apiCalls";
+import * as apiCalls from "../../api/apiCalls";
+import * as actions from "../../actions";
 import { connect } from "react-redux";
-import { updatePopularFavorites, updateRomanceFavorites } from "../../actions";
 import { withRouter } from "react-router-dom";
 import "./MovieCard.scss";
 
@@ -56,8 +52,11 @@ export class MovieCard extends Component {
         vote_average: popularity,
         overview
       };
-      await postFavorite("http://localhost:3000/api/users/favorites/new", data);
-      const favorites = await fetchFavorites(
+      await apiCalls.postFavorite(
+        "http://localhost:3000/api/users/favorites/new",
+        data
+      );
+      const favorites = await apiCalls.fetchFavorites(
         `http://localhost:3000/api/users/${this.props.currentUser.id}/favorites`
       );
       const favoriteIDs = favorites.data.map(favorite => favorite.movie_id);
@@ -76,7 +75,7 @@ export class MovieCard extends Component {
       });
       this.props.updateRomanceFavorites(romanceFavorites);
     } else {
-      await deleteFavorite(
+      await apiCalls.deleteFavorite(
         `http://localhost:3000/api/users/${
           this.props.currentUser.id
         }/favorites/${this.props.id}`,
@@ -84,7 +83,7 @@ export class MovieCard extends Component {
         this.props.id
       );
 
-      const favorites = await fetchFavorites(
+      const favorites = await apiCalls.fetchFavorites(
         `http://localhost:3000/api/users/${this.props.currentUser.id}/favorites`
       );
       const favoriteIDs = favorites.data.map(favorite => favorite.movie_id);
@@ -187,9 +186,9 @@ export const mapStateToProps = state => ({
 
 export const mapDispatchToProps = dispatch => ({
   updatePopularFavorites: popularFavorites =>
-    dispatch(updatePopularFavorites(popularFavorites)),
+    dispatch(actions.updatePopularFavorites(popularFavorites)),
   updateRomanceFavorites: romanceFavorites =>
-    dispatch(updateRomanceFavorites(romanceFavorites))
+    dispatch(actions.updateRomanceFavorites(romanceFavorites))
 });
 
 export default connect(
