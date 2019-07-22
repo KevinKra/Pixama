@@ -104,7 +104,7 @@ export class LoginCard extends Component {
             Login
           </button>
         {/* </NavLink> */}
-        <NavLink to="/register">Don't have an account? Register here.</NavLink>
+        <NavLink className="register-text" to="/register">Don't have an account? Register here.</NavLink>
       </form>
     );
   }
