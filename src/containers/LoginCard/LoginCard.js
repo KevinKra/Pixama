@@ -3,13 +3,14 @@ import "./LoginCard.scss";
 import { fetchUser, fetchFavorites } from "../../api/apiCalls";
 import { connect } from "react-redux";
 import { loginUser, updateRomanceFavorites, updatePopularFavorites} from "../../actions";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect, withRouter} from "react-router-dom";
 
 export class LoginCard extends Component {
   state = {
     email: "",
     password: "",
-    error: ""
+    error: "",
+    redirect: false
   };
 
   handleChange = e => {
@@ -48,12 +49,15 @@ export class LoginCard extends Component {
           ? { ...movie, isFavorite: true }
           : { ...movie, isFavorite: false };
       });
-      this.props.updateRomanceFavorites(romanceFavorites);     
+      this.props.updateRomanceFavorites(romanceFavorites);  
+      this.setState( { error: ''})
+      this.setRedirect()   
     } catch (error) {
       console.log(error.message)
       this.setState({ error: error.message });
     }
     this.clearForm();
+    
   };
 
   clearForm = () => {
@@ -63,9 +67,28 @@ export class LoginCard extends Component {
     });
   };
 
+
+//   setRedirect = () => {
+//     if(this.props.currentUser) {
+//       console.log('RUNNING SETREDIRECT')
+//     this.setState({redirect: true})
+//   }
+// }
+//   renderRedirect = () => {
+//     if (this.state.redirect) {
+//       console.log('IF')
+//       return <Redirect to='/' />
+//     } else {
+//       console.log('ELSE')
+//       return <Redirect to='/login'/>
+//     }
+
+//   }
+
   render() {
     return (
       <form className="login-card">
+        {this.renderRedirect()}
         <input
           onChange={this.handleChange}
           name="email"
@@ -80,7 +103,7 @@ export class LoginCard extends Component {
           type="text"
           placeholder="Password"
         />
-        {/* {this.state.error && <p>{this.state.error}. Please try again.</p>} */}
+      {this.state.error && <p>{this.state.error}. Please try again.</p>}
         <NavLink to="/">
           <button className="submit-button" type="button" onClick={this.onSubmit}>
             Login
@@ -94,7 +117,8 @@ export class LoginCard extends Component {
 
 export const mapStateToProps = state => ({
   popularMovies: state.popularMovies,
-  romanceMovies: state.romanceMovies
+  romanceMovies: state.romanceMovies,
+  currentUser: state.currentUser
 })
 
 export const mapDispatchToProps = dispatch => ({
