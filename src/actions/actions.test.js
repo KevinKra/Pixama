@@ -99,17 +99,15 @@ describe('actions', ()=>{
     expect(result).toEqual(expected)
   })
 
-  
-
-  it.skip('cleanPopularMovies should have a type of CLEAN-POPULAR-MOVIES', ()=>{
+  it('updatFavorites should have a type of UPDATE_FAVORITES', ()=>{
     const testMovies = [{title: "Fight Club"}, {title: "Avengers"}]
     
     const expected = {
-      type: 'CLEAN_POPULAR_MOVIES',
-      popMovies: testMovies
+      type: 'UPDATE_FAVORITES',
+      favorites: testMovies
     }
 
-    const result = actions.cleanPopularMovies(testMovies)
+    const result = actions.updateFavorites(testMovies)
   
     expect(result).toEqual(expected)
   })

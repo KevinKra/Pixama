@@ -5,7 +5,7 @@ import { fetchUser, fetchNewUser } from "../../api/apiCalls";
 import { NavLink, Redirect } from "react-router-dom";
 import { curatedData } from "../../_assets/curatedHeroData";
 
-class RegisterCard extends Component {
+export class RegisterCard extends Component {
   state = {
     email: "",
     password: "",
@@ -103,11 +103,9 @@ class RegisterCard extends Component {
               {this.state.error}. Please try again.
             </p>
           )}
-          {/* <NavLink to="/"> */}
           <button type="button" onClick={this.onSubmit}>
             Register
           </button>
-          {/* </NavLink> */}
         </form>
       </section>
     );

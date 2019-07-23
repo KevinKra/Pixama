@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LoginCard LoginCard component should match the snapshot 1`] = `
+exports[`RegisterCard RegisterCard component should match the snapshot 1`] = `
 <section
   className="HeroContent"
 >
@@ -8,7 +8,7 @@ exports[`LoginCard LoginCard component should match the snapshot 1`] = `
     className="hero-image"
     style={
       Object {
-        "backgroundImage": "url(https://image.tmdb.org/t/p/original/n2aX63BmW7zIKgKJ58e6rKlSsdi.jpg)",
+        "backgroundImage": "url(https://image.tmdb.org/t/p/original/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg)",
         "backgroundPosition": "center top",
         "backgroundRepeat": "no-repeat",
         "backgroundSize": "cover",
@@ -19,8 +19,15 @@ exports[`LoginCard LoginCard component should match the snapshot 1`] = `
     className="opacity-filter"
   />
   <form
-    className="login-card"
+    className="login-card register-card"
   >
+    <input
+      name="name"
+      onChange={[Function]}
+      placeholder="Name"
+      type="text"
+      value=""
+    />
     <input
       name="email"
       onChange={[Function]}
@@ -36,18 +43,11 @@ exports[`LoginCard LoginCard component should match the snapshot 1`] = `
       value=""
     />
     <button
-      className="submit-button"
       onClick={[Function]}
       type="button"
     >
-      Login
+      Register
     </button>
-    <NavLink
-      className="register-text"
-      to="/register"
-    >
-      Don't have an account? Register here.
-    </NavLink>
   </form>
 </section>
 `;

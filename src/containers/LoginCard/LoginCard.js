@@ -37,11 +37,14 @@ export class LoginCard extends Component {
       const user = await fetchUser(url, userData);
       id = user.data.id;
       this.props.loginUser(user.data);
+      this.populateFavorites(id)
     } catch (error) {
       console.log(error.message);
       this.setState({ error: error.message });
     }
+  };
 
+  populateFavorites = async (id) => {
     try {
       const favorites = await fetchFavorites(
         `http://localhost:3000/api/users/${id}/favorites`
@@ -74,7 +77,7 @@ export class LoginCard extends Component {
       this.setState({ error: error.message });
     }
     this.clearForm();
-  };
+  }
 
   clearForm = () => {
     this.setState({
