@@ -86,7 +86,7 @@ export class MovieCard extends Component {
 
       const allFavorites = [...popularFavorites, ...romanceFavorites].filter(
         movie => {
-          return movie.isFavorite == true;
+          return movie.isFavorite === true;
         }
       );
       this.props.updateFavorites(allFavorites);
@@ -122,7 +122,7 @@ export class MovieCard extends Component {
 
       const allFavorites = [...popularFavorites, ...romanceFavorites].filter(
         movie => {
-          return movie.isFavorite == true;
+          return movie.isFavorite === true;
         }
       );
       this.props.updateFavorites(allFavorites);
@@ -143,7 +143,6 @@ export class MovieCard extends Component {
       <FontAwesomeIcon
         icon={faPlay}
         size="lg"
-        onClick={() => console.log("play btn clicked")}
         className="play-icon"
         onClick={this.toMoviePage}
       />
@@ -174,12 +173,6 @@ export class MovieCard extends Component {
         />
       </Fragment>
     );
-
-    const activeFavorite = () => {
-      return this.props.favorites.isFavorite > 0
-        ? "{border: 2px solid gold}"
-        : "border: 2px solid gold";
-    };
 
     const poster = (
       <img
