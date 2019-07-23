@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 import "./MainPage.scss";
 import * as apiCalls from "../../api/apiCalls";
@@ -57,6 +58,15 @@ export const mapStateToProps = state => ({
 
 export const mapDispatchToProps = dispatch =>
   bindActionCreators({ addPopularMovies, addRomanceMovies, updateFavorites }, dispatch);
+
+MainPage.proptyes = {
+  popularMovies: PropTypes.array,
+  romanceMovies: PropTypes.array,
+  favorites: PropTypes.array,
+  addPopularMovies: PropTypes.func,
+  addRomanceMovies: PropTypes.func,
+  updateFavorites: PropTypes.func
+}
 
 export default connect(
   mapStateToProps,

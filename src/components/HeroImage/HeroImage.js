@@ -40,4 +40,6 @@ export default function HeroImage() {
   };
 
   return <React.Fragment>{selectFromPool()}</React.Fragment>;
-}
+};
+
+

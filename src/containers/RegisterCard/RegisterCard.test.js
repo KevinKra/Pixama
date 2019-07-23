@@ -1,60 +1,92 @@
-//Things to test in containers:
-// component, mapstatetoprops, mapdispatchtoprops
-import { RegisterCard, mapDispatchToProps } from './RegisterCard';
-import { loginUser } from '../../actions';
-import React from 'react';
-import { shallow } from 'enzyme';
-import "../../api/apiCalls";
+import React from "react";
+import { RegisterCard } from "./RegisterCard";
+import { shallow } from "enzyme";
+import * as apiCalls from '../../api/apiCalls';
+import { Redirect } from "react-router-dom";
 
-jest.mock("../../api/apiCalls", () => ({
-  fetchUser: jest.fn().mockImplementation(()=> {
-    return Promise.resolve({id: 1, name: "fake", emai: "fake", password: "fake"})
-  })
-}))
-
-describe('RegisterCard', ()=> {
-  describe('RegisterCard component', () => {
+describe('RegisterCard', () => {
   let wrapper;
   let instance;
 
-  beforeEach(()=> {
-    wrapper = shallow(<RegisterCard />)
-    instance = wrapper.instance()
-  })
-
-   //UI Test
-  it('should match the snapshot', () => {
-    wrapper = shallow(<RegisterCard />)
-    expect(wrapper).toMatchSnapshot()
-  })
-    
-   //component method tests
-    it ('should update state when handleChange is called', ()=> {
-    const mockEvent = {target: {name: "email", value: "email@address.com"}}
-    const expected = 'email@address.com'
-    instance.handleChange(mockEvent)
-    expect(wrapper.state('email')).toEqual(expected)
-  })
-
-  it ('should update state when ClearForm is called', ()=> {
-    instance.clearForm()
-    expect(wrapper.state('email')).toEqual('')
-    expect(wrapper.state('name')).toEqual('')
-    expect(wrapper.state('password')).toEqual('')
-  })
-
-    //button event => calls onSubmit
-  it.skip('should call the onSubmit method when the submit button is clicked', ()=>{
-      //async?
-    })
-
-    it.skip('should return a Redirect component if redirect in state is true', ()=> {
-    
-    })
-
+  beforeEach(() => {
+    wrapper = shallow(<RegisterCard loginUser={jest.fn()} />);
+    instance = wrapper.instance();
   });
 
-  describe('mapDispatchToProps', ()=>{
+  it("should match a snapshot", () => {
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should have default state", () => {
+    const mockState = {
+      email: "",
+      password: "",
+      name: "",
+      error: "",
+      redirect: false
+    }
+    expect(instance.state).toEqual(mockState);
+  });
+
+  it ('should call handleChange and update state', () => {
+    const mockEvent = {
+      target: {
+        name: "name",
+        value: "Steve"
+      }
+    };
+    wrapper.find(".register-name-input").simulate('change', mockEvent);
+    expect(instance.state.name).toEqual("Steve");
+  });
+
+  it.skip('should call fetchNewUser with the correct url', async () => {
+    // jest.spyOn(apiCalls, 'fetchNewUser')
+    apiCalls.fetchNewUser = jest.fn()
+    const newUserData = {
+      name: "Taylor",
+      email: "tman2272@aol.com",
+      password: "password",
+    };
+    const url = "http://localhost:3000/api/users/new";
+
+    wrapper.find(".register-submit-btn").simulate("click");
+    await expect(apiCalls.fetchUser).toHaveBeenCalledWith(url, newUserData);
+  });
+
+  it ('should clear form', () => {
+    instance.setState({
+      email: "tman2272@aol.com",
+      password: "password",
+      name: "Taylor",
+    });
+
+    const expected = {
+      email: "",
+      error: "",
+      password: "",
+      name: "",
+      redirect: false
+    };
+
+    instance.clearForm();
+    expect(instance.state).toEqual(expected);
+  });
+
+  it ('should return a redirect', () => {
+    instance.setState({ redirect: true });
+    const expected = <Redirect to="/" />;
+    const result = instance.renderRedirect();
+    expect(result).toEqual(expected);
+  });
+
+  it ('should render error if there is one', () => {
+    instance.setState({ error: "test is not passing"});
+
+    expect(wrapper).toMatchSnapshot();
+  });
+
+})
+describe('mapDispatchToProps', ()=>{
     it('calls dispatch with a loginUser action when onSubmit is called',()=>{
 
       const mockDispatch = jest.fn()
@@ -62,25 +94,7 @@ describe('RegisterCard', ()=> {
       const mappedProps = mapDispatchToProps(mockDispatch)
       mappedProps.loginUser({name:"Taylor", email: "fake@test.com", password: "blahhhh"})
       expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
-    });
+    })
+});
+  
 
-    // it('calls dispatch with a updatePopularFavorites action when onSubmit is called',()=>{
-    //   const mockDispatch = jest.fn()
-    //   const actionToDispatch = updatePopularFavorites([{title: "Fight Club"}])
-    //   const mappedProps = mapDispatchToProps(mockDispatch)
-    //   mappedProps.updatePopularFavorites([{title: "Fight Club"}])
-    //   expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
-    // });
-
-    // it('calls dispatch with a updateRomanceFavorites action when onSubmit is called',()=>{
-    //   const mockDispatch = jest.fn()
-    //   const actionToDispatch = updateRomanceFavorites([{title: "Fight Club"}])
-    //   const mappedProps = mapDispatchToProps(mockDispatch)
-    //   mappedProps.updateRomanceFavorites([{title: "Fight Club"}])
-    //   expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
-    // });
-
-  });
-
-
-})
