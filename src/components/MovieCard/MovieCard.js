@@ -85,15 +85,14 @@ export class MovieCard extends Component {
       });
       this.props.updateRomanceFavorites(romanceFavorites);
 
-      const allFavorites = [
-        ...popularFavorites,
-        ...romanceFavorites
-      ].filter(movie => {
-        return movie.isFavorite == true;
-      });
+      const allFavorites = [...popularFavorites, ...romanceFavorites].filter(
+        movie => {
+          return movie.isFavorite === true;
+        }
+      );
       this.props.updateFavorites(allFavorites);
     } else if (!this.props.currentUser.loggedIn) {
-        alert('You must be logged in to add a favorite');
+      alert("You must be logged in to add a favorite");
     } else {
       await apiCalls.deleteFavorite(
         `http://localhost:3000/api/users/${
@@ -122,12 +121,11 @@ export class MovieCard extends Component {
       });
       this.props.updateRomanceFavorites(romanceFavorites);
 
-      const allFavorites = [
-        ...popularFavorites,
-        ...romanceFavorites
-      ].filter(movie => {
-        return movie.isFavorite == true;
-      });
+      const allFavorites = [...popularFavorites, ...romanceFavorites].filter(
+        movie => {
+          return movie.isFavorite === true;
+        }
+      );
       this.props.updateFavorites(allFavorites);
     }
   };
@@ -150,6 +148,7 @@ export class MovieCard extends Component {
         onClick={this.toMoviePage}
       />
     );
+
     const backdrop = (
       <Fragment>
         <div className="overlay-content">
@@ -178,7 +177,9 @@ export class MovieCard extends Component {
 
     const poster = (
       <img
-        className="poster-image"
+        className={`poster-image ${
+          this.props.isFavorite ? "bookmarkedCard" : "notBookmarked"
+        }`}
         src={`https://image.tmdb.org/t/p/w185/${this.props.poster}`}
         alt={this.props.title}
         onClick={this.toMoviePage}
@@ -190,9 +191,10 @@ export class MovieCard extends Component {
         className="MovieCard"
         style={
           !this.state.displayBackdrop
-            ? { maxWidth: "185px" }
+            ? { minWidth: "185px" }
             : {
-                maxWidth: "320px",
+                backgroundColor: "black",
+                minWidth: "320px",
                 transform: "scale(1.03)",
                 zIndex: "5"
               }

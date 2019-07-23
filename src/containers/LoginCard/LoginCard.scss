@@ -1,4 +1,22 @@
+@import "../../_styles/variables.scss";
+@import "../../_styles/animations.scss";
+
+.LoginContent {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  .hero-image {
+    height: 100%;
+    width: 100%;
+  }
+}
+
 .login-card {
+  position: absolute;
+  animation: slideInRight 0.5s forwards;
   min-width: 300px;
   min-height: 200px;
   display: flex;
@@ -6,17 +24,11 @@
   align-items: center;
   justify-content: space-around;
   background-color: black;
-  position: fixed;
-  bottom: 40vh;
-  top: 20vh;
-  left: 15vw;
-  z-index: 5;
-  width: 70%;
+  z-index: 2;
+  width: 50vh;
   height: 50vh;
-  opacity: .85;
-  padding: 60px 0px;
-  box-shadow: 20px 20px 23px -8px rgba(0,0,0,0.75);
-
+  opacity: 0.9;
+  box-shadow: 20px 20px 23px -8px rgba(0, 0, 0, 0.75);
 
   input {
     width: 250px;
@@ -38,6 +50,10 @@
     }
   }
 
+  .login-card-title {
+    color: white;
+  }
+
   .register-text {
     color: white;
     &:visited {
@@ -48,6 +64,4 @@
   .login-error-text {
     color: red;
   }
-  
 }
-

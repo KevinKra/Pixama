@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import "./NavBar.scss";
 import * as apiCalls from "../../api/apiCalls";
@@ -62,27 +62,35 @@ export class NavBar extends Component {
   
   render() {
     const { loggedIn } = this.props;
-    const returnToMain = () => {
-      console.log(this.props.location.pathname);
-      if (this.props.location.pathname === "/moviepage")
-        return <NavLink to="/mainpage">Main</NavLink>;
-    };
+    const loginButton = loggedIn ? (
+      <p className="logout" onClick={this.handleClick}>
+        Logout
+      </p>
+    ) : (
+      <NavLink className="loginbtn" to="/login">
+        Login
+      </NavLink>
+    );
     return (
-      <nav
-        className={`NavBar ${this.state.opacity ? "solid" : "transparent"}`}
-      >
+      <nav className={`NavBar ${this.state.opacity ? "solid" : "transparent"}`}>
         <div>
           <h3>PIXAMA</h3>
           <div className="routes">
-            {loggedIn ? (
-              <p className="logout" onClick={this.handleClick}>Logout</p>
-            ) : (
-              <NavLink to="/login">Login</NavLink>
-            )}
             {this.props.location.pathname === "/moviepage" ||
-              (this.props.location.pathname === "/register" && (
+            this.props.location.pathname === "/login" ||
+            this.props.location.pathname === "/register" ? (
+              <Fragment>
                 <NavLink to="/">Main</NavLink>
-              ))}
+                {loginButton}
+              </Fragment>
+            ) : (
+              <Fragment>
+                <NavLink className="disabled" disabled={true} to="/">
+                  Main
+                </NavLink>
+                {loginButton}
+              </Fragment>
+            )}
           </div>
         </div>
       </nav>

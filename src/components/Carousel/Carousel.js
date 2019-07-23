@@ -12,7 +12,7 @@ export class Carousel extends Component {
   componentDidMount() {
     const movies = this.props[this.props.genre];
     this.setState({ movies });
-  } 
+  }
 
   translateXForward = () => {
     const movies = this.state.movies;
@@ -53,19 +53,12 @@ export class Carousel extends Component {
       <div className="Carousel">
         <h2>{this.props.title}</h2>
         <button className="forwards-btn" onClick={this.translateXForward}>
-          <span>⏪</span>
+          <i className="fas fa-chevron-left fa-5x" />
         </button>
         <button className="backwards-btn" onClick={this.translateXBackward}>
-          <span>⏩</span>
+          <i className="fas fa-chevron-right fa-5x" />
         </button>
-        <div
-          className="movies-container"
-          style={{
-            transform: `translateX(-25%)`
-          }}
-        >
-          {moviesRendered}
-        </div>
+        <div className="movies-container">{moviesRendered}</div>
       </div>
     );
   }
