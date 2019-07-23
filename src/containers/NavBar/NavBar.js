@@ -90,17 +90,6 @@ export class NavBar extends Component {
                 {loginButton}
               </Fragment>
             )}
-            {/* {loggedIn ? (
-              <p className="logout" onClick={this.handleClick}>
-                Logout
-              </p>
-        
-            ) : (
-              <NavLink className="loginbtn" to="/login">
-                Login
-              </NavLink>
-        
-            )} */}
           </div>
         </div>
       </nav>
