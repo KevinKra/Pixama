@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./LoginCard.scss";
 import { fetchUser, fetchFavorites } from "../../api/apiCalls";
 import { connect } from "react-redux";
@@ -160,6 +161,16 @@ export const mapDispatchToProps = dispatch => ({
     dispatch(updateRomanceFavorites(romanceFavorites)),
   updateFavorites: favorites => dispatch(updateFavorites(favorites))
 });
+
+LoginCard.propTypes = {
+  popularMovies: PropTypes.array,
+  romanceMovies: PropTypes.array,
+  favorites: PropTypes.array,
+  loginUser: PropTypes.func,
+  updateFavorites: PropTypes.func,
+  updatePopularFavorites: PropTypes.func,
+  updateRomanceFavorites: PropTypes.func
+}
 
 export default connect(
   mapStateToProps,

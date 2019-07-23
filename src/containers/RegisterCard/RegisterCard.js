@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types"; 
 import { connect } from "react-redux";
 import { loginUser } from "../../actions";
 import { fetchUser, fetchNewUser } from "../../api/apiCalls";
-import { NavLink, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { curatedData } from "../../_assets/curatedHeroData";
 
 export class RegisterCard extends Component {
@@ -116,6 +117,10 @@ export class RegisterCard extends Component {
 export const mapDispatchToProps = dispatch => ({
   loginUser: user => dispatch(loginUser(user))
 });
+
+RegisterCard.propTypes = {
+  loginUser: PropTypes.func 
+}
 
 export default connect(
   null,
