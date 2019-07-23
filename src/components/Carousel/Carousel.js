@@ -52,10 +52,10 @@ export class Carousel extends Component {
       <div className="Carousel">
         <h2>{this.props.title}</h2>
         <button className="forwards-btn" onClick={this.translateXForward}>
-          <span>⏪</span>
+          <i className="fas fa-chevron-left fa-5x" />
         </button>
         <button className="backwards-btn" onClick={this.translateXBackward}>
-          <span>⏩</span>
+          <i className="fas fa-chevron-right fa-5x" />
         </button>
         <div className="movies-container">{moviesRendered}</div>
       </div>
