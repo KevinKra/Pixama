@@ -19,11 +19,11 @@
   color: white;
   z-index: 2;
   height: 278px;
-  transition: 0.4s max-width ease-in, 0.35s transform ease-in;
+  transition: 0.4s min-width ease-in, 0.35s transform ease-in;
   cursor: pointer;
   .poster-image {
+    min-height: 278px;
     max-width: 185px;
-    width: 185px;
   }
   .overlay-content {
     position: absolute;
