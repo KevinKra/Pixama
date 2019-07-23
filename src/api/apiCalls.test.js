@@ -233,7 +233,7 @@ describe('apiCalls', ()=> {
 
     beforeEach(() => {
       mockURL = "http://localhost:3000/api/users/1/favorites/550";
-      mockMovieData = {id:1, movie_id:550}
+      mockMovieData = {id: 1, movie_id: 550}
       mockFavoriteResponse = {id: 1}
     
     window.fetch = jest.fn().mockImplementation(()=> {

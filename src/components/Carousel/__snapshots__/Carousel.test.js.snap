@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Carousel should match the snapshot 1`] = `
+<div
+  className="Carousel"
+>
+  <h2>
+    Favorites
+  </h2>
+  <button
+    className="forwards-btn"
+    onClick={[Function]}
+  >
+    <span>
+      ⏪
+    </span>
+  </button>
+  <button
+    className="backwards-btn"
+    onClick={[Function]}
+  >
+    <span>
+      ⏩
+    </span>
+  </button>
+  <div
+    className="movies-container"
+    style={
+      Object {
+        "transform": "translateX(-25%)",
+      }
+    }
+  >
+    <Connect(withRouter(MovieCard)) />
+    <Connect(withRouter(MovieCard)) />
+  </div>
+</div>
+`;
+
+exports[`Carousel should not render movie cards if data hasnt yet been fetched 1`] = `
+<div
+  className="Carousel"
+>
+  <h2>
+    Favorites
+  </h2>
+  <button
+    className="forwards-btn"
+    onClick={[Function]}
+  >
+    <span>
+      ⏪
+    </span>
+  </button>
+  <button
+    className="backwards-btn"
+    onClick={[Function]}
+  >
+    <span>
+      ⏩
+    </span>
+  </button>
+  <div
+    className="movies-container"
+    style={
+      Object {
+        "transform": "translateX(-25%)",
+      }
+    }
+  />
+</div>
+`;

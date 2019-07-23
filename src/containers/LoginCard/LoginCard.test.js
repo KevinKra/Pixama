@@ -2,7 +2,7 @@ import { LoginCard, mapDispatchToProps, mapStateToProps } from './LoginCard';
 import { loginUser, updatePopularFavorites, updateRomanceFavorites, updateFavorites} from '../../actions';
 import React from 'react';
 import { shallow } from 'enzyme';
-import { fetchUser, fetchFavorites } from "../../api/apiCalls";
+import '../../api/apiCalls';
 
 jest.mock("../../api/apiCalls", () => ({
   fetchUser: jest.fn().mockImplementation(()=> {
