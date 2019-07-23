@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+
 exports[`RegisterCard should match a snapshot 1`] = `
+
 <section
   className="HeroContent"
 >
@@ -22,6 +24,7 @@ exports[`RegisterCard should match a snapshot 1`] = `
     className="login-card register-card"
   >
     <input
+
       className="register-name-input"
       name="name"
       onChange={[Function]}
@@ -44,6 +47,7 @@ exports[`RegisterCard should match a snapshot 1`] = `
       value=""
     />
     <button
+
       className="register-submit-btn"
       onClick={[Function]}
       type="button"

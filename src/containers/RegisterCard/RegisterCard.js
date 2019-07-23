@@ -105,7 +105,9 @@ export class RegisterCard extends Component {
               {this.state.error}. Please try again.
             </p>
           )}
+
           <button className="register-submit-btn" type="button" onClick={this.onSubmit}>
+
             Register
           </button>
         </form>
