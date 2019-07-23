@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions";
 import { fetchUser, fetchNewUser } from "../../api/apiCalls";
-import { NavLink, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { curatedData } from "../../_assets/curatedHeroData";
 
 class RegisterCard extends Component {

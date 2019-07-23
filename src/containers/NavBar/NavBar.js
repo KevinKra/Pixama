@@ -62,26 +62,26 @@ export class NavBar extends Component {
   render() {
     const { loggedIn } = this.props;
     const returnToMain = () => {
-      console.log(this.props.location.pathname);
       if (this.props.location.pathname === "/moviepage")
         return <NavLink to="/mainpage">Main</NavLink>;
     };
     return (
-      <nav
-        className={`NavBar ${this.state.opacity ? "solid" : "transparent"}`}
-      >
+      <nav className={`NavBar ${this.state.opacity ? "solid" : "transparent"}`}>
         <div>
           <h3>PIXAMA</h3>
           <div className="routes">
             {loggedIn ? (
-              <p className="logout" onClick={this.handleClick}>Logout</p>
+              <p className="logout" onClick={this.handleClick}>
+                Logout
+              </p>
             ) : (
               <NavLink to="/login">Login</NavLink>
             )}
-            {this.props.location.pathname === "/moviepage" ||
-              (this.props.location.pathname === "/register" && (
-                <NavLink to="/">Main</NavLink>
-              ))}
+            {(this.props.location.pathname === "/moviepage" ||
+              this.props.location.pathname === "/login" ||
+              this.props.location.pathname === "/register") && (
+              <NavLink to="/">Main</NavLink>
+            )}
           </div>
         </div>
       </nav>

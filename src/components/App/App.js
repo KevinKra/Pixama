@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import MainPage from "../MainPage/MainPage";
 import NavBar from "../../containers/NavBar/NavBar";
 import LoginCard from "../../containers/LoginCard/LoginCard";
