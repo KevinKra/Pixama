@@ -100,7 +100,7 @@ export class LoginCard extends Component {
     };
     const movie = curatedData[3];
     return (
-      <section className="HeroContent">
+      <section className="LoginContent">
         <div
           className="hero-image"
           style={divStyle(
@@ -111,19 +111,24 @@ export class LoginCard extends Component {
         <div className="opacity-filter" />
         <form className="login-card">
           {this.renderRedirect()}
+          <h2 className="login-card-title">Please Login</h2>
           <input
             onChange={this.handleChange}
             name="email"
             value={this.state.email}
             type="text"
             placeholder="Email"
+            autoComplete="off"
+            required="true"
           />
           <input
             onChange={this.handleChange}
             name="password"
             value={this.state.password}
-            type="text"
+            type="password"
             placeholder="Password"
+            autoComplete="off"
+            required="true"
           />
           {this.state.error && (
             <p className="login-error-text">

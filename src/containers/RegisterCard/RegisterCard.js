@@ -66,7 +66,7 @@ class RegisterCard extends Component {
     };
     const movie = curatedData[4];
     return (
-      <section className="HeroContent">
+      <section className="LoginContent">
         <div
           className="hero-image"
           style={divStyle(
@@ -75,7 +75,8 @@ class RegisterCard extends Component {
           )}
         />
         <div className="opacity-filter" />
-        <form className="login-card register-card">
+        <form className="login-card">
+          <h2 className="login-card-title">Register an Account</h2>
           {this.renderRedirect()}
           <input
             onChange={this.handleChange}
@@ -83,20 +84,26 @@ class RegisterCard extends Component {
             value={this.state.name}
             type="text"
             placeholder="Name"
+            autoComplete="off"
+            required="true"
           />
           <input
             onChange={this.handleChange}
             name="email"
             value={this.state.email}
-            type="text"
+            type="email"
             placeholder="Email"
+            autoComplete="off"
+            required="true"
           />
           <input
             onChange={this.handleChange}
             name="password"
             value={this.state.password}
-            type="text"
+            type="password"
             placeholder="Password"
+            autoComplete="off"
+            required="true"
           />
           {this.state.error && (
             <p className="login-error-text">
