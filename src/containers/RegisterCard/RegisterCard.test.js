@@ -84,5 +84,17 @@ describe('RegisterCard', () => {
 
     expect(wrapper).toMatchSnapshot();
   });
-  
+
+})
+describe('mapDispatchToProps', ()=>{
+    it('calls dispatch with a loginUser action when onSubmit is called',()=>{
+
+      const mockDispatch = jest.fn()
+      const actionToDispatch = loginUser({name:"Taylor", email: "fake@test.com", password: "blahhhh"})
+      const mappedProps = mapDispatchToProps(mockDispatch)
+      mappedProps.loginUser({name:"Taylor", email: "fake@test.com", password: "blahhhh"})
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch)
+    })
 });
+  
+

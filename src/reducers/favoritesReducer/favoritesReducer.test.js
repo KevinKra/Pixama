@@ -10,7 +10,7 @@ describe('favoritesReducer', ()=> {
   it('should return an array of user\'s favorited movies', () => {
     
     const getFavoriesAction = {
-      type: 'GET_FAVORITES',
+      type: 'UPDATE_FAVORITES',
       favorites: [{title: "Movie1"}, {title: "Movie2"}]
     }
     

@@ -6,3 +6,6 @@ export const moviePageReducer = (state = {}, action) => {
       return state;
   }
 };
+
+
+export default moviePageReducer
