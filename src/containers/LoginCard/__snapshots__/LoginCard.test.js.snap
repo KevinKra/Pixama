@@ -1,26 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LoginCard LoginCard component should match the snapshot 1`] = `
-<form
-  className="login-card"
+<section
+  className="HeroContent"
 >
-  <input
-    name="email"
-    onChange={[Function]}
-    placeholder="Email"
-    type="text"
-    value=""
+  <div
+    className="hero-image"
+    style={
+      Object {
+        "backgroundImage": "url(https://image.tmdb.org/t/p/original/n2aX63BmW7zIKgKJ58e6rKlSsdi.jpg)",
+        "backgroundPosition": "center top",
+        "backgroundRepeat": "no-repeat",
+        "backgroundSize": "cover",
+      }
+    }
   />
-  <input
-    name="password"
-    onChange={[Function]}
-    placeholder="Password"
-    type="text"
-    value=""
+  <div
+    className="opacity-filter"
   />
-  <NavLink
-    to="/"
+  <form
+    className="login-card"
   >
+    <input
+      name="email"
+      onChange={[Function]}
+      placeholder="Email"
+      type="text"
+      value=""
+    />
+    <input
+      name="password"
+      onChange={[Function]}
+      placeholder="Password"
+      type="text"
+      value=""
+    />
     <button
       className="submit-button"
       onClick={[Function]}
@@ -28,11 +42,12 @@ exports[`LoginCard LoginCard component should match the snapshot 1`] = `
     >
       Login
     </button>
-  </NavLink>
-  <NavLink
-    to="/register"
-  >
-    Don't have an account? Register here.
-  </NavLink>
-</form>
+    <NavLink
+      className="register-text"
+      to="/register"
+    >
+      Don't have an account? Register here.
+    </NavLink>
+  </form>
+</section>
 `;

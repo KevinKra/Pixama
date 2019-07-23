@@ -5,14 +5,18 @@ import { LoginCard, mapDispatchToProps } from './LoginCard';
 import { loginUser, updatePopularFavorites, updateRomanceFavorites} from '../../actions';
 import React from 'react';
 import { shallow } from 'enzyme';
-import './apiCalls';
+import '../../api/apiCalls';
 
-jest.mock('./apiCalls', ()=> {
-  fetchUser: jest.fn().mockImplementation(()=> {
-    return Promise.resolve({id: 1, name: "fake", emai: "fake", password: "fake"})
-  })
-
-})
+jest.mock("../../api/apiCalls", () => {
+  fetchUser: jest.fn().mockImplementation(() => {
+    return Promise.resolve({
+      id: 1,
+      name: "fake",
+      emai: "fake",
+      password: "fake"
+    });
+  });
+});
 
 describe('LoginCard', ()=> {
   describe('LoginCard component', () => {

@@ -23,6 +23,14 @@ exports[`App should match a snapshot 1`] = `
         "WrappedComponent": [Function],
         "compare": null,
         "displayName": "Connect(MainPage)",
+        "proptyes": Object {
+          "addPopularMovies": [Function],
+          "addRomanceMovies": [Function],
+          "favorites": [Function],
+          "popularMovies": [Function],
+          "romanceMovies": [Function],
+          "updateFavorites": [Function],
+        },
         "type": [Function],
       }
     }
