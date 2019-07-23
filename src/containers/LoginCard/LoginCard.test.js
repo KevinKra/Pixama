@@ -76,17 +76,15 @@ describe ('LoginCard', ()=> {
 
   it.skip('sets an error when the fetch fails', async () => {
 
-    jest.mock("../../api/apiCalls", () => ({
+    //   jest.mock("../../api/apiCalls", () => ({
 
-      fetchUser: jest.fn().mockImplementation(()=> {
-        return Promise.reject(new Error("Error fetching"))
-      })
-
-    })
+    //   fetchUser: jest.fn().mockImplementation(()=> {
+    //     return Promise.reject(new Error("Error fetching"))
+    //   })
+    // })
 
     const mockData = {name: "blahhhh"} 
     await  wrapper.instance().fetchUser(mockData)
-  
     expect(wrapper.state('error')).toEqual("Email and password do not match")
     })
     
@@ -102,7 +100,7 @@ describe ('LoginCard', ()=> {
       })
   });
 
-});
+
 
 describe('populateFavorites', ()=> { 
 //fetch Favorite is called
@@ -120,6 +118,8 @@ it ('should call ClearForm when onSubmit is called', async ()=> {
   it.skip('renderRedirect should return a Redirect is state.redirect ===true', ()=>{
 
   })
+
+})
 
   //MDTP
   describe('mapStateToProps', ()=> { 
@@ -139,10 +139,10 @@ it ('should call ClearForm when onSubmit is called', async ()=> {
         const mappedProps = mapStateToProps(mockState)
   
         expect(mappedProps).toEqual(expected)
-        
+      })
       });
-    });
-  });
+    
+ 
   
 
   describe('mapDispatchToProps', ()=> {
