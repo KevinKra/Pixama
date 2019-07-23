@@ -15,7 +15,7 @@
 .MovieCard {
   position: relative;
   flex: 0 0 15%;
-  margin: 0 2px;
+  margin: 0 5px;
   color: white;
   z-index: 2;
   height: 278px;
@@ -25,6 +25,7 @@
     min-height: 278px;
     max-width: 185px;
   }
+
   .overlay-content {
     position: absolute;
     animation: fade-in-hold 1.5s forwards;
@@ -110,6 +111,14 @@
 
 .bookmarked {
   color: gold;
+}
+
+.bookmarkedCard {
+  border: 2px solid gold;
+}
+
+.notBookmarked {
+  border: 2px solid black;
 }
 
 .screen-solid {

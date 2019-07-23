@@ -175,19 +175,22 @@ export class MovieCard extends Component {
       </Fragment>
     );
 
+    const activeFavorite = () => {
+      return this.props.favorites.isFavorite > 0
+        ? "{border: 2px solid gold}"
+        : "border: 2px solid gold";
+    };
+
     const poster = (
       <img
-        className="poster-image"
+        className={`poster-image ${
+          this.props.isFavorite ? "bookmarkedCard" : "notBookmarked"
+        }`}
         src={`https://image.tmdb.org/t/p/w185/${this.props.poster}`}
         alt={this.props.title}
         onClick={this.toMoviePage}
-        style={this.props.favorite && activeFavorite}
       />
     );
-
-    const activeFavorite = {
-      border: "2px solid gold"
-    };
 
     return (
       <article
