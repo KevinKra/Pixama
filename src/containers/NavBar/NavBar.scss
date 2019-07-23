@@ -1,6 +1,6 @@
 @import "../../_styles/variables.scss";
 
-.NavBar { 
+.NavBar {
   display: flex;
   justify-content: center;
   width: 100%;
@@ -12,7 +12,8 @@
     justify-content: space-between;
     width: 94.5%;
   }
-  a {
+  a,
+  p {
     transition: 0.5s background-color ease-in-out;
     padding: 0.5rem 2rem;
     margin: auto 0;
@@ -27,11 +28,6 @@
     width: 215px;
     justify-self: flex-end;
   }
-}
-
-.logout:hover {
-  cursor: pointer;
-  text-shadow: 1px 1px 5px $text-dark;
 }
 
 .solid {
@@ -50,6 +46,11 @@
       background-color: black;
     }
   }
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0;
 }
 
 .transparent {
