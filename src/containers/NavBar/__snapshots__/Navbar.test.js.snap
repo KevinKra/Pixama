@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBar should match a snapshot 1`] = `
+<nav
+  className="NavBar transparent"
+>
+  <div>
+    <h3>
+      PIXAMA
+    </h3>
+    <div
+      className="routes"
+    >
+      <NavLink
+        to="/login"
+      >
+        Login
+      </NavLink>
+    </div>
+  </div>
+</nav>
+`;

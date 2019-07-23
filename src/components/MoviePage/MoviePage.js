@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import * as helpers from "../../_utils/helpers/";
 import { connect } from "react-redux";
 import "./MoviePage.scss";
 
-class MoviePage extends Component {
+export class MoviePage extends Component {
   state = {
     displayPoster: true
   };
@@ -102,5 +103,9 @@ class MoviePage extends Component {
 export const mapStateToProps = store => ({
   moviePage: store.moviePage
 });
+
+MoviePage.propTypes = {
+  moviePage: PropTypes.object
+};
 
 export default connect(mapStateToProps)(MoviePage);

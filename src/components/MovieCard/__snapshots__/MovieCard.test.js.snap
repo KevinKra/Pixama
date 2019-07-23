@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieCard should match the snapshot 1`] = `
+<article
+  className="MovieCard"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  style={
+    Object {
+      "maxWidth": "185px",
+    }
+  }
+>
+  <img
+    alt="movie title"
+    className="poster-image"
+    onClick={[Function]}
+    src="https://image.tmdb.org/t/p/w185/path"
+  />
+</article>
+`;

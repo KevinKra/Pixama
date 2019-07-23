@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RegisterCard should match a snapshot 1`] = `
+<section
+  className="HeroContent"
+>
+  <div
+    className="hero-image"
+    style={
+      Object {
+        "backgroundImage": "url(https://image.tmdb.org/t/p/original/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg)",
+        "backgroundPosition": "center top",
+        "backgroundRepeat": "no-repeat",
+        "backgroundSize": "cover",
+      }
+    }
+  />
+  <div
+    className="opacity-filter"
+  />
+  <form
+    className="login-card register-card"
+  >
+    <input
+      className="register-name-input"
+      name="name"
+      onChange={[Function]}
+      placeholder="Name"
+      type="text"
+      value=""
+    />
+    <input
+      name="email"
+      onChange={[Function]}
+      placeholder="Email"
+      type="text"
+      value=""
+    />
+    <input
+      name="password"
+      onChange={[Function]}
+      placeholder="Password"
+      type="text"
+      value=""
+    />
+    <button
+      className="register-submit-btn"
+      onClick={[Function]}
+      type="button"
+    >
+      Register
+    </button>
+  </form>
+</section>
+`;
+
+exports[`RegisterCard should render error if there is one 1`] = `
+<section
+  className="HeroContent"
+>
+  <div
+    className="hero-image"
+    style={
+      Object {
+        "backgroundImage": "url(https://image.tmdb.org/t/p/original/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg)",
+        "backgroundPosition": "center top",
+        "backgroundRepeat": "no-repeat",
+        "backgroundSize": "cover",
+      }
+    }
+  />
+  <div
+    className="opacity-filter"
+  />
+  <form
+    className="login-card register-card"
+  >
+    <input
+      className="register-name-input"
+      name="name"
+      onChange={[Function]}
+      placeholder="Name"
+      type="text"
+      value=""
+    />
+    <input
+      name="email"
+      onChange={[Function]}
+      placeholder="Email"
+      type="text"
+      value=""
+    />
+    <input
+      name="password"
+      onChange={[Function]}
+      placeholder="Password"
+      type="text"
+      value=""
+    />
+    <p
+      className="login-error-text"
+    >
+      test is not passing
+      . Please try again.
+    </p>
+    <button
+      className="register-submit-btn"
+      onClick={[Function]}
+      type="button"
+    >
+      Register
+    </button>
+  </form>
+</section>
+`;

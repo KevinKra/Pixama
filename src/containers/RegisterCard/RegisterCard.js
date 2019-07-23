@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types"; 
 import { connect } from "react-redux";
 import { loginUser } from "../../actions";
 import { fetchUser, fetchNewUser } from "../../api/apiCalls";
 import { Redirect } from "react-router-dom";
 import { curatedData } from "../../_assets/curatedHeroData";
 
-class RegisterCard extends Component {
+export class RegisterCard extends Component {
   state = {
     email: "",
     password: "",
@@ -79,6 +80,7 @@ class RegisterCard extends Component {
           <h2 className="login-card-title">Register an Account</h2>
           {this.renderRedirect()}
           <input
+            className="register-name-input"
             onChange={this.handleChange}
             name="name"
             value={this.state.name}
@@ -110,11 +112,11 @@ class RegisterCard extends Component {
               {this.state.error}. Please try again.
             </p>
           )}
-          {/* <NavLink to="/"> */}
-          <button type="button" onClick={this.onSubmit}>
+
+          <button className="register-submit-btn" type="button" onClick={this.onSubmit}>
+
             Register
           </button>
-          {/* </NavLink> */}
         </form>
       </section>
     );
@@ -124,6 +126,10 @@ class RegisterCard extends Component {
 export const mapDispatchToProps = dispatch => ({
   loginUser: user => dispatch(loginUser(user))
 });
+
+RegisterCard.propTypes = {
+  loginUser: PropTypes.func 
+}
 
 export default connect(
   null,

@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MoviePage should match the snapshot 1`] = `
+<section
+  className="MoviePage"
+>
+  <section
+    className="mp-primary-content"
+  >
+    <div
+      className="poster-image"
+      id={123}
+      key="123"
+      onClick={[Function]}
+      style={
+        Object {
+          "backgroundImage": "url(https://image.tmdb.org/t/p/originalawregawg)",
+          "backgroundPosition": "center top",
+          "backgroundRepeat": "no-repeat",
+          "backgroundSize": "cover",
+        }
+      }
+    />
+    <div
+      className="backdrop"
+    />
+    <aside>
+      <section
+        className="mp-movie-info"
+      >
+        <h1>
+          gkudjy
+        </h1>
+        <h3>
+          sdfbsd
+        </h3>
+        <div
+          className="movie-support"
+        >
+          <p>
+            favorited
+          </p>
+          <p>
+            Rating: 
+            314
+          </p>
+          <p>
+            Length: 
+            dfbs
+          </p>
+        </div>
+        <p>
+          asrg
+        </p>
+        <p>
+          dsbsdb
+        </p>
+        <p>
+          Released: 
+          gf,sbd
+        </p>
+        <p>
+          Revenue: 
+          1343
+        </p>
+        <p>
+          Language: 
+          dfyjdf
+        </p>
+      </section>
+      <section
+        className="production-companies"
+      >
+        <img
+          key="0"
+          src="https://image.tmdb.org/t/p/w92woiurhgwr"
+        />
+        <img
+          key="1"
+          src="https://image.tmdb.org/t/p/w92WDwd"
+        />
+      </section>
+    </aside>
+  </section>
+</section>
+`;

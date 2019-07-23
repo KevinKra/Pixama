@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark } from "@fortawesome/free-solid-svg-icons";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
@@ -212,7 +213,6 @@ export const mapStateToProps = state => ({
   popularMovies: state.popularMovies,
   romanceMovies: state.romanceMovies,
   favorites: state.favorites,
-  currentUser: state.currentUser
 });
 
 export const mapDispatchToProps = dispatch => ({
@@ -223,6 +223,17 @@ export const mapDispatchToProps = dispatch => ({
   updateMoviePage: movie => dispatch(actions.updateMoviePage(movie)),
   updateFavorites: favorites => dispatch(actions.updateFavorites(favorites))
 });
+
+MovieCard.propTypes = {
+  updatePopularFavorites: PropTypes.func,
+  updateRomanceFavorites: PropTypes.func,
+  updateMoviePage: PropTypes.func,
+  updateFavorites: PropTypes.func,
+  currentUser: PropTypes.object,
+  popularMovies: PropTypes.array,
+  romanceMovies: PropTypes.array,
+  favorites: PropTypes.array
+};
 
 export default connect(
   mapStateToProps,

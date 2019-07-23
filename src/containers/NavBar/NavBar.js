@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
 import "./NavBar.scss";
 import * as apiCalls from "../../api/apiCalls";
 import { connect } from "react-redux";
@@ -58,7 +59,7 @@ export class NavBar extends Component {
     });
     this.props.updateFavorites([]);
   };
-
+  
   render() {
     const { loggedIn } = this.props;
     const loginButton = loggedIn ? (
@@ -106,6 +107,14 @@ export const mapDispatchToProps = dispatch =>
     { addPopularMovies, addRomanceMovies, logoutUser, updateFavorites },
     dispatch
   );
+
+NavBar.propTypes = {
+  loggedIn: PropTypes.bool,
+  addPopularMovies: PropTypes.func,
+  addRomanceMovies: PropTypes.func,
+  updateFavorites: PropTypes.func,
+  logoutUser: PropTypes.func
+};
 
 export default connect(
   mapStateToProps,

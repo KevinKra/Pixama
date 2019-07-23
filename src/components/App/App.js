@@ -17,4 +17,5 @@ export default function App() {
       <Route exact path="/register" component={RegisterCard} />
     </main>
   );
-}
+};
+

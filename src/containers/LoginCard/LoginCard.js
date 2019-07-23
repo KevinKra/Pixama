@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "./LoginCard.scss";
 import { fetchUser, fetchFavorites } from "../../api/apiCalls";
 import { connect } from "react-redux";
@@ -37,11 +38,14 @@ export class LoginCard extends Component {
       const user = await fetchUser(url, userData);
       id = user.data.id;
       this.props.loginUser(user.data);
+      this.populateFavorites(id)
     } catch (error) {
       console.log(error.message);
       this.setState({ error: error.message });
     }
+  };
 
+  populateFavorites = async (id) => {
     try {
       const favorites = await fetchFavorites(
         `http://localhost:3000/api/users/${id}/favorites`
@@ -74,7 +78,7 @@ export class LoginCard extends Component {
       this.setState({ error: error.message });
     }
     this.clearForm();
-  };
+  }
 
   clearForm = () => {
     this.setState({
@@ -165,6 +169,16 @@ export const mapDispatchToProps = dispatch => ({
     dispatch(updateRomanceFavorites(romanceFavorites)),
   updateFavorites: favorites => dispatch(updateFavorites(favorites))
 });
+
+LoginCard.propTypes = {
+  popularMovies: PropTypes.array,
+  romanceMovies: PropTypes.array,
+  favorites: PropTypes.array,
+  loginUser: PropTypes.func,
+  updateFavorites: PropTypes.func,
+  updatePopularFavorites: PropTypes.func,
+  updateRomanceFavorites: PropTypes.func
+}
 
 export default connect(
   mapStateToProps,

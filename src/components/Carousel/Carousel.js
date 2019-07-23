@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import MovieCard from "../MovieCard/MovieCard";
 import "./Carousel.scss";
 import { connect } from "react-redux";
@@ -61,7 +62,8 @@ export class Carousel extends Component {
       </div>
     );
   }
-}
+};
+
 
 export const mapStateToProps = state => ({
   popularMovies: state.popularMovies,
@@ -69,4 +71,9 @@ export const mapStateToProps = state => ({
   favorites: state.favorites
 });
 
+Carousel.propTypes = {
+  popularMovies: PropTypes.array,
+  romanceMovies: PropTypes.array,
+  favorites: PropTypes.array
+};
 export default connect(mapStateToProps)(Carousel);
