@@ -3,7 +3,6 @@
 
 .Carousel {
   color: white;
-  border: 1px solid blue;
   position: relative;
   z-index: -1;
   overflow: hidden;
@@ -11,6 +10,13 @@
   h2 {
     margin: 0.1rem;
     padding-left: 1rem;
+  }
+  i {
+    transition: 0.09s transform ease-in;
+    cursor: pointer;
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 }
 
@@ -20,7 +26,6 @@
   display: flex;
   overflow-y: none;
   justify-content: center;
-  border: 1px solid red;
   padding: 2rem 55px;
 }
 
@@ -30,7 +35,7 @@
   position: absolute;
   color: white;
   border: none;
-  width: 5%;
+  // width: 5%;
   height: 100%;
   background: transparent;
   &:focus {
@@ -52,6 +57,7 @@
 
 .backwards-btn {
   right: 0;
+  width: 80px;
   background: rgb(0, 0, 0);
   background: linear-gradient(
     270deg,
@@ -61,9 +67,6 @@
     rgba(27, 27, 27, 0.5) 60%,
     rgba(27, 27, 27, 0) 100%
   );
-}
-
-.backwards-btn {
 }
 
 .movies-container::-webkit-scrollbar {
