@@ -58,7 +58,7 @@ export class NavBar extends Component {
     });
     this.props.updateFavorites([]);
   };
-
+  
   render() {
     const { loggedIn } = this.props;
     const returnToMain = () => {
