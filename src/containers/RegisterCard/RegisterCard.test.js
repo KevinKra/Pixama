@@ -3,6 +3,8 @@ import { RegisterCard } from "./RegisterCard";
 import { shallow } from "enzyme";
 import * as apiCalls from '../../api/apiCalls';
 import { Redirect } from "react-router-dom";
+import { loginUser } from '../../actions';
+import { mapDispatchToProps } from './RegisterCard';
 
 describe('RegisterCard', () => {
   let wrapper;

@@ -2,7 +2,7 @@ import { LoginCard, mapDispatchToProps, mapStateToProps } from './LoginCard';
 import { loginUser, updatePopularFavorites, updateRomanceFavorites, updateFavorites} from '../../actions';
 import React from 'react';
 import { shallow } from 'enzyme';
-import '../../api/apiCalls';
+import * as apiCalls from '../../api/apiCalls';
 
 jest.mock("../../api/apiCalls", () => ({
   fetchUser: jest.fn().mockImplementation(()=> {
@@ -60,7 +60,7 @@ describe ('LoginCard', ()=> {
       const url = "http://localhost:3000/api/users"
       const arg = {"email": "", "password": ""}
       await instance.onSubmit()
-      expect(fetchUser).toHaveBeenCalledWith(url, arg)
+      expect(apiCalls.fetchUser).toHaveBeenCalledWith(url, arg)
     })
 
     it.skip("should invoke loginUser with the result of the fetch", async () => {
