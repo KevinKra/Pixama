@@ -12,6 +12,14 @@ exports[`NavBar should match a snapshot 1`] = `
       className="routes"
     >
       <NavLink
+        className="disabled"
+        disabled={true}
+        to="/"
+      >
+        Main
+      </NavLink>
+      <NavLink
+        className="loginbtn"
         to="/login"
       >
         Login
