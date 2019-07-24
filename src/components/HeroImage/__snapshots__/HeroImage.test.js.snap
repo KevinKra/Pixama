@@ -9,7 +9,7 @@ exports[`HeroImage should match the snapshot 1`] = `
       className="hero-image"
       style={
         Object {
-          "backgroundImage": "url(https://image.tmdb.org/t/p/original/m67smI1IIMmYzCl9axvKNULVKLr.jpg)",
+          "backgroundImage": "url(https://image.tmdb.org/t/p/original/n2aX63BmW7zIKgKJ58e6rKlSsdi.jpg)",
           "backgroundPosition": "center top",
           "backgroundRepeat": "no-repeat",
           "backgroundSize": "cover",
@@ -23,10 +23,10 @@ exports[`HeroImage should match the snapshot 1`] = `
       className="hero-movie-details"
     >
       <h2>
-        Toy Story 4
+        Pet Sematary
       </h2>
       <p>
-        Woody has always been confident about his place in the world and that his priority is taking care of his kid, whether that's Andy or Bonnie. But when Bonnie adds a reluctant new toy called "Forky" to her room, a road trip adventure alongside old and new friends will show Woody how big the world can be for a toy.
+        Dr. Louis Creed and his wife, Rachel, relocate from Boston to rural Maine with their two young children. The couple soon discover a mysterious burial ground hidden deep in the woods near their new home. When tragedy strikes, Louis turns to his neighbour Jud Crandall, setting off a perilous chain reaction that unleashes an unspeakable evil with horrific consequences.
       </p>
       <button>
         Watch
@@ -39,7 +39,7 @@ exports[`HeroImage should match the snapshot 1`] = `
         className="rating"
         disabled={true}
       >
-        G
+        R
       </p>
     </div>
   </section>

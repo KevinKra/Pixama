@@ -2,7 +2,7 @@
 
 exports[`RegisterCard should match a snapshot 1`] = `
 <section
-  className="HeroContent"
+  className="LoginContent"
 >
   <div
     className="hero-image"
@@ -19,28 +19,39 @@ exports[`RegisterCard should match a snapshot 1`] = `
     className="opacity-filter"
   />
   <form
-    className="login-card register-card"
+    className="login-card"
   >
+    <h2
+      className="login-card-title"
+    >
+      Register an Account
+    </h2>
     <input
+      autoComplete="off"
       className="register-name-input"
       name="name"
       onChange={[Function]}
       placeholder="Name"
+      required="true"
       type="text"
       value=""
     />
     <input
+      autoComplete="off"
       name="email"
       onChange={[Function]}
       placeholder="Email"
-      type="text"
+      required="true"
+      type="email"
       value=""
     />
     <input
+      autoComplete="off"
       name="password"
       onChange={[Function]}
       placeholder="Password"
-      type="text"
+      required="true"
+      type="password"
       value=""
     />
     <button
@@ -56,7 +67,7 @@ exports[`RegisterCard should match a snapshot 1`] = `
 
 exports[`RegisterCard should render error if there is one 1`] = `
 <section
-  className="HeroContent"
+  className="LoginContent"
 >
   <div
     className="hero-image"
@@ -73,28 +84,39 @@ exports[`RegisterCard should render error if there is one 1`] = `
     className="opacity-filter"
   />
   <form
-    className="login-card register-card"
+    className="login-card"
   >
+    <h2
+      className="login-card-title"
+    >
+      Register an Account
+    </h2>
     <input
+      autoComplete="off"
       className="register-name-input"
       name="name"
       onChange={[Function]}
       placeholder="Name"
+      required="true"
       type="text"
       value=""
     />
     <input
+      autoComplete="off"
       name="email"
       onChange={[Function]}
       placeholder="Email"
-      type="text"
+      required="true"
+      type="email"
       value=""
     />
     <input
+      autoComplete="off"
       name="password"
       onChange={[Function]}
       placeholder="Password"
-      type="text"
+      required="true"
+      type="password"
       value=""
     />
     <p

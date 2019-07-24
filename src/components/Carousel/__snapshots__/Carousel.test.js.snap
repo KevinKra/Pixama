@@ -11,25 +11,20 @@ exports[`Carousel should match the snapshot 1`] = `
     className="forwards-btn"
     onClick={[Function]}
   >
-    <span>
-      ⏪
-    </span>
+    <i
+      className="fas fa-chevron-left fa-5x"
+    />
   </button>
   <button
     className="backwards-btn"
     onClick={[Function]}
   >
-    <span>
-      ⏩
-    </span>
+    <i
+      className="fas fa-chevron-right fa-5x"
+    />
   </button>
   <div
     className="movies-container"
-    style={
-      Object {
-        "transform": "translateX(-25%)",
-      }
-    }
   >
     <Connect(withRouter(MovieCard)) />
     <Connect(withRouter(MovieCard)) />
@@ -48,25 +43,20 @@ exports[`Carousel should not render movie cards if data hasnt yet been fetched 1
     className="forwards-btn"
     onClick={[Function]}
   >
-    <span>
-      ⏪
-    </span>
+    <i
+      className="fas fa-chevron-left fa-5x"
+    />
   </button>
   <button
     className="backwards-btn"
     onClick={[Function]}
   >
-    <span>
-      ⏩
-    </span>
+    <i
+      className="fas fa-chevron-right fa-5x"
+    />
   </button>
   <div
     className="movies-container"
-    style={
-      Object {
-        "transform": "translateX(-25%)",
-      }
-    }
   />
 </div>
 `;

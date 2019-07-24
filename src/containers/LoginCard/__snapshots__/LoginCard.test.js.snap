@@ -2,7 +2,7 @@
 
 exports[`LoginCard LoginCard component should match the snapshot 1`] = `
 <section
-  className="HeroContent"
+  className="LoginContent"
 >
   <div
     className="hero-image"
@@ -21,18 +21,27 @@ exports[`LoginCard LoginCard component should match the snapshot 1`] = `
   <form
     className="login-card"
   >
+    <h2
+      className="login-card-title"
+    >
+      Please Login
+    </h2>
     <input
+      autoComplete="off"
       name="email"
       onChange={[Function]}
       placeholder="Email"
+      required="true"
       type="text"
       value=""
     />
     <input
+      autoComplete="off"
       name="password"
       onChange={[Function]}
       placeholder="Password"
-      type="text"
+      required="true"
+      type="password"
       value=""
     />
     <button
