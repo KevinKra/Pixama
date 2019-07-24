@@ -7,7 +7,7 @@ Built with React and Redux, Pixama brings the movie-watching experience directly
 ![Imgur](https://i.imgur.com/Vi5EGe6.jpg)
 ![Imgur](https://i.imgur.com/EQKJ9jW.jpg)
 
-## Technology user
+## Technology used
 
 - React
 - Redux

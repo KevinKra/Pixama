@@ -7,13 +7,13 @@ exports[`MovieCard should match the snapshot 1`] = `
   onMouseLeave={[Function]}
   style={
     Object {
-      "maxWidth": "185px",
+      "minWidth": "185px",
     }
   }
 >
   <img
     alt="movie title"
-    className="poster-image"
+    className="poster-image notBookmarked"
     onClick={[Function]}
     src="https://image.tmdb.org/t/p/w185/path"
   />

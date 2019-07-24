@@ -52,10 +52,6 @@ describe ('LoginCard', ()=> {
 
   describe("onSubmit function", () => {
 
-    it.skip('should call the onSubmit method when the login button is clicked', ()=>{
-      //async?
-  })
-
     it("should invoke fetchUser with the correct params", async () => {
       const url = "http://localhost:3000/api/users"
       const arg = {"email": "", "password": ""}
@@ -69,22 +65,22 @@ describe ('LoginCard', ()=> {
       expect(mockFn).toHaveBeenCalled(); 
     })
 
-    it('should invoke populateFavorites with an id', ()=> {
-
+    it.skip('should invoke populateFavorites when onSubmit is called', async ()=> {
+      const mockPopulateFavorites = jest.fn()
+      await instance.onSubmit();
+      expect(mockPopulateFavorites).toHaveBeenCalled(); 
 
     })
 
   it.skip('sets an error when the fetch fails', async () => {
-
-    //   jest.mock("../../api/apiCalls", () => ({
-
-    //   fetchUser: jest.fn().mockImplementation(()=> {
+      
+    // jest.mock("../../api/apiCalls", () => ({
+    //     fetchUser: jest.fn().mockImplementation(()=> {
     //     return Promise.reject(new Error("Error fetching"))
     //   })
     // })
 
-    const mockData = {name: "blahhhh"} 
-    await  wrapper.instance().fetchUser(mockData)
+    await  wrapper.instance().fetchUser({name:"blah blah"})
     expect(wrapper.state('error')).toEqual("Email and password do not match")
     })
     
@@ -103,23 +99,16 @@ describe ('LoginCard', ()=> {
 
 
 describe('populateFavorites', ()=> { 
-//fetch Favorite is called
-//set an error
+
 it ('should call ClearForm when onSubmit is called', async ()=> {
   instance.clearForm = jest.fn()
   await instance.populateFavorites()
   expect(instance.clearForm).toHaveBeenCalled()
-})
-
-})
-
-  //renderRedirect
-
-  it.skip('renderRedirect should return a Redirect is state.redirect ===true', ()=>{
-
   })
 
 })
+
+});
 
   //MDTP
   describe('mapStateToProps', ()=> { 
