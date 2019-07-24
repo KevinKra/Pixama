@@ -80,12 +80,10 @@ export class MoviePage extends Component {
               <h1>{original_title}</h1>
               <h3>{tagline}</h3>
               <div className="movie-support">
-                <p>favorited</p>
                 <p>Rating: {vote_average}</p>
-                <p>Length: {runtime}</p>
+                <p>Length: {runtime} minutes</p>
               </div>
               <p>{overview}</p>
-              <p>{status}</p>
               <p>Released: {release_date}</p>
               <p>Revenue: {revenue}</p>
               <p>Language: {original_language}</p>

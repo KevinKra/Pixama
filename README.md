@@ -1,32 +1,40 @@
+# Pixama
 
-#PIXAMA
+Built with React and Redux, Pixama brings the movie-watching experience directly to its users by providing a visually appealing interactive design that both provides the ability to login to an account and favorite content based on your personal preferences. Search through various different genre and find the movies and shows that interest you the most!
 
-Pixama is application which allows users to browse movies in various categories when logged in as a user or not. Each movie image can be clicked to route to a movie page showing additional information about that movie. A user may also create an account and favorite/unfavorite movies, which will be displayed in a Favorites carousel when they are logged in.
+### Screenshots
 
-Pixama was built with React and Redux and tested using Jest/Enzyme.
-The API used for movie data is [The Movie DB](www.themoviedb.org).
+![Imgur](https://i.imgur.com/Vi5EGe6.jpg)
+![Imgur](https://i.imgur.com/EQKJ9jW.jpg)
 
-To view this application, clone down this repo.  
-### `npm i`
+## Technology used
 
-### `npm start`
+- React
+- Redux
+- Javascript
+- Scss
+- Postgres
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Installation
 
-**Collaborators**
-[Kevin Krato](https://github.com/KevinKra)
-[Anneke McGrady](https://github.com/annekemcgrady)
-[Steve Rumizen](https://github.com/rumizen)
+Clone the repo - `https://github.com/KevinKra/pixama`
 
-**Screenshots**
-![heroimage](https://imgur.com/zgPmS8p)
+Run `npm install` from the root directory
 
-![favoriting][Imgur](https://imgur.com/PqCG6Kn)
+Run `npm start` and visit `localhost:3000` in your browser
 
-![loginpage](https://imgur.com/zgPmS8p)
+## Developers
 
-**GIFs**
-![mainpage](https://imgur.com/UYb2sJo)
-![moviepage](https://imgur.com/UYb2sJo)
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- [Kevin Krato](https://github.com/KevinKra)
+- [Anneke McGrady](https://github.com/annekemcgrady)
+- [Steve Rumizen](https://github.com/rumizen)
+
+## Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
